@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:triptokorea/Login/Login.dart';
 import 'Menu/menuBar.dart';
 
 void main() {
@@ -15,6 +16,6 @@ class MyApp extends StatefulWidget {
 class MyApp_State extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: menuBar());
+    return MaterialApp(home: Login());
   }
 }
