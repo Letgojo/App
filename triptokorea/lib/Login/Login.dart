@@ -15,7 +15,8 @@ class _LoginState extends State<Login> {
       body: Column(children: [
         Container(
           width: 400,
-          margin: EdgeInsets.only(left: 10, top: 80),
+          margin: EdgeInsets.only(left: 50, top: 80),
+          padding: EdgeInsets.only(left: 20, top: 60),
           child: Text(
             "Welcome!",
             style: GoogleFonts.jua(textStyle: TextStyle(fontSize: 40)),
@@ -23,7 +24,6 @@ class _LoginState extends State<Login> {
         ),
         Container(
           width: 400,
-          margin: EdgeInsets.only(left: 20, top: 40),
           child: TextField(
             decoration: InputDecoration(
               labelText: "아아디",
@@ -35,7 +35,6 @@ class _LoginState extends State<Login> {
         ),
         Container(
           width: 400,
-          margin: EdgeInsets.only(left: 20, top: 20),
           child: TextField(
             decoration: InputDecoration(
               labelText: "암호",
@@ -48,7 +47,6 @@ class _LoginState extends State<Login> {
         ),
         Container(
           width: 400,
-          margin: EdgeInsets.only(left: 20, top: 20),
           child: Text(
             "Forgot ID",
             style: TextStyle(color: Colors.blue),
@@ -56,7 +54,6 @@ class _LoginState extends State<Login> {
         ),
         Container(
           width: 400,
-          margin: EdgeInsets.only(left: 20, top: 20),
           child: Text(
             "Forgot FWD",
             style: TextStyle(color: Colors.blue),
@@ -65,12 +62,14 @@ class _LoginState extends State<Login> {
         Container(
             width: 400,
             height: 40,
-            margin: EdgeInsets.only(left: 20, top: 30),
+            margin: EdgeInsets.only(top: 80),
             child: ElevatedButton(
-              child: Text("로그인",
-                  style: GoogleFonts.jua(textStyle: TextStyle(fontSize: 20))),
-              onPressed: () {},
-            ))
+                child: Text("로그인",
+                    style: GoogleFonts.jua(textStyle: TextStyle(fontSize: 20))),
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)))))
       ]),
     );
   }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:triptokorea/Login/%20register/%20register.dart';
+import 'package:triptokorea/Login/FW_Find/FW_Find.dart';
+import 'package:triptokorea/Login/ID_Find/ID_Find.dart';
 import 'package:triptokorea/Login/Login.dart';
 import 'Menu/menuBar.dart';
 
@@ -16,6 +19,6 @@ class MyApp extends StatefulWidget {
 class MyApp_State extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Login());
+    return MaterialApp(home: register());
   }
 }
