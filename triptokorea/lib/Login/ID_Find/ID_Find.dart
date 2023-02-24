@@ -22,7 +22,9 @@ class _ID_FindState extends State<ID_Find> {
           ),
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 icon: Icon(
                   Icons.close,
                   color: Colors.black,
