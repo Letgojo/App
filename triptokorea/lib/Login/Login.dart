@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:triptokorea/Login/%20register/%20register.dart';
+import 'package:triptokorea/Login/FW_Find/FW_Find.dart';
+import 'package:triptokorea/Login/ID_Find/ID_Find.dart';
+import 'package:triptokorea/Menu/menuBar.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -46,27 +50,58 @@ class _LoginState extends State<Login> {
           ),
         ),
         Container(
-          width: 400,
-          child: Text(
-            "Forgot ID",
-            style: TextStyle(color: Colors.blue),
-          ),
-        ),
+            width: 400,
+            child: ElevatedButton(
+                child: Text(
+                  "아이디찾기",
+                  style: TextStyle(color: Colors.blue),
+                ),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const ID_Find()));
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white, shadowColor: Colors.white))),
         Container(
-          width: 400,
-          child: Text(
-            "Forgot FWD",
-            style: TextStyle(color: Colors.blue),
-          ),
-        ),
+            width: 400,
+            child: ElevatedButton(
+                child: Text(
+                  "비밀번호 찾기",
+                  style: TextStyle(color: Colors.blue),
+                ),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const FW_Find()));
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white, shadowColor: Colors.white))),
+        Container(
+            width: 400,
+            margin: EdgeInsets.only(top: 20),
+            child: ElevatedButton(
+                child: Text(
+                  "회원가입",
+                  style: TextStyle(color: Colors.blue),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const register()));
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white, shadowColor: Colors.white))),
         Container(
             width: 400,
             height: 40,
-            margin: EdgeInsets.only(top: 80),
+            margin: EdgeInsets.only(top: 30),
             child: ElevatedButton(
                 child: Text("로그인",
                     style: GoogleFonts.jua(textStyle: TextStyle(fontSize: 20))),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const menuBar()));
+                },
                 style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)))))
