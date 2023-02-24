@@ -22,7 +22,9 @@ class _FW_FindState extends State<FW_Find> {
           ),
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 icon: Icon(
                   Icons.close,
                   color: Colors.black,
