@@ -1,4 +1,8 @@
 PODS:
+  - bs_flutter_selectbox (0.0.1):
+    - Flutter
+  - bs_flutter_utils (0.0.1):
+    - Flutter
   - Flutter (1.0.0)
   - path_provider_foundation (0.0.1):
     - Flutter
@@ -7,11 +11,17 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - bs_flutter_selectbox (from `.symlinks/plugins/bs_flutter_selectbox/ios`)
+  - bs_flutter_utils (from `.symlinks/plugins/bs_flutter_utils/ios`)
   - Flutter (from `Flutter`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 EXTERNAL SOURCES:
+  bs_flutter_selectbox:
+    :path: ".symlinks/plugins/bs_flutter_selectbox/ios"
+  bs_flutter_utils:
+    :path: ".symlinks/plugins/bs_flutter_utils/ios"
   Flutter:
     :path: Flutter
   path_provider_foundation:
@@ -20,6 +30,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
+  bs_flutter_selectbox: 6f8f2635cb0e3f10096fcd774af6d90272bb089b
+  bs_flutter_utils: 8f7e9550c45adfa0d9b77d5ac395bc33b6d18eb3
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   path_provider_foundation: 37748e03f12783f9de2cb2c4eadfaa25fe6d4852
   url_launcher_ios: fb12c43172927bb5cf75aeebd073f883801f1993
