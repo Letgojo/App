@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "595704736608",
+    "project_id": "test-bd2d5",
+    "storage_bucket": "test-bd2d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:595704736608:android:3139f147ac0a9242f3cc05",
+        "android_client_info": {
+          "package_name": "com.example.triptokorea"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "595704736608-9rotdfs4d8qqeeiq1r0vq12plpbgqfur.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI9NNhrLpZ4No8Qo_V-Icb5Tv7iOKiqBc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "595704736608-9rotdfs4d8qqeeiq1r0vq12plpbgqfur.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

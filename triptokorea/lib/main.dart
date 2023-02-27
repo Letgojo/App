@@ -1,12 +1,19 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:triptokorea/Login/%20register/%20register.dart';
 import 'package:triptokorea/Login/FW_Find/FW_Find.dart';
 import 'package:triptokorea/Login/ID_Find/ID_Find.dart';
 import 'package:triptokorea/Login/Login.dart';
+import 'package:triptokorea/models/registerSerivce.dart';
 import 'Menu/menuBar.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); //main 함수에서 async 사용
+  await Firebase.initializeApp(); //firebase 사용
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => registerSerivce())
+  ], child: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
