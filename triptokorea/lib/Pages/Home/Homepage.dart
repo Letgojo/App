@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:triptokorea/Trip/TripFirstPage/FirstPage.dart';
+import 'package:triptokorea/Pages/Trip/TripFirstPage/FirstPage.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

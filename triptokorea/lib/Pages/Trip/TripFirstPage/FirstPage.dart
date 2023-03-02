@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:triptokorea/Trip/TripNoPage/TripNo1.dart';
+import 'package:triptokorea/Pages/Trip/TripNoPage/TripNo1.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
