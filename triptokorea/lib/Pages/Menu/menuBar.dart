@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:triptokorea/Chat/ChatPage.dart';
-import 'package:triptokorea/Community/Community.dart';
-import 'package:triptokorea/Home/Homepage.dart';
+import 'package:triptokorea/Pages/Chat/ChatPage.dart';
+import 'package:triptokorea/Pages/Community/Community.dart';
+import 'package:triptokorea/Pages/Home/Homepage.dart';
 import 'package:triptokorea/Setting/Setting.dart';
 import 'package:triptokorea/TripIntroduce/Introduce.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:triptokorea/Home/Homepage.dart';
+import 'package:triptokorea/Pages/Home/Homepage.dart';
 
-import '../../Menu/menuBar.dart';
+import '../../Pages/Menu/menuBar.dart';
 
 class TripNo1 extends StatefulWidget {
   const TripNo1({super.key});

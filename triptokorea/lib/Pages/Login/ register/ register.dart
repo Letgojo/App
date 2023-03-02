@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:bs_flutter_selectbox/bs_flutter_selectbox.dart';
 import 'package:provider/provider.dart';
-import 'package:triptokorea/Login/Login.dart';
+import 'package:triptokorea/Pages/Login/Login.dart';
 import 'package:triptokorea/models/registerSerivce.dart';
 
 class register extends StatefulWidget {

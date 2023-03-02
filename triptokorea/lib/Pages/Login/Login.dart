@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:triptokorea/Login/%20register/%20register.dart';
-import 'package:triptokorea/Login/FW_Find/FW_Find.dart';
-import 'package:triptokorea/Login/ID_Find/ID_Find.dart';
-import 'package:triptokorea/Menu/menuBar.dart';
+import 'package:triptokorea/Pages/Login/%20register/%20register.dart';
+import 'package:triptokorea/Pages/Login/FW_Find/FW_Find.dart';
+import 'package:triptokorea/Pages/Login/ID_Find/ID_Find.dart';
+import 'package:triptokorea/Pages/Menu/menuBar.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
