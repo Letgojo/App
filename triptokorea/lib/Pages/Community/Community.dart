@@ -1,11 +1,20 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:triptokorea/Pages/Community/write.dart';
+import 'package:image_picker/image_picker.dart';
 
-class Community extends StatelessWidget {
+class Community extends StatefulWidget {
   const Community({super.key});
 
   @override
+  State<Community> createState() => _CommunityState();
+}
+
+class _CommunityState extends State<Community> {
+  @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
@@ -49,8 +58,8 @@ class Community extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: "상품을 입력해주세요",
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
-                  ),
+                      borderSide: BorderSide(color: Colors.black),
+                      borderRadius: BorderRadius.circular(10)),
                   //돋보기 아이콘
                   suffixIcon: IconButton(
                     onPressed: () {
@@ -72,6 +81,8 @@ class Community extends StatelessWidget {
           backgroundColor: Colors.pink,
           onPressed: () {
             print("추가버튼");
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const write()));
           },
           child: Icon(
             Icons.edit,
