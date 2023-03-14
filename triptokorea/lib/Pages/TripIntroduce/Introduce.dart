@@ -14,26 +14,35 @@ class _IntroduceState extends State<Introduce> {
     return Scaffold(
       body: SingleChildScrollView(
           child: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              margin: EdgeInsets.only(top: 20, left: 80),
-              width: 250,
-              decoration: BoxDecoration(
-                  border: Border.all(width: 1),
-                  borderRadius: BorderRadius.circular(10)),
-              child: Column(children: [
-                Text(
-                  "기간검색",
-                  style: GoogleFonts.jua(
-                      textStyle: TextStyle(fontSize: 20, color: Colors.black)),
-                ),
-                Row(
-                  children: [],
-                )
-              ]),
-            )
-          ],
+        child: Container(
+          width: double.infinity,
+          height: 750,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('assets/images/sea.jpeg'),
+                  fit: BoxFit.cover)),
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 20, left: 0),
+                width: 250,
+                decoration: BoxDecoration(
+                    border: Border.all(width: 1),
+                    borderRadius: BorderRadius.circular(10)),
+                child: Column(children: [
+                  Text(
+                    "기간검색",
+                    style: GoogleFonts.jua(
+                        textStyle:
+                            TextStyle(fontSize: 20, color: Colors.black)),
+                  ),
+                  Row(
+                    children: [],
+                  )
+                ]),
+              )
+            ],
+          ),
         ),
       )),
     );
