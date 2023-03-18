@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:triptokorea/Pages/Trip/TripNoPage/TripNo1.dart';
+import 'package:triptokorea/Pages/Trip/TripYesPage/TripYes1.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -47,7 +48,12 @@ class _FirstPageState extends State<FirstPage> {
                 child: SizedBox(
               width: 250,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const TripYes1()));
+                },
                 child: Text("예"),
               ),
             )),

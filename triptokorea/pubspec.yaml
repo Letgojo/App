@@ -42,6 +42,12 @@ dependencies:
   firebase_auth: ^4.2.9
   cloud_firestore: ^4.4.3
   provider: ^6.0.5
+  dio: ^5.0.2
+  image_picker: ^0.8.7
+  calendar_date_picker2: ^0.4.5
+  carousel_slider: ^4.2.1
+  card_swiper: ^2.0.4
+  kakaomap_webview: ^0.6.2
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +73,25 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/3.jpeg
+    - assets/images/flower.jpeg
+    - assets/images/sea.jpeg
+    - assets/images/daegu0.jpeg
+    - assets/images/daegu1.jpeg
+    - assets/images/daegu2.jpeg
+    - assets/images/daegu3.jpeg
+    - assets/images/busan1.jpeg
+    - assets/images/busan2.jpeg
+    - assets/images/busan3.jpeg
+    - assets/images/busan4.jpeg
+    - assets/images/Pohang1.jpeg
+    - assets/images/Pohang2.jpeg
+    - assets/images/Pohang3.jpeg
+    - assets/images/Pohang4.jpeg
+    - assets/images/Gyeongju1.jpeg
+    - assets/images/Gyeongju2.jpeg
+    - assets/images/Gyeongju3.jpeg
+    - assets/images/Gyeongju4.jpeg
+
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

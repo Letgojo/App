@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:triptokorea/Pages/Community/acommpany.dart';
 import 'package:triptokorea/Pages/Community/write.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -14,7 +15,6 @@ class Community extends StatefulWidget {
 class _CommunityState extends State<Community> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
@@ -46,7 +46,12 @@ class _CommunityState extends State<Community> {
                       style:
                           GoogleFonts.jua(textStyle: TextStyle(fontSize: 14)),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const acommpany()));
+                    },
                   ))
                 ],
               )),

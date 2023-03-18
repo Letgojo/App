@@ -3,7 +3,6 @@ import 'package:triptokorea/Pages/Chat/ChatPage.dart';
 import 'package:triptokorea/Pages/Community/Community.dart';
 import 'package:triptokorea/Pages/Home/Homepage.dart';
 import 'package:triptokorea/Pages/Setting/Setting.dart';
-import 'package:triptokorea/Pages/TripIntroduce/Introduce.dart';
 
 class menuBar extends StatefulWidget {
   const menuBar({super.key});
@@ -21,7 +20,7 @@ class menuBar_State extends State<menuBar> {
         index: currentIndex,
         children: [
           HomePage(),
-          Introduce(),
+          HomePage(),
           Community(),
           ChatPage(),
           Setting(),
@@ -41,7 +40,8 @@ class menuBar_State extends State<menuBar> {
         backgroundColor: Colors.white,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "홈"),
-          BottomNavigationBarItem(icon: Icon(Icons.explore), label: "여행축제소개"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_month), label: "기록"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "커뮤니티"),
           BottomNavigationBarItem(icon: Icon(Icons.chat), label: "채팅"),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: "설정"),

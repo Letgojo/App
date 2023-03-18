@@ -15,7 +15,7 @@ class Setting extends StatelessWidget {
         automaticallyImplyLeading: false, //Navigator back 없애기
         iconTheme: IconThemeData(color: Colors.black),
         title: Text(
-          "Home",
+          "Setting",
           style: GoogleFonts.jua(
               textStyle: TextStyle(fontSize: 20, color: Colors.black)),
         ),
@@ -24,6 +24,7 @@ class Setting extends StatelessWidget {
         children: [
           Container(
             child: Column(children: [
+              SizedBox(height: 30),
               CircleAvatar(
                 radius: 36,
                 backgroundColor: Colors.white,
@@ -42,6 +43,7 @@ class Setting extends StatelessWidget {
                 style: GoogleFonts.jua(
                     textStyle: TextStyle(fontSize: 20, color: Colors.black)),
               ),
+              SizedBox(height: 20), //상단여백
               ListTile(
                 title: Text(
                   '회원정보 수정',
@@ -87,8 +89,38 @@ class Setting extends StatelessWidget {
                   color: Colors.black,
                 ),
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const Login()));
+                  showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (context) {
+                        return Container(
+                          child: AlertDialog(
+                            content: Text("로그아웃 되었습니다.다시 로그인하시기 바랍니다.",
+                                style: GoogleFonts.jua(
+                                    textStyle: TextStyle(
+                                        fontSize: 15, color: Colors.red))),
+                            actions: [
+                              ElevatedButton(
+                                  child: Text(
+                                    "확인",
+                                    style: GoogleFonts.jua(
+                                        textStyle: TextStyle(
+                                            fontSize: 18, color: Colors.black)),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const Login()));
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.white,
+                                      shadowColor: Colors.white))
+                            ],
+                          ),
+                        );
+                      });
                 },
               ),
             ]),
