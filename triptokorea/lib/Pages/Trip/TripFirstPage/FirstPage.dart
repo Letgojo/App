@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:triptokorea/Pages/Trip/TripNoPage/TripNo1.dart';
-import 'package:triptokorea/Pages/Trip/TripYesPage/TripYes1.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -39,24 +38,11 @@ class _FirstPageState extends State<FirstPage> {
           children: [
             Container(
                 width: 230,
-                margin: EdgeInsets.only(top: 200),
+                margin: EdgeInsets.only(top: 150),
                 child: Text(
-                  "여행 목적지를 정하셨나요 ?",
-                  style: GoogleFonts.jua(textStyle: TextStyle(fontSize: 40)),
+                  "여행 계획 세우기 ?",
+                  style: GoogleFonts.jua(textStyle: TextStyle(fontSize: 60)),
                 )),
-            Container(
-                child: SizedBox(
-              width: 250,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const TripYes1()));
-                },
-                child: Text("예"),
-              ),
-            )),
             Container(
                 child: SizedBox(
               width: 250,
@@ -65,7 +51,7 @@ class _FirstPageState extends State<FirstPage> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => const TripNo1()));
                 },
-                child: Text("아니요"),
+                child: Text("다음"),
               ),
             ))
           ],
