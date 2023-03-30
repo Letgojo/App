@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:triptokorea/Pages/Chat/ChatPage.dart';
+import 'package:triptokorea/Pages/Community/%20postpage.dart';
 import 'package:triptokorea/Pages/Community/Community.dart';
 import 'package:triptokorea/Pages/Home/Homepage.dart';
 import 'package:triptokorea/Pages/Setting/Setting.dart';
@@ -22,7 +23,7 @@ class menuBar_State extends State<menuBar> {
           HomePage(),
           HomePage(),
           Community(),
-          ChatPage(),
+          postpage(),
           Setting(),
         ],
       ),

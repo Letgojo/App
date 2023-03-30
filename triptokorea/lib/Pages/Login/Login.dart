@@ -57,22 +57,22 @@ class _LoginState extends State<Login> {
                 obscureText: true,
               ),
             ),
-            Container(
-                width: 400,
-                child: ElevatedButton(
-                    child: Text(
-                      "아이디찾기",
-                      style: TextStyle(color: Colors.blue),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ID_Find()));
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        shadowColor: Colors.white))),
+            // Container(
+            //     width: 400,
+            //     child: ElevatedButton(
+            //         child: Text(
+            //           "아이디찾기",
+            //           style: TextStyle(color: Colors.blue),
+            //         ),
+            //         onPressed: () {
+            //           Navigator.push(
+            //               context,
+            //               MaterialPageRoute(
+            //                   builder: (context) => const ID_Find()));
+            //         },
+            //         style: ElevatedButton.styleFrom(
+            //             backgroundColor: Colors.white,
+            //             shadowColor: Colors.white))),
             Container(
                 width: 400,
                 child: ElevatedButton(
@@ -116,7 +116,10 @@ class _LoginState extends State<Login> {
                             textStyle: TextStyle(fontSize: 20))),
                     onPressed: () {
                       Api.login(email.text, password.text);
-                    
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const menuBar()));
                     },
                     style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(

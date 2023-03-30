@@ -22,8 +22,6 @@ class _WriteState extends State<write> {
   File? _image;
   @override
   Widget build(BuildContext context) {
-    String base64Image = "";
-
     final picker = ImagePicker();
     Future getImage(ImageSource source) async {
       final image = await picker.pickImage(source: source);
@@ -31,16 +29,18 @@ class _WriteState extends State<write> {
       print("실행중");
       if (image == null) return;
       File? img = File(image.path);
-      Uint8List imagebytes = await image.readAsBytes();
-      base64Image = base64.encode(imagebytes);
-      setState(() async {
+      // Uint8List imagebytes = await image.readAsBytes();
+      // base64Image = base64.encode(imagebytes);
+      setState(() {
         _image = img;
         Navigator.of(context).pop();
+        print(_image);
       });
     }
 
     Widget showImage() {
       if (_image == null) {
+        print("어ㅂ사");
         return Container();
       }
       return Image.file(_image!);
@@ -83,10 +83,9 @@ class _WriteState extends State<write> {
                                   textStyle: TextStyle(fontSize: 15)),
                             ),
                             onPressed: () {
-                              base64Image == ""
+                              _image == " "
                                   ? Upload(title.text, content.text)
-                                  : upload(
-                                      title.text, content.text, base64Image);
+                                  : upload(title.text, content.text, _image);
                             },
                             style: ElevatedButton.styleFrom(
                               primary: Color(0xff0030AC),
@@ -118,7 +117,7 @@ class _WriteState extends State<write> {
                         decoration: InputDecoration(
                             hintText: "내용", border: InputBorder.none),
                       ),
-                      showImage()
+                      _image == null ? Container() : showImage()
                     ],
                   ),
                 ),
