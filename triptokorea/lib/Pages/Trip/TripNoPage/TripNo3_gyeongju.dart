@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:triptokorea/Pages/Trip/TripNoPage/TripGyeongju_2.dart';
 import 'package:triptokorea/Pages/Trip/TripYesPage/TripYes2.dart';
 
 final imageList = [
@@ -58,11 +59,14 @@ class _TripNo3_gyeongjuState extends State<TripNo3_gyeongju> {
                           textStyle:
                               TextStyle(fontSize: 18, color: Colors.black)),
                     ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                    ),
                     onPressed: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const TripYes2()));
+                              builder: (context) => const TripGyeongju_2()));
                     },
                   ),
                 )

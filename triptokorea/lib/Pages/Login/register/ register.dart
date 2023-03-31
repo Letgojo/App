@@ -60,7 +60,7 @@ class _registerState extends State<register> {
             body: SingleChildScrollView(
                 child: Container(
               width: 400,
-              padding: EdgeInsets.only(left: 30, top: 50),
+              padding: EdgeInsets.only(left: 30, top: 50, bottom: 40),
               child: Column(
                 children: [
                   Container(
@@ -188,33 +188,6 @@ class _registerState extends State<register> {
                             border: (OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10))),
                           ))),
-                  Container(
-                    width: double.infinity,
-                    margin: const EdgeInsets.only(top: 30),
-                    child: Text(
-                      "주소",
-                      style: GoogleFonts.jua(
-                          textStyle:
-                              TextStyle(fontSize: 20, color: Colors.black)),
-                    ),
-                  ),
-                  Container(
-                    width: double.infinity,
-                    margin: const EdgeInsets.only(top: 30),
-                    // child: BsSelectBox(
-                    //     hintText: 'Pilih salah satu', controller: _select1)),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child:
-                              BsSelectBox(hintText: "지역", controller: _select1),
-                        ),
-                        Expanded(
-                            child: BsSelectBox(
-                                hintText: "구", controller: _select1)),
-                      ],
-                    ),
-                  ),
                   Container(
                       width: double.infinity,
                       height: 48,

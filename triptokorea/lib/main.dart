@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:triptokorea/Pages/Login/%20register/%20register.dart';
+import 'package:triptokorea/Pages/Login/register/%20register.dart';
 import 'package:triptokorea/Pages/Login/FW_Find/FW_Find.dart';
 import 'package:triptokorea/Pages/Login/ID_Find/ID_Find.dart';
 import 'package:triptokorea/Pages/Login/Login.dart';

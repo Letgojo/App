@@ -58,12 +58,28 @@ class _TripYes2State extends State<TripYes2> {
                     children: [
                       Expanded(
                           child: ElevatedButton(
-                        child: Text("레저스포츠"),
+                        child: Text(
+                          "레저스포츠",
+                          style: GoogleFonts.jua(
+                              textStyle:
+                                  TextStyle(fontSize: 15, color: Colors.black)),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                        ),
                         onPressed: () {},
                       )),
                       Expanded(
                           child: ElevatedButton(
-                        child: Text("문화관광"),
+                        child: Text(
+                          "문화관광",
+                          style: GoogleFonts.jua(
+                              textStyle:
+                                  TextStyle(fontSize: 15, color: Colors.black)),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                        ),
                         onPressed: () {},
                       ))
                     ],
@@ -75,12 +91,28 @@ class _TripYes2State extends State<TripYes2> {
                     children: [
                       Expanded(
                           child: ElevatedButton(
-                        child: Text("역사관광"),
+                        child: Text(
+                          "역사관광",
+                          style: GoogleFonts.jua(
+                              textStyle:
+                                  TextStyle(fontSize: 15, color: Colors.black)),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                        ),
                         onPressed: () {},
                       )),
                       Expanded(
                           child: ElevatedButton(
-                        child: Text("자연관광"),
+                        child: Text(
+                          "자연관광",
+                          style: GoogleFonts.jua(
+                              textStyle:
+                                  TextStyle(fontSize: 15, color: Colors.black)),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                        ),
                         onPressed: () {},
                       ))
                     ],
@@ -90,7 +122,15 @@ class _TripYes2State extends State<TripYes2> {
                   width: 150,
                   child: Expanded(
                     child: ElevatedButton(
-                      child: Text("체험관광"),
+                      child: Text(
+                        "체험관광",
+                        style: GoogleFonts.jua(
+                            textStyle:
+                                TextStyle(fontSize: 15, color: Colors.black)),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white,
+                      ),
                       onPressed: () {},
                     ),
                   ),
@@ -114,12 +154,28 @@ class _TripYes2State extends State<TripYes2> {
                     children: [
                       Expanded(
                           child: ElevatedButton(
-                        child: Text("레저스포츠"),
+                        child: Text(
+                          "레저스포츠",
+                          style: GoogleFonts.jua(
+                              textStyle:
+                                  TextStyle(fontSize: 15, color: Colors.black)),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                        ),
                         onPressed: () {},
                       )),
                       Expanded(
                           child: ElevatedButton(
-                        child: Text("문화관광"),
+                        child: Text(
+                          "문화관광",
+                          style: GoogleFonts.jua(
+                              textStyle:
+                                  TextStyle(fontSize: 15, color: Colors.black)),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                        ),
                         onPressed: () {},
                       ))
                     ],
@@ -131,12 +187,28 @@ class _TripYes2State extends State<TripYes2> {
                     children: [
                       Expanded(
                           child: ElevatedButton(
-                        child: Text("역사관광"),
+                        child: Text(
+                          "역사관광",
+                          style: GoogleFonts.jua(
+                              textStyle:
+                                  TextStyle(fontSize: 15, color: Colors.black)),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                        ),
                         onPressed: () {},
                       )),
                       Expanded(
                           child: ElevatedButton(
-                        child: Text("자연관광"),
+                        child: Text(
+                          "자연관광",
+                          style: GoogleFonts.jua(
+                              textStyle:
+                                  TextStyle(fontSize: 15, color: Colors.black)),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                        ),
                         onPressed: () {},
                       ))
                     ],
@@ -161,12 +233,28 @@ class _TripYes2State extends State<TripYes2> {
                     children: [
                       Expanded(
                           child: ElevatedButton(
-                        child: Text("유명한곳"),
+                        child: Text(
+                          "유명한곳",
+                          style: GoogleFonts.jua(
+                              textStyle:
+                                  TextStyle(fontSize: 15, color: Colors.black)),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                        ),
                         onPressed: () {},
                       )),
                       Expanded(
                           child: ElevatedButton(
-                        child: Text("맛집 위주"),
+                        child: Text(
+                          "맛집 위주",
+                          style: GoogleFonts.jua(
+                              textStyle:
+                                  TextStyle(fontSize: 15, color: Colors.black)),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                        ),
                         onPressed: () {},
                       ))
                     ],
@@ -178,12 +266,28 @@ class _TripYes2State extends State<TripYes2> {
                     children: [
                       Expanded(
                           child: ElevatedButton(
-                        child: Text("부지런한"),
+                        child: Text(
+                          "부지런한",
+                          style: GoogleFonts.jua(
+                              textStyle:
+                                  TextStyle(fontSize: 15, color: Colors.black)),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                        ),
                         onPressed: () {},
                       )),
                       Expanded(
                           child: ElevatedButton(
-                        child: Text("여유로움"),
+                        child: Text(
+                          "여유로움",
+                          style: GoogleFonts.jua(
+                              textStyle:
+                                  TextStyle(fontSize: 15, color: Colors.black)),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                        ),
                         onPressed: () {},
                       ))
                     ],
