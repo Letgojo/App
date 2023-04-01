@@ -21,8 +21,8 @@ class register extends StatefulWidget {
 class _registerState extends State<register> {
   TextEditingController email = TextEditingController();
   TextEditingController name = TextEditingController();
-  TextEditingController PwdController = TextEditingController();
-  TextEditingController Pwdckeck = TextEditingController();
+  TextEditingController pwdController = TextEditingController();
+  TextEditingController pwdckeck = TextEditingController();
   TextEditingController ninkname = TextEditingController();
   TextEditingController poneNum = TextEditingController();
 
@@ -120,7 +120,7 @@ class _registerState extends State<register> {
                       width: double.infinity,
                       margin: const EdgeInsets.only(top: 30),
                       child: TextField(
-                          controller: PwdController,
+                          controller: pwdController,
                           decoration: InputDecoration(
                             labelText: "비밀번호",
                             hintText: "비밀번호를 입력해주세요",
@@ -141,7 +141,7 @@ class _registerState extends State<register> {
                       width: double.infinity,
                       margin: const EdgeInsets.only(top: 30),
                       child: TextField(
-                          controller: Pwdckeck,
+                          controller: pwdckeck,
                           decoration: InputDecoration(
                             hintText: "비밀번호확인",
                             border: (OutlineInputBorder(
@@ -197,7 +197,7 @@ class _registerState extends State<register> {
                             style: GoogleFonts.jua(
                                 textStyle: TextStyle(fontSize: 20))),
                         onPressed: () {
-                          api(email.text, PwdController.text, name.text,
+                          api(email.text, pwdController.text, name.text,
                               ninkname.text, poneNum.text);
                           result == 'OK'
                               ? Navigator.push(
@@ -230,7 +230,7 @@ class _registerState extends State<register> {
   }
 }
 
-void api(
+Future api(
   String email,
   String password,
   String name,
@@ -256,17 +256,17 @@ void api(
   dio.options.headers['content-Type'] = 'application/json';
   try {
     var response = await dio.post(
-      'http://wslconnect.iptime.org:50020/sign_up',
+      'http://wslconnect.iptime.org:50020/sign-up',
       data: goJson,
     );
     print(goJson);
-    print(response.data);
-    if (response.data == 'OK') {
-      result = 'OK';
-    } else if (response.data == 'Fail') {
-      result = 'Fail';
-    }
     print(response.statusCode);
+
+    if (response.data == 'OK') {
+      return result = 'OK';
+    } else if (response.data == 'Fail') {
+      return result = 'Fail';
+    }
 
     if (response.statusCode == 200) {
       final jsonBody =
