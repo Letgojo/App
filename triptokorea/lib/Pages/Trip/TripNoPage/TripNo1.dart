@@ -39,6 +39,7 @@ class _TripNo1State extends State<TripNo1> {
         ],
       ),
       body: Container(
+        height: double.infinity,
         color: Colors.white,
         child: SingleChildScrollView(
           child: Column(

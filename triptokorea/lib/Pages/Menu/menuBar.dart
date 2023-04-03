@@ -3,6 +3,7 @@ import 'package:triptokorea/Pages/Chat/ChatPage.dart';
 import 'package:triptokorea/Pages/Community/Postpage.dart';
 import 'package:triptokorea/Pages/Community/Community.dart';
 import 'package:triptokorea/Pages/Home/Homepage.dart';
+import 'package:triptokorea/Pages/Record/Record.dart';
 import 'package:triptokorea/Pages/Setting/Setting.dart';
 
 class menuBar extends StatefulWidget {
@@ -21,9 +22,9 @@ class menuBar_State extends State<menuBar> {
         index: currentIndex,
         children: [
           HomePage(),
-          HomePage(),
+          Record(),
           Community(),
-          postpage(),
+          ChatPage(),
           Setting(),
         ],
       ),
