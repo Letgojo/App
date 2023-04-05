@@ -92,6 +92,10 @@ flutter:
     - assets/images/Gyeongju2.jpeg
     - assets/images/Gyeongju3.jpeg
     - assets/images/Gyeongju4.jpeg
+    - assets/images/introduce_navigation.png
+    - assets/images/introduce_people.png
+    - assets/images/introduce_diary.png
+    - assets/images/introduce_money.png
 
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

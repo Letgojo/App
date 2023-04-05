@@ -37,7 +37,7 @@ class TripPohang_2State extends State<TripPohang_2> {
                 decoration: BoxDecoration(
                   border: Border.all(width: 1),
                   borderRadius: BorderRadius.circular(10),
-                ),  
+                ),
                 child: ElevatedButton(
                   child: Text(
                     "북구",

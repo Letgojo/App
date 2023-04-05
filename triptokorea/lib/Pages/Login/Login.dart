@@ -23,6 +23,10 @@ class _LoginState extends State<Login> {
   TextEditingController password = TextEditingController();
   dynamic name = ""; //user의 정보를 저장하기 위한 변수
   dynamic emailinfo = "";
+  dynamic uid = "";
+  dynamic passwordinfo = "";
+  dynamic phone = "";
+  dynamic myname = "";
   static final storage =
       new FlutterSecureStorage(); //flutter_secure_storage 사용을 위한 초기화 작업
 
@@ -37,10 +41,16 @@ class _LoginState extends State<Login> {
 
   _asyncMethod() async {
     //read 함수
-
+    passwordinfo = await storage.read(key: 'passwordinfo');
+    phone = await storage.read(key: 'phone');
+    uid = await storage.read(key: 'uid');
     emailinfo = await storage.read(key: 'emailinfo');
     name = await storage.read(key: 'nickname');
+    myname = await storage.read(key: 'myname');
     if (emailinfo != null) {
+      print(uid);
+      print(phone);
+      print(passwordinfo);
       print(emailinfo);
       print(name);
       Navigator.push(
@@ -209,6 +219,11 @@ class _LoginState extends State<Login> {
         var name = response.data;
         storage.write(key: "emailinfo", value: email1);
         storage.write(key: "nickname", value: name["userName"]);
+        storage.write(key: "uid", value: name["uid"]);
+        storage.write(key: "passwordinfo", value: password1);
+        storage.write(key: "phone", value: name["phoneNum"]);
+        storage.write(key: "myname", value: name["name"]);
+
         // "name", value: u)
         return "OK";
       } else {
@@ -217,6 +232,7 @@ class _LoginState extends State<Login> {
         return 'Fail';
       }
     } catch (e) {
+      print(e);
       Exception(e);
     } finally {
       dio.close();
