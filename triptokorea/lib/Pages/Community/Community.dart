@@ -126,8 +126,10 @@ class _CommunityState extends State<Community> {
               height: 10,
             ),
             Container(
-              height: 200.0,
+              height: 750,
               child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
                 itemCount: 5,
                 itemBuilder: (context, index) {
                   Map<String, dynamic> data = list[index];
@@ -140,17 +142,42 @@ class _CommunityState extends State<Community> {
                   return Card(
                     margin: EdgeInsets.all(8),
                     child: Stack(alignment: Alignment.center, children: [
-                      Container(
-                        height: 20,
-                        child: Text(
-                          content,
-                          style: GoogleFonts.jua(
-                              textStyle: TextStyle(
-                            fontSize: 14,
-                            decoration: TextDecoration.underline,
-                          )),
+                      Row(children: [
+                        Container(
+                          width: 150,
+                          height: 120,
+                          decoration:
+                              BoxDecoration(border: Border.all(width: 1)),
                         ),
-                      )
+                        Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(right: 200),
+                              child: Text(
+                                title,
+                                style: GoogleFonts.jua(
+                                    textStyle: TextStyle(fontSize: 16)),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(right: 130, top: 10),
+                              child: Text(
+                                content,
+                                style: GoogleFonts.jua(
+                                    textStyle: TextStyle(fontSize: 16)),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(top: 50, left: 115),
+                              child: Text(
+                                time,
+                                style: GoogleFonts.jua(
+                                    textStyle: TextStyle(fontSize: 14)),
+                              ),
+                            )
+                          ],
+                        )
+                      ])
                     ]),
                   );
                 },

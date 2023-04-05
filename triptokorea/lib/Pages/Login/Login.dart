@@ -232,6 +232,7 @@ class _LoginState extends State<Login> {
         return 'Fail';
       }
     } catch (e) {
+      print(e);
       Exception(e);
     } finally {
       dio.close();
