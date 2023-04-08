@@ -20,7 +20,7 @@ class TripDaegu_2State extends State<TripDaegu_2> {
         backgroundColor: Colors.white,
         title: Text(
           "목적지 설정",
-          style: GoogleFonts.jua(
+          style: GoogleFonts.getFont('Gowun Dodum',
               textStyle: TextStyle(fontSize: 20, color: Colors.black)),
         ),
       ),
@@ -40,7 +40,7 @@ class TripDaegu_2State extends State<TripDaegu_2> {
                 child: ElevatedButton(
                   child: Text(
                     "서구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -61,7 +61,7 @@ class TripDaegu_2State extends State<TripDaegu_2> {
                 child: ElevatedButton(
                   child: Text(
                     "중구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -82,7 +82,7 @@ class TripDaegu_2State extends State<TripDaegu_2> {
                 child: ElevatedButton(
                   child: Text(
                     "북구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -103,7 +103,7 @@ class TripDaegu_2State extends State<TripDaegu_2> {
                 child: ElevatedButton(
                   child: Text(
                     "달서구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -124,7 +124,7 @@ class TripDaegu_2State extends State<TripDaegu_2> {
                 child: ElevatedButton(
                   child: Text(
                     "수성구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -145,7 +145,7 @@ class TripDaegu_2State extends State<TripDaegu_2> {
                 child: ElevatedButton(
                   child: Text(
                     "남구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -166,7 +166,7 @@ class TripDaegu_2State extends State<TripDaegu_2> {
                 child: ElevatedButton(
                   child: Text(
                     "달성군",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -187,7 +187,7 @@ class TripDaegu_2State extends State<TripDaegu_2> {
                 child: ElevatedButton(
                   child: Text(
                     "다음",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -198,7 +198,7 @@ class TripDaegu_2State extends State<TripDaegu_2> {
                             builder: (context) => const TripYes2()));
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
+                    primary: Color(0xff0F70BE),
                     elevation: 0,
                   ),
                 ),

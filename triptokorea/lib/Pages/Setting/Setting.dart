@@ -44,7 +44,7 @@ class _SettingState extends State<Setting> {
         iconTheme: IconThemeData(color: Colors.black),
         title: Text(
           "Setting",
-          style: GoogleFonts.jua(
+          style: GoogleFonts.getFont('Gowun Dodum',
               textStyle: TextStyle(fontSize: 20, color: Colors.black)),
         ),
       ),
@@ -71,14 +71,15 @@ class _SettingState extends State<Setting> {
 
                 Text(
                   "${name}",
-                  style: GoogleFonts.jua(
+                  style: GoogleFonts.getFont('Gowun Dodum',
                       textStyle: TextStyle(fontSize: 20, color: Colors.black)),
                 ),
                 SizedBox(height: 20), //상단여백
                 ListTile(
                   title: Text(
                     '회원정보 수정',
-                    style: GoogleFonts.jua(textStyle: TextStyle(fontSize: 18)),
+                    style: GoogleFonts.getFont('Gowun Dodum',
+                        textStyle: TextStyle(fontSize: 18)),
                   ),
                   trailing: Icon(
                     Icons.arrow_forward_ios,
@@ -94,7 +95,8 @@ class _SettingState extends State<Setting> {
                 ListTile(
                   title: Text(
                     'Tour Planner 소개',
-                    style: GoogleFonts.jua(textStyle: TextStyle(fontSize: 18)),
+                    style: GoogleFonts.getFont('Gowun Dodum',
+                        textStyle: TextStyle(fontSize: 18)),
                   ),
                   trailing: Icon(
                     Icons.arrow_forward_ios,
@@ -110,7 +112,8 @@ class _SettingState extends State<Setting> {
                 ListTile(
                   title: Text(
                     '회원탈퇴',
-                    style: GoogleFonts.jua(textStyle: TextStyle(fontSize: 18)),
+                    style: GoogleFonts.getFont('Gowun Dodum',
+                        textStyle: TextStyle(fontSize: 18)),
                   ),
                   trailing: Icon(
                     Icons.arrow_forward_ios,
@@ -127,7 +130,7 @@ class _SettingState extends State<Setting> {
                 ListTile(
                   title: Text(
                     '로그아웃',
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle: TextStyle(fontSize: 18, color: Colors.red)),
                   ),
                   trailing: Icon(
@@ -142,14 +145,14 @@ class _SettingState extends State<Setting> {
                           return Container(
                             child: AlertDialog(
                               content: Text("로그아웃 되었습니다.다시 로그인하시기 바랍니다.",
-                                  style: GoogleFonts.jua(
+                                  style: GoogleFonts.getFont('Gowun Dodum',
                                       textStyle: TextStyle(
                                           fontSize: 15, color: Colors.red))),
                               actions: [
                                 ElevatedButton(
                                     child: Text(
                                       "확인",
-                                      style: GoogleFonts.jua(
+                                      style: GoogleFonts.getFont('Gowun Dodum',
                                           textStyle: TextStyle(
                                               fontSize: 18,
                                               color: Colors.black)),

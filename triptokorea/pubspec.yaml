@@ -119,7 +119,7 @@ flutter:
     - family: JuaRegular
       fonts:
         - asset: fonts/Jua-Regular.ttf
-
+        - asset: fonts/GowunDodum-Regular.ttf
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf

@@ -17,11 +17,6 @@ class _FirstPageState extends State<FirstPage> {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text(
-          "여행계획",
-          style: GoogleFonts.jua(
-              textStyle: TextStyle(fontSize: 20, color: Colors.black)),
-        ),
         actions: [
           IconButton(
               onPressed: () {
@@ -43,14 +38,21 @@ class _FirstPageState extends State<FirstPage> {
                     width: 230,
                     margin: EdgeInsets.only(top: 150),
                     child: Text(
-                      "여행 계획 세우기 ?",
-                      style:
-                          GoogleFonts.jua(textStyle: TextStyle(fontSize: 60)),
+                      "여행 계획 세우기",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.getFont('Gowun Dodum',
+                          textStyle: TextStyle(
+                            fontSize: 50,
+                          )),
                     )),
+                SizedBox(
+                  height: 40,
+                ),
                 Container(
                     child: SizedBox(
                   width: 250,
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(primary: Color(0xff0F70BE)),
                     onPressed: () {
                       Navigator.push(
                           context,

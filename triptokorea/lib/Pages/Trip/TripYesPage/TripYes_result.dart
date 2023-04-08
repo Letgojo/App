@@ -13,22 +13,32 @@ class TripYes_result extends StatefulWidget {
 class _TripYes_resultState extends State<TripYes_result> {
   late GoogleMapController mapController;
 
-  final LatLng _center = const LatLng(35.8535156, -128.5431268);
-
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
+  }
+
+  List<Marker> _markers = [];
+  @override
+  void initState() {
+    super.initState();
+    _markers.add(Marker(
+        markerId: MarkerId("1"),
+        draggable: true,
+        onTap: () => print("대구수목원!"),
+        position: LatLng(35.8004058, 128.5210752)));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        height: 300,
         child: GoogleMap(
+          mapType: MapType.normal,
+          markers: Set.from(_markers),
           onMapCreated: _onMapCreated,
           initialCameraPosition: CameraPosition(
-            target: _center,
-            zoom: 11.0,
+            target: LatLng(35.8535156, 128.5431268),
+            zoom: 17.0,
           ),
         ),
       ),

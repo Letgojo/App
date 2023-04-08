@@ -50,7 +50,7 @@ class ChangeState extends State<Change> {
       appBar: AppBar(
         title: Text(
           "회원정보수정",
-          style: GoogleFonts.jua(
+          style: GoogleFonts.getFont('Gowun Dodum',
               textStyle: TextStyle(fontSize: 20, color: Colors.black)),
         ),
         centerTitle: true,
@@ -91,7 +91,7 @@ class ChangeState extends State<Change> {
                               margin: EdgeInsets.only(left: 20),
                               child: Text(
                                 "이름",
-                                style: GoogleFonts.jua(
+                                style: GoogleFonts.getFont('Gowun Dodum',
                                     textStyle: TextStyle(
                                         fontSize: 16, color: Colors.black)),
                               )),
@@ -99,7 +99,7 @@ class ChangeState extends State<Change> {
                               margin: EdgeInsets.only(left: 100),
                               child: Text(
                                 "${myname}",
-                                style: GoogleFonts.jua(
+                                style: GoogleFonts.getFont('Gowun Dodum',
                                     textStyle: TextStyle(
                                         fontSize: 16, color: Colors.black)),
                               )),
@@ -121,7 +121,7 @@ class ChangeState extends State<Change> {
                               margin: EdgeInsets.only(left: 20),
                               child: Text(
                                 "아이디",
-                                style: GoogleFonts.jua(
+                                style: GoogleFonts.getFont('Gowun Dodum',
                                     textStyle: TextStyle(
                                         fontSize: 16, color: Colors.black)),
                               )),
@@ -129,7 +129,7 @@ class ChangeState extends State<Change> {
                               margin: EdgeInsets.only(left: 90),
                               child: Text(
                                 "${emailinfo}",
-                                style: GoogleFonts.jua(
+                                style: GoogleFonts.getFont('Gowun Dodum',
                                     textStyle: TextStyle(
                                         fontSize: 16, color: Colors.black)),
                               )),
@@ -151,7 +151,7 @@ class ChangeState extends State<Change> {
                               margin: EdgeInsets.only(left: 20),
                               child: Text(
                                 "현재 비밀번호",
-                                style: GoogleFonts.jua(
+                                style: GoogleFonts.getFont('Gowun Dodum',
                                     textStyle: TextStyle(
                                         fontSize: 16, color: Colors.black)),
                               )),
@@ -186,7 +186,7 @@ class ChangeState extends State<Change> {
                               margin: EdgeInsets.only(left: 20),
                               child: Text(
                                 "새 비밀번호",
-                                style: GoogleFonts.jua(
+                                style: GoogleFonts.getFont('Gowun Dodum',
                                     textStyle: TextStyle(
                                         fontSize: 16, color: Colors.black)),
                               )),
@@ -221,7 +221,7 @@ class ChangeState extends State<Change> {
                               margin: EdgeInsets.only(left: 20),
                               child: Text(
                                 "휴대폰 번호",
-                                style: GoogleFonts.jua(
+                                style: GoogleFonts.getFont('Gowun Dodum',
                                     textStyle: TextStyle(
                                         fontSize: 16, color: Colors.black)),
                               )),
@@ -257,7 +257,7 @@ class ChangeState extends State<Change> {
                               margin: EdgeInsets.only(left: 20),
                               child: Text(
                                 "닉네임",
-                                style: GoogleFonts.jua(
+                                style: GoogleFonts.getFont('Gowun Dodum',
                                     textStyle: TextStyle(
                                         fontSize: 16, color: Colors.black)),
                               )),
@@ -291,7 +291,7 @@ class ChangeState extends State<Change> {
                       child: ElevatedButton(
                         child: Text(
                           "회원정보수정",
-                          style: GoogleFonts.jua(
+                          style: GoogleFonts.getFont('Gowun Dodum',
                               textStyle:
                                   TextStyle(fontSize: 16, color: Colors.white)),
                         ),
@@ -309,7 +309,7 @@ class ChangeState extends State<Change> {
                       child: ElevatedButton(
                         child: Text(
                           "취소",
-                          style: GoogleFonts.jua(
+                          style: GoogleFonts.getFont('Gowun Dodum',
                               textStyle:
                                   TextStyle(fontSize: 16, color: Colors.white)),
                         ),

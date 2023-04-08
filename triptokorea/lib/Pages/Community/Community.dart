@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:triptokorea/Pages/Community/acommpany.dart';
 import 'package:triptokorea/Pages/Community/write.dart';
-import 'package:image_picker/image_picker.dart';
 
 class Community extends StatefulWidget {
   const Community({super.key});

@@ -23,7 +23,7 @@ class _TripNo1State extends State<TripNo1> {
         backgroundColor: Colors.white,
         title: Text(
           "여행계획",
-          style: GoogleFonts.jua(
+          style: GoogleFonts.getFont('Gowun Dodum',
               textStyle: TextStyle(fontSize: 20, color: Colors.black)),
         ),
         actions: [
@@ -51,7 +51,7 @@ class _TripNo1State extends State<TripNo1> {
                     TextButton(
                         onPressed: () {},
                         child: Text('도시',
-                            style: GoogleFonts.jua(
+                            style: GoogleFonts.getFont('Gowun Dodum',
                                 textStyle: TextStyle(
                                     fontSize: 20, color: Colors.black)))),
                     IconButton(onPressed: () {}, icon: Icon(Icons.location_on))
@@ -71,7 +71,7 @@ class _TripNo1State extends State<TripNo1> {
                   children: [
                     Text(
                       "대중교통",
-                      style: GoogleFonts.jua(
+                      style: GoogleFonts.getFont('Gowun Dodum',
                           textStyle:
                               TextStyle(fontSize: 20, color: Colors.black)),
                     ),
@@ -88,7 +88,7 @@ class _TripNo1State extends State<TripNo1> {
                       child: Expanded(
                           child: ElevatedButton(
                         child: Text("버스",
-                            style: GoogleFonts.jua(
+                            style: GoogleFonts.getFont('Gowun Dodum',
                                 textStyle: TextStyle(
                                     fontSize: 14, color: Colors.black))),
                         style: ElevatedButton.styleFrom(
@@ -103,7 +103,7 @@ class _TripNo1State extends State<TripNo1> {
                       child: Expanded(
                           child: ElevatedButton(
                         child: Text("기차",
-                            style: GoogleFonts.jua(
+                            style: GoogleFonts.getFont('Gowun Dodum',
                                 textStyle: TextStyle(
                                     fontSize: 14, color: Colors.black))),
                         onPressed: () {},
@@ -121,7 +121,7 @@ class _TripNo1State extends State<TripNo1> {
                   children: [
                     Text(
                       "날짜",
-                      style: GoogleFonts.jua(
+                      style: GoogleFonts.getFont('Gowun Dodum',
                           textStyle:
                               TextStyle(fontSize: 20, color: Colors.black)),
                     ),
@@ -142,7 +142,7 @@ class _TripNo1State extends State<TripNo1> {
                   children: [
                     Text(
                       "인원",
-                      style: GoogleFonts.jua(
+                      style: GoogleFonts.getFont('Gowun Dodum',
                           textStyle:
                               TextStyle(fontSize: 20, color: Colors.black)),
                     ),
@@ -164,7 +164,7 @@ class _TripNo1State extends State<TripNo1> {
                   children: [
                     Text(
                       "동행",
-                      style: GoogleFonts.jua(
+                      style: GoogleFonts.getFont('Gowun Dodum',
                           textStyle:
                               TextStyle(fontSize: 20, color: Colors.black)),
                     ),
@@ -199,6 +199,7 @@ class _TripNo1State extends State<TripNo1> {
                             builder: (context) => const TripNo2()));
                   },
                   child: Text("다음"),
+                  style: ElevatedButton.styleFrom(primary: Color(0xff0F70BE)),
                 ),
               ))
             ],
