@@ -20,7 +20,7 @@ class TripPohang_2State extends State<TripPohang_2> {
         backgroundColor: Colors.white,
         title: Text(
           "목적지 설정",
-          style: GoogleFonts.jua(
+          style: GoogleFonts.getFont('Gowun Dodum',
               textStyle: TextStyle(fontSize: 20, color: Colors.black)),
         ),
       ),
@@ -41,7 +41,7 @@ class TripPohang_2State extends State<TripPohang_2> {
                 child: ElevatedButton(
                   child: Text(
                     "북구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -62,7 +62,7 @@ class TripPohang_2State extends State<TripPohang_2> {
                 child: ElevatedButton(
                   child: Text(
                     "남구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -83,7 +83,7 @@ class TripPohang_2State extends State<TripPohang_2> {
                 child: ElevatedButton(
                   child: Text(
                     "다음",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),

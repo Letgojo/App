@@ -21,7 +21,7 @@ class _TripNopageState extends State<TripNo2> {
           backgroundColor: Colors.white,
           title: Text(
             "여행계획",
-            style: GoogleFonts.jua(
+            style: GoogleFonts.getFont('Gowun Dodum',
                 textStyle: TextStyle(
                     fontSize: 20,
                     decoration: TextDecoration.underline,
@@ -45,7 +45,7 @@ class _TripNopageState extends State<TripNo2> {
                               fit: BoxFit.cover),
                           borderRadius: BorderRadius.circular(10)),
                       child: Text("대구",
-                          style: GoogleFonts.jua(
+                          style: GoogleFonts.getFont('Gowun Dodum',
                               textStyle: TextStyle(fontSize: 40))),
                     ),
                     onPressed: () {
@@ -73,7 +73,7 @@ class _TripNopageState extends State<TripNo2> {
                               fit: BoxFit.cover),
                           borderRadius: BorderRadius.circular(10)),
                       child: Text("부산",
-                          style: GoogleFonts.jua(
+                          style: GoogleFonts.getFont('Gowun Dodum',
                               textStyle: TextStyle(fontSize: 40))),
                     ),
                     onPressed: () {
@@ -101,7 +101,7 @@ class _TripNopageState extends State<TripNo2> {
                               fit: BoxFit.cover),
                           borderRadius: BorderRadius.circular(10)),
                       child: Text("경주",
-                          style: GoogleFonts.jua(
+                          style: GoogleFonts.getFont('Gowun Dodum',
                               textStyle: TextStyle(fontSize: 40))),
                     ),
                     onPressed: () {
@@ -129,7 +129,7 @@ class _TripNopageState extends State<TripNo2> {
                               fit: BoxFit.cover),
                           borderRadius: BorderRadius.circular(10)),
                       child: Text("포항",
-                          style: GoogleFonts.jua(
+                          style: GoogleFonts.getFont('Gowun Dodum',
                               textStyle: TextStyle(fontSize: 40))),
                     ),
                     onPressed: () {

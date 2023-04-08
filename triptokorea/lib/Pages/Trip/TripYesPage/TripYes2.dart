@@ -20,7 +20,7 @@ class _TripYes2State extends State<TripYes2> {
           backgroundColor: Colors.white,
           title: Text(
             "여행계획",
-            style: GoogleFonts.jua(
+            style: GoogleFonts.getFont('Gowun Dodum',
                 textStyle: TextStyle(fontSize: 20, color: Colors.black)),
           ),
           actions: [
@@ -45,7 +45,7 @@ class _TripYes2State extends State<TripYes2> {
                     children: [
                       Text(
                         "관광",
-                        style: GoogleFonts.jua(
+                        style: GoogleFonts.getFont('Gowun Dodum',
                             textStyle:
                                 TextStyle(fontSize: 15, color: Colors.black)),
                       ),
@@ -60,7 +60,7 @@ class _TripYes2State extends State<TripYes2> {
                           child: ElevatedButton(
                         child: Text(
                           "레저스포츠",
-                          style: GoogleFonts.jua(
+                          style: GoogleFonts.getFont('Gowun Dodum',
                               textStyle:
                                   TextStyle(fontSize: 15, color: Colors.black)),
                         ),
@@ -73,7 +73,7 @@ class _TripYes2State extends State<TripYes2> {
                           child: ElevatedButton(
                         child: Text(
                           "문화관광",
-                          style: GoogleFonts.jua(
+                          style: GoogleFonts.getFont('Gowun Dodum',
                               textStyle:
                                   TextStyle(fontSize: 15, color: Colors.black)),
                         ),
@@ -93,7 +93,7 @@ class _TripYes2State extends State<TripYes2> {
                           child: ElevatedButton(
                         child: Text(
                           "역사관광",
-                          style: GoogleFonts.jua(
+                          style: GoogleFonts.getFont('Gowun Dodum',
                               textStyle:
                                   TextStyle(fontSize: 15, color: Colors.black)),
                         ),
@@ -106,7 +106,7 @@ class _TripYes2State extends State<TripYes2> {
                           child: ElevatedButton(
                         child: Text(
                           "자연관광",
-                          style: GoogleFonts.jua(
+                          style: GoogleFonts.getFont('Gowun Dodum',
                               textStyle:
                                   TextStyle(fontSize: 15, color: Colors.black)),
                         ),
@@ -124,7 +124,7 @@ class _TripYes2State extends State<TripYes2> {
                     child: ElevatedButton(
                       child: Text(
                         "체험관광",
-                        style: GoogleFonts.jua(
+                        style: GoogleFonts.getFont('Gowun Dodum',
                             textStyle:
                                 TextStyle(fontSize: 15, color: Colors.black)),
                       ),
@@ -141,7 +141,7 @@ class _TripYes2State extends State<TripYes2> {
                     children: [
                       Text(
                         "음식",
-                        style: GoogleFonts.jua(
+                        style: GoogleFonts.getFont('Gowun Dodum',
                             textStyle:
                                 TextStyle(fontSize: 15, color: Colors.black)),
                       ),
@@ -156,7 +156,7 @@ class _TripYes2State extends State<TripYes2> {
                           child: ElevatedButton(
                         child: Text(
                           "레저스포츠",
-                          style: GoogleFonts.jua(
+                          style: GoogleFonts.getFont('Gowun Dodum',
                               textStyle:
                                   TextStyle(fontSize: 15, color: Colors.black)),
                         ),
@@ -169,7 +169,7 @@ class _TripYes2State extends State<TripYes2> {
                           child: ElevatedButton(
                         child: Text(
                           "문화관광",
-                          style: GoogleFonts.jua(
+                          style: GoogleFonts.getFont('Gowun Dodum',
                               textStyle:
                                   TextStyle(fontSize: 15, color: Colors.black)),
                         ),
@@ -189,7 +189,7 @@ class _TripYes2State extends State<TripYes2> {
                           child: ElevatedButton(
                         child: Text(
                           "역사관광",
-                          style: GoogleFonts.jua(
+                          style: GoogleFonts.getFont('Gowun Dodum',
                               textStyle:
                                   TextStyle(fontSize: 15, color: Colors.black)),
                         ),
@@ -202,7 +202,7 @@ class _TripYes2State extends State<TripYes2> {
                           child: ElevatedButton(
                         child: Text(
                           "자연관광",
-                          style: GoogleFonts.jua(
+                          style: GoogleFonts.getFont('Gowun Dodum',
                               textStyle:
                                   TextStyle(fontSize: 15, color: Colors.black)),
                         ),
@@ -220,7 +220,7 @@ class _TripYes2State extends State<TripYes2> {
                     children: [
                       Text(
                         "여행취향",
-                        style: GoogleFonts.jua(
+                        style: GoogleFonts.getFont('Gowun Dodum',
                             textStyle:
                                 TextStyle(fontSize: 15, color: Colors.black)),
                       ),
@@ -235,7 +235,7 @@ class _TripYes2State extends State<TripYes2> {
                           child: ElevatedButton(
                         child: Text(
                           "유명한곳",
-                          style: GoogleFonts.jua(
+                          style: GoogleFonts.getFont('Gowun Dodum',
                               textStyle:
                                   TextStyle(fontSize: 15, color: Colors.black)),
                         ),
@@ -248,7 +248,7 @@ class _TripYes2State extends State<TripYes2> {
                           child: ElevatedButton(
                         child: Text(
                           "맛집 위주",
-                          style: GoogleFonts.jua(
+                          style: GoogleFonts.getFont('Gowun Dodum',
                               textStyle:
                                   TextStyle(fontSize: 15, color: Colors.black)),
                         ),
@@ -268,7 +268,7 @@ class _TripYes2State extends State<TripYes2> {
                           child: ElevatedButton(
                         child: Text(
                           "부지런한",
-                          style: GoogleFonts.jua(
+                          style: GoogleFonts.getFont('Gowun Dodum',
                               textStyle:
                                   TextStyle(fontSize: 15, color: Colors.black)),
                         ),
@@ -281,7 +281,7 @@ class _TripYes2State extends State<TripYes2> {
                           child: ElevatedButton(
                         child: Text(
                           "여유로움",
-                          style: GoogleFonts.jua(
+                          style: GoogleFonts.getFont('Gowun Dodum',
                               textStyle:
                                   TextStyle(fontSize: 15, color: Colors.black)),
                         ),
@@ -305,6 +305,8 @@ class _TripYes2State extends State<TripYes2> {
                                   builder: (context) => TripYes_result()));
                         },
                         child: Text("다음"),
+                        style: ElevatedButton.styleFrom(
+                            primary: Color(0xff0F70BE)),
                       ),
                     ))
               ],

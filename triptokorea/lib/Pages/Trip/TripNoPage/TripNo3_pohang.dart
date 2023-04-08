@@ -46,7 +46,7 @@ class _TripNo3_PohangState extends State<TripNo3_Pohang> {
                     margin: EdgeInsets.only(left: 50),
                     child: Text(
                       "포항시",
-                      style: GoogleFonts.jua(
+                      style: GoogleFonts.getFont('Gowun Dodum',
                           textStyle:
                               TextStyle(fontSize: 18, color: Colors.black)),
                     )),
@@ -55,7 +55,7 @@ class _TripNo3_PohangState extends State<TripNo3_Pohang> {
                   child: ElevatedButton(
                     child: Text(
                       "👏",
-                      style: GoogleFonts.jua(
+                      style: GoogleFonts.getFont('Gowun Dodum',
                           textStyle:
                               TextStyle(fontSize: 18, color: Colors.black)),
                     ),
@@ -78,7 +78,7 @@ class _TripNo3_PohangState extends State<TripNo3_Pohang> {
             Container(
               child: Text(
                 "경상북도의 시. 동쪽으로는 동해와 맞닿아있고, 서쪽으로는 영천시, 남쪽으로는 경주시, 북쪽으로는 청송군, 영덕군과 접해있다. 대경권 제2도시이자 경상북도 최대도시이며 경상북도 시군 중 일반구가 설치된 유일한 지역이다. 경상북도 동부(포항시·경주시·울진군·영덕군·울릉군)의 중심 도시이기도 하다.",
-                style: GoogleFonts.jua(
+                style: GoogleFonts.getFont('Gowun Dodum',
                     textStyle: TextStyle(fontSize: 18, color: Colors.black)),
               ),
             )

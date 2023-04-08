@@ -20,7 +20,7 @@ class TripBusan_2State extends State<TripBusan_2> {
         backgroundColor: Colors.white,
         title: Text(
           "목적지 설정",
-          style: GoogleFonts.jua(
+          style: GoogleFonts.getFont('Gowun Dodum',
               textStyle: TextStyle(fontSize: 20, color: Colors.black)),
         ),
       ),
@@ -40,7 +40,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                 child: ElevatedButton(
                   child: Text(
                     "강서구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -61,7 +61,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                 child: ElevatedButton(
                   child: Text(
                     "금정구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -82,7 +82,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                 child: ElevatedButton(
                   child: Text(
                     "남구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -103,7 +103,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                 child: ElevatedButton(
                   child: Text(
                     "동구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -124,7 +124,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                 child: ElevatedButton(
                   child: Text(
                     "동래구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -145,7 +145,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                 child: ElevatedButton(
                   child: Text(
                     "부산진구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -166,7 +166,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                 child: ElevatedButton(
                   child: Text(
                     "북구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -187,7 +187,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                 child: ElevatedButton(
                   child: Text(
                     "사상구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -208,7 +208,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                 child: ElevatedButton(
                   child: Text(
                     "사하구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -229,7 +229,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                 child: ElevatedButton(
                   child: Text(
                     "서구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -250,7 +250,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                 child: ElevatedButton(
                   child: Text(
                     "수영구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -271,7 +271,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                 child: ElevatedButton(
                   child: Text(
                     "연제구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -292,7 +292,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                 child: ElevatedButton(
                   child: Text(
                     "영도구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -313,7 +313,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                 child: ElevatedButton(
                   child: Text(
                     "중구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -334,7 +334,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                 child: ElevatedButton(
                   child: Text(
                     "해운대구",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -355,7 +355,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                 child: ElevatedButton(
                   child: Text(
                     "다음",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -366,7 +366,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                             builder: (context) => const TripYes2()));
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
+                    primary: Color(0xff0F70BE),
                     elevation: 0,
                   ),
                 ),

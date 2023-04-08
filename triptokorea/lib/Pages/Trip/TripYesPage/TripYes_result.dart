@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kakaomap_webview/kakaomap_webview.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 const String kakaoMapKey = '5157004dd04f0e8b82c4ba27aac81564';
 
@@ -11,38 +11,34 @@ class TripYes_result extends StatefulWidget {
 }
 
 class _TripYes_resultState extends State<TripYes_result> {
-  final double _lat = 35.886779;
-  final double _lng = 128.653534;
+  late GoogleMapController mapController;
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
+
+  List<Marker> _markers = [];
+  @override
+  void initState() {
+    super.initState();
+    _markers.add(Marker(
+        markerId: MarkerId("1"),
+        draggable: true,
+        onTap: () => print("대구수목원!"),
+        position: LatLng(35.8004058, 128.5210752)));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Column(
-            children: [
-              Container(
-                  height: 302,
-                  width: double.infinity,
-                  child: Column(
-                    children: [
-                      KakaoMapView(
-                        width: double.infinity,
-                        height: 300,
-                        kakaoMapKey: kakaoMapKey,
-                        lat: 35.886779,
-                        lng: 128.653534,
-                        showMapTypeControl: true,
-                        showZoomControl: true,
-                        draggableMarker: true,
-                        mapType: MapType.BICYCLE,
-                      )
-                    ],
-                  ),
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1),
-                  )),
-            ],
+      body: Container(
+        child: GoogleMap(
+          mapType: MapType.normal,
+          markers: Set.from(_markers),
+          onMapCreated: _onMapCreated,
+          initialCameraPosition: CameraPosition(
+            target: LatLng(35.8535156, 128.5431268),
+            zoom: 17.0,
           ),
         ),
       ),

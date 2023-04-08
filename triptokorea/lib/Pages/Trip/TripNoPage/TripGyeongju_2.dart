@@ -20,7 +20,7 @@ class TripGyeongju_2State extends State<TripGyeongju_2> {
         backgroundColor: Colors.white,
         title: Text(
           "목적지 설정",
-          style: GoogleFonts.jua(
+          style: GoogleFonts.getFont('Gowun Dodum',
               textStyle: TextStyle(fontSize: 20, color: Colors.black)),
         ),
       ),
@@ -40,7 +40,7 @@ class TripGyeongju_2State extends State<TripGyeongju_2> {
                 child: ElevatedButton(
                   child: Text(
                     "동천동",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -61,7 +61,7 @@ class TripGyeongju_2State extends State<TripGyeongju_2> {
                 child: ElevatedButton(
                   child: Text(
                     "보덕동",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -82,7 +82,7 @@ class TripGyeongju_2State extends State<TripGyeongju_2> {
                 child: ElevatedButton(
                   child: Text(
                     "불국동",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -103,7 +103,7 @@ class TripGyeongju_2State extends State<TripGyeongju_2> {
                 child: ElevatedButton(
                   child: Text(
                     "선도동",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -124,7 +124,7 @@ class TripGyeongju_2State extends State<TripGyeongju_2> {
                 child: ElevatedButton(
                   child: Text(
                     "성건동",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -145,7 +145,7 @@ class TripGyeongju_2State extends State<TripGyeongju_2> {
                 child: ElevatedButton(
                   child: Text(
                     "용강동",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -166,7 +166,7 @@ class TripGyeongju_2State extends State<TripGyeongju_2> {
                 child: ElevatedButton(
                   child: Text(
                     "월성동",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -187,7 +187,7 @@ class TripGyeongju_2State extends State<TripGyeongju_2> {
                 child: ElevatedButton(
                   child: Text(
                     "중부동",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -208,7 +208,7 @@ class TripGyeongju_2State extends State<TripGyeongju_2> {
                 child: ElevatedButton(
                   child: Text(
                     "황남동",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -229,7 +229,7 @@ class TripGyeongju_2State extends State<TripGyeongju_2> {
                 child: ElevatedButton(
                   child: Text(
                     "황성동",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -250,7 +250,7 @@ class TripGyeongju_2State extends State<TripGyeongju_2> {
                 child: ElevatedButton(
                   child: Text(
                     "황오동",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
@@ -264,16 +264,12 @@ class TripGyeongju_2State extends State<TripGyeongju_2> {
               Container(
                 width: 300,
                 margin: EdgeInsets.only(top: 20),
-                decoration: BoxDecoration(
-                  border: Border.all(width: 1),
-                  borderRadius: BorderRadius.circular(10),
-                ),
                 child: ElevatedButton(
                   child: Text(
                     "다음",
-                    style: GoogleFonts.jua(
+                    style: GoogleFonts.getFont('Gowun Dodum',
                         textStyle:
-                            TextStyle(fontSize: 20, color: Colors.black)),
+                            TextStyle(fontSize: 20, color: Colors.white)),
                   ),
                   onPressed: () {
                     Navigator.push(
@@ -282,11 +278,14 @@ class TripGyeongju_2State extends State<TripGyeongju_2> {
                             builder: (context) => const TripYes2()));
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
+                    primary: Color(0xff0F70BE),
                     elevation: 0,
                   ),
                 ),
               ),
+              SizedBox(
+                height: 20,
+              )
             ],
           ),
         ),

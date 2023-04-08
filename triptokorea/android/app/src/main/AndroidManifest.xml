@@ -6,8 +6,9 @@
    <application
         android:label="triptokorea"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
-        <meta-data android:name="com.kakao.sdk.AppKey" android:value="aa1f65a29211bfcde05b6ab5a8f54f9a"/>
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true">
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyASCW6NUBnr3NYGyISC7MaaSvqRjqb4LsQ"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

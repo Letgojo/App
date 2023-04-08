@@ -15,7 +15,7 @@ class DeleteState extends State<Delete> {
         appBar: AppBar(
           title: Text(
             "회원탈퇴",
-            style: GoogleFonts.jua(
+            style: GoogleFonts.getFont('Gowun Dodum',
                 textStyle: TextStyle(fontSize: 20, color: Colors.black)),
           ),
           backgroundColor: Colors.white,
@@ -34,7 +34,7 @@ class DeleteState extends State<Delete> {
               margin: EdgeInsets.only(left: 40, top: 60),
               child: Text(
                 "계정 비밀번호",
-                style: GoogleFonts.jua(
+                style: GoogleFonts.getFont('Gowun Dodum',
                     textStyle: TextStyle(fontSize: 20, color: Colors.black)),
               ),
             ),
@@ -54,7 +54,7 @@ class DeleteState extends State<Delete> {
               width: 350,
               child: Text(
                 "※ 탈퇴 및 가입을 반복할 경우, 서비스 악용 방지를 위해 재가입이 제한됩니다.",
-                style: GoogleFonts.jua(
+                style: GoogleFonts.getFont('Gowun Dodum',
                     textStyle: TextStyle(fontSize: 17, color: Colors.grey)),
               ),
             ),
@@ -63,7 +63,7 @@ class DeleteState extends State<Delete> {
               width: 350,
               child: Text(
                 "※ 탈퇴 후 개인 정보 등의 데이터가 삭제되며 복구할 수 없습니다.",
-                style: GoogleFonts.jua(
+                style: GoogleFonts.getFont('Gowun Dodum',
                     textStyle: TextStyle(fontSize: 17, color: Colors.grey)),
               ),
             ),
@@ -77,7 +77,7 @@ class DeleteState extends State<Delete> {
                     primary: Color(0xffD50000),
                   ),
                   child: Text("회원탈퇴",
-                      style: GoogleFonts.jua(
+                      style: GoogleFonts.getFont('Gowun Dodum',
                           textStyle:
                               TextStyle(fontSize: 20, color: Colors.white))),
                 )),
