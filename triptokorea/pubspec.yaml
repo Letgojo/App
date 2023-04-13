@@ -100,6 +100,7 @@ flutter:
     - assets/images/introduce_people.png
     - assets/images/introduce_diary.png
     - assets/images/introduce_money.png
+    - assets/images/test.jpeg
 
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

@@ -5,7 +5,6 @@ import 'package:triptokorea/Pages/Trip/TripFirstPage/FirstPage.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,11 +14,7 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         automaticallyImplyLeading: false, //Navigator back 없애기
         iconTheme: IconThemeData(color: Colors.black),
-        title: Text(
-          "Home",
-          style: GoogleFonts.jua(
-              textStyle: TextStyle(fontSize: 20, color: Colors.black)),
-        ),
+
         backgroundColor: Colors.white,
         actions: [
           IconButton(
@@ -34,22 +29,22 @@ class HomePage extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                  margin: EdgeInsets.only(left: 20),
                   child: ElevatedButton(
                       child: Container(
-                        margin: EdgeInsets.only(top: 30),
-                        width: 350,
+                        margin: EdgeInsets.only(top: 10),
+                        width: 370,
                         height: 150,
-                        padding: EdgeInsets.only(top: 100, left: 150),
+                        padding: EdgeInsets.only(top: 20, left: 20),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/images/3.jpeg'),
+                                image: AssetImage('assets/images/test.jpeg'),
                                 fit: BoxFit.cover),
-                            border: Border.all(width: 1),
                             borderRadius: BorderRadius.circular(10)),
                         child: Text("여행일정 잡으러가기",
-                            style: GoogleFonts.jua(
-                                textStyle: TextStyle(fontSize: 20))),
+                            style: GoogleFonts.getFont('Gowun Dodum',
+                                textStyle: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold))),
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -63,31 +58,94 @@ class HomePage extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12))))),
 
-              // Row(
-              //   children: [
-              //     Container(
-              //       width: 250,
-              //       margin: EdgeInsets.only(top: 30, left: 40),
-              //       child: Text(
-              //         "여행축제소개",
-              //         style: GoogleFonts.jua(
-              //             textStyle:
-              //                 TextStyle(fontSize: 20, color: Colors.black)),
-              //       ),
-              //     ),
-              //     Container(
-              //       margin: EdgeInsets.only(top: 30, left: 30),
-              //       child: Text(
-              //         "더보기",
-              //         style: GoogleFonts.jua(
-              //             textStyle: TextStyle(
-              //           fontSize: 20,
-              //           color: Colors.black,
-              //         )),
-              //       ),
-              //     )
-              //   ],
-              // ),
+              Row(
+                children: [
+                  Container(
+                    width: 250,
+                    margin: EdgeInsets.only(top: 30, left: 40),
+                    child: Text(
+                      "동행게시판",
+                      style: GoogleFonts.getFont('Gowun Dodum',
+                          textStyle: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 30, left: 30),
+                    child: Text(
+                      "더보기",
+                      style: GoogleFonts.getFont('Gowun Dodum',
+                          textStyle: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                          )),
+                    ),
+                  )
+                ],
+              ),
+              Container(
+                height: 180,
+                padding: EdgeInsets.all(10),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal, //횡스크롤
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: EdgeInsets.only(right: 10, top: 20, left: 10),
+                      width: 300,
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 1),
+                          borderRadius: BorderRadius.circular(10)),
+                    );
+                  },
+                ),
+              ),
+              Row(
+                children: [
+                  Container(
+                    width: 250,
+                    margin: EdgeInsets.only(top: 30, left: 40),
+                    child: Text(
+                      "자유게시판",
+                      style: GoogleFonts.getFont('Gowun Dodum',
+                          textStyle: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 30, left: 30),
+                    child: Text(
+                      "더보기",
+                      style: GoogleFonts.getFont('Gowun Dodum',
+                          textStyle: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                          )),
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 160,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal, //횡스크롤
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: EdgeInsets.only(left: 20, top: 20),
+                      width: 200,
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 1),
+                          borderRadius: BorderRadius.circular(10)),
+                    );
+                  },
+                ),
+              )
+
               // Container(
               //   margin: EdgeInsets.only(top: 30),
               //   width: 350,

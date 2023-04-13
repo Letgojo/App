@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:triptokorea/Pages/Trip/TripYesPage/TripYes_result.dart';
-import 'package:triptokorea/Pages/Trip/TripYesPage/test.dart';
 import '../../Menu/menuBar.dart';
 
 class TripYes2 extends StatefulWidget {

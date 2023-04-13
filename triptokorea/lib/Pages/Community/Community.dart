@@ -27,6 +27,7 @@ class _CommunityState extends State<Community> {
         'http://wslconnect.iptime.org:50020/board/post/',
         data: Logindata,
       );
+      print(response.data);
       print(response.statusCode);
       if (response.statusCode == 200) {
         // final jsonBody = json.decode(response.data);
@@ -135,7 +136,7 @@ class _CommunityState extends State<Community> {
                   String time = data['date'];
                   String userName = data['userName'];
                   String title = data['title'];
-                  String imgUrl = data['imageBinary'];
+                  String imageUrl = data['imageUrl'];
                   String content = data['content'];
 //닌 찐짜 너무하다ㅏ4
                   return Card(
