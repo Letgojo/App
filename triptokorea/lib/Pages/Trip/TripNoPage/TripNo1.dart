@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:triptokorea/Pages/Trip/TripNoPage/TripNo2.dart';
 
 import '../../Menu/menuBar.dart';
+import '../../../config/config.dart' as config;
 
 String Date = "";
 
@@ -260,8 +261,8 @@ class _TripNo1State extends State<TripNo1> {
     //dio.options.headers['content-Type'] = 'application/json';
     try {
       var response = await dio.get(
-        'http://wslconnect.iptime.org:50020/search-user',
-        data: Logindata,
+        '${config.serverIP}/search-user',
+        queryParameters: Logindata,
       );
       print(response.data);
       print(response.statusCode);

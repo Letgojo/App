@@ -10,6 +10,7 @@ import 'package:triptokorea/Pages/Login/ID_Find/ID_Find.dart';
 import 'package:triptokorea/Pages/Menu/menuBar.dart';
 import 'package:triptokorea/models/api_service.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import '../../config/config.dart' as config;
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -206,7 +207,7 @@ class _LoginState extends State<Login> {
     dio.options.headers['content-Type'] = 'application/json';
     try {
       var response = await dio.post(
-        'http://wslconnect.iptime.org:50020/login',
+        '${config.serverIP}/login',
         data: Logindata,
       );
       print(response.data);

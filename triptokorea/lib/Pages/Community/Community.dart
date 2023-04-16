@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:triptokorea/Pages/Community/acommpany.dart';
 import 'package:triptokorea/Pages/Community/write.dart';
+import '../../config/config.dart' as config;
 
 class Community extends StatefulWidget {
   const Community({super.key});
@@ -24,8 +25,8 @@ class _CommunityState extends State<Community> {
     dio.options.headers['content-Type'] = 'application/json';
     try {
       var response = await dio.get(
-        'http://wslconnect.iptime.org:50020/board/post/',
-        data: Logindata,
+        '${config.serverIP}/board/post/',
+        queryParameters: Logindata,
       );
       print(response.data);
       print(response.statusCode);
