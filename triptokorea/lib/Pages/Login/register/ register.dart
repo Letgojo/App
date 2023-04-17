@@ -8,6 +8,7 @@ import 'package:bs_flutter_selectbox/bs_flutter_selectbox.dart';
 import 'package:provider/provider.dart';
 import 'package:triptokorea/Pages/Login/Login.dart';
 import 'package:triptokorea/models/api_service.dart';
+import '../../../config/config.dart' as config;
 
 String result = '';
 
@@ -256,7 +257,7 @@ Future api(
   dio.options.headers['content-Type'] = 'application/json';
   try {
     var response = await dio.post(
-      'http://wslconnect.iptime.org:50020/sign-up',
+      '${config.serverIP}/sign-up',
       data: goJson,
     );
     print(goJson);
