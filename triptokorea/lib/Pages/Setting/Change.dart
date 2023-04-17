@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import '../../config/config.dart' as config;
 class Change extends StatefulWidget {
   const Change({super.key});
 
@@ -326,6 +326,12 @@ class ChangeState extends State<Change> {
     );
   }
 
+  /* 
+    함수 하나만 만들어서 쓰기 
+    비번 변경할 땐 json 전화번호, 닉네임 값은 공백 또는 null 값으로 만들어서 서버에 전송하면 서버에서 필터링 해서 처리하도록 만들어놈
+  
+  */
+
   Future<String> update_password(
       String current_password, String new_password) async {
     var Logindata = {
@@ -338,7 +344,7 @@ class ChangeState extends State<Change> {
     dio.options.headers['content-Type'] = 'application/json';
     try {
       var response = await dio.patch(
-        'http://wslconnect.iptime.org:50020/settings',
+        '${config.serverIP}/settings',
         data: Logindata,
       );
       print(response.data);
