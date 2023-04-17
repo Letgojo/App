@@ -39,7 +39,7 @@ class _FW_FindState extends State<FW_Find> {
               Container(
                 width: double.infinity,
                 child: Text(
-                  "아이디",
+                  "이메일",
                   style: GoogleFonts.jua(
                       textStyle: TextStyle(fontSize: 20, color: Colors.black)),
                 ),
@@ -49,7 +49,7 @@ class _FW_FindState extends State<FW_Find> {
                   margin: const EdgeInsets.only(top: 30),
                   child: TextField(
                       decoration: InputDecoration(
-                    hintText: "아이디를 입력해주세요",
+                    hintText: "이메일을 입력해주세요",
                     border: (OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10))),
                   ))),

@@ -45,7 +45,10 @@ class _SettingState extends State<Setting> {
         title: Text(
           "Setting",
           style: GoogleFonts.getFont('Gowun Dodum',
-              textStyle: TextStyle(fontSize: 20, color: Colors.black)),
+              textStyle: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold)),
         ),
       ),
       body: Container(
@@ -144,35 +147,47 @@ class _SettingState extends State<Setting> {
                         builder: (context) {
                           return Container(
                             child: AlertDialog(
+                              title: Text(
+                                "Tour Planner",
+                                style: GoogleFonts.getFont('Gowun Dodum',
+                                    textStyle: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold)),
+                              ),
                               content: Text("로그아웃 되었습니다.다시 로그인하시기 바랍니다.",
                                   style: GoogleFonts.getFont('Gowun Dodum',
                                       textStyle: TextStyle(
                                           fontSize: 15, color: Colors.red))),
                               actions: [
-                                ElevatedButton(
-                                    child: Text(
-                                      "확인",
-                                      style: GoogleFonts.getFont('Gowun Dodum',
-                                          textStyle: TextStyle(
-                                              fontSize: 18,
-                                              color: Colors.black)),
-                                    ),
-                                    onPressed: () {
-                                      storage.delete(key: "emailinfo");
-                                      storage.delete(key: "nickname");
-                                      storage.delete(key: "phone");
-                                      storage.delete(key: "passwordinfo");
-                                      storage.delete(key: "uid");
+                                Container(
+                                  margin: EdgeInsets.only(right: 5),
+                                  child: ElevatedButton(
+                                      child: Text(
+                                        "확인",
+                                        style: GoogleFonts.getFont(
+                                            'Gowun Dodum',
+                                            textStyle: TextStyle(
+                                                fontSize: 18,
+                                                color: Colors.white)),
+                                      ),
+                                      onPressed: () {
+                                        storage.delete(key: "emailinfo");
+                                        storage.delete(key: "nickname");
+                                        storage.delete(key: "phone");
+                                        storage.delete(key: "passwordinfo");
+                                        storage.delete(key: "uid");
 
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const Login()));
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.white,
-                                        shadowColor: Colors.white))
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const Login()));
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: Color(0xff0F70BE),
+                                          shadowColor: Colors.white)),
+                                )
                               ],
                             ),
                           );
