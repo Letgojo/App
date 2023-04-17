@@ -23,7 +23,7 @@ class MyApp extends StatefulWidget {
 class MyApp_State extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: menuBar());
+    return MaterialApp(home: Login());
   }
 }
 //시발돼라 짜증나게하지말고 ㅡ.ㅡ ㄴ

@@ -84,7 +84,8 @@ class _LoginState extends State<Login> {
                 padding: EdgeInsets.only(left: 20, top: 60),
                 child: Text(
                   "Welcome!",
-                  style: GoogleFonts.jua(textStyle: TextStyle(fontSize: 40)),
+                  style: GoogleFonts.getFont('Gowun Dodum',
+                      textStyle: TextStyle(fontSize: 40)),
                 ),
               ),
               Container(

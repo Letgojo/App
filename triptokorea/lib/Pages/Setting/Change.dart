@@ -236,7 +236,6 @@ class ChangeState extends State<Change> {
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10)),
                               ),
-                              obscureText: true,
                             ),
                           ),
                         ],
@@ -272,7 +271,6 @@ class ChangeState extends State<Change> {
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10)),
                               ),
-                              obscureText: true,
                             ),
                           ),
                         ],
@@ -298,8 +296,8 @@ class ChangeState extends State<Change> {
                         onPressed: () {
                           // update_password(
                           //     currentpassword.text, newPassword.text);
-                          // update_nickname(currentpassword.text, userName.text);
-                          update_phone(currentpassword.text, phoneNum.text);
+                          update_nickname(currentpassword.text, userName.text);
+                          // update_phone(currentpassword.text, phoneNum.text);
                         },
                       ),
                     ),
