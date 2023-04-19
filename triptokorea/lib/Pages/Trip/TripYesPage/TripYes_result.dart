@@ -96,7 +96,7 @@ class _TripYes_resultState extends State<TripYes_result> {
                     infoWindow: InfoWindow(title: data['관광지명'])));
               });
             }))
-        .catchError((error) => print('에러 :$error'));
+        .catchError((error) => print('error:$error'));
 
     // markers.add(
 
