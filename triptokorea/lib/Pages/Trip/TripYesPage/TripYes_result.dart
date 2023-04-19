@@ -1,5 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import '../../../config/config.dart' as config;
 
 const String kakaoMapKey = '5157004dd04f0e8b82c4ba27aac81564';
 
@@ -13,19 +15,71 @@ class TripYes_result extends StatefulWidget {
 class _TripYes_resultState extends State<TripYes_result> {
   late GoogleMapController mapController;
 
+  final Set<Marker> markers = new Set();
+
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
 
-  List<Marker> _markers = [];
+  List<dynamic> list = [];
+
+  Future<dynamic> loaddata() async {
+    var Logindata = {
+      "tourType": "자연관광",
+      "city": "대구광역시",
+      "district": "달서구",
+    };
+    Dio dio = new Dio();
+    print(Logindata);
+    dio.options.headers['content-Type'] = 'application/json';
+    try {
+      var response = await dio.get(
+        '${config.serverIP}/location/tour',
+        queryParameters: Logindata,
+      );
+      // print(response.data);
+      // print(response.statusCode);
+      if (response.statusCode == 200) {
+        // final jsonBody = json.decode(response.data);
+        print("성공");
+        for (int i = 0; i < response.data.length; i++) {
+          list.add(response.data[i]);
+          // for (int i = 0; i < list.length; i++) {
+          //   double x = list[i]['위도'];
+          //   double y = list[i]['경도'];
+          //   print("$x ,$y");
+
+          //   markers.add(Marker(
+          //       markerId: MarkerId("q11"),
+          //       draggable: true,
+          //       onTap: () => print("aye man"),
+          //       position: LatLng(x, y)));
+          //   setState(() {});
+          // }
+
+          /// http와 다른점은 response 값을 data로 받는다.
+          // var name = response.data;
+          // "name", value: u)
+        }
+        return list;
+      } else {
+        print(response.statusCode);
+        print("2실패 ${response.statusCode}");
+        return 'Fail';
+      }
+    } catch (e) {
+      print(e);
+      Exception(e);
+    } finally {
+      dio.close();
+    }
+
+    return "";
+  }
+
   @override
   void initState() {
     super.initState();
-    _markers.add(Marker(
-        markerId: MarkerId("1"),
-        draggable: true,
-        onTap: () => print("대구수목원!"),
-        position: LatLng(35.8004058, 128.5210752)));
   }
 
   @override
@@ -34,14 +88,34 @@ class _TripYes_resultState extends State<TripYes_result> {
       body: Container(
         child: GoogleMap(
           mapType: MapType.normal,
-          markers: Set.from(_markers),
+          markers: getmarkers(),
           onMapCreated: _onMapCreated,
           initialCameraPosition: CameraPosition(
             target: LatLng(35.8535156, 128.5431268),
-            zoom: 17.0,
+            zoom: 12.0,
           ),
         ),
       ),
     );
+  }
+
+  Set<Marker> getmarkers() {
+    loaddata()
+        .then((data) => setState(() {
+              data.forEach((data) {
+                markers.add(Marker(
+                    markerId: MarkerId(data['순위']),
+                    position: LatLng(
+                      double.parse(data['위도']),
+                      double.parse(data['경도']),
+                    ),
+                    infoWindow: InfoWindow(title: data['관광지명'])));
+              });
+            }))
+        .catchError((error) => print('에러 :$error'));
+
+    // markers.add(
+
+    return markers;
   }
 }
