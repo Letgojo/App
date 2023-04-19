@@ -82,8 +82,13 @@ class _TripNo1State extends State<TripNo1> {
                 ),
               ),
               Container(
+                padding: EdgeInsets.only(left: 120, top: 5),
                 width: 300,
                 height: 45,
+                child: Text("출발지",
+                    style: GoogleFonts.getFont('Gowun Dodum',
+                        textStyle:
+                            TextStyle(fontSize: 20, color: Colors.black))),
                 decoration: BoxDecoration(
                     border: Border.all(width: 1),
                     borderRadius: BorderRadius.circular(10)),

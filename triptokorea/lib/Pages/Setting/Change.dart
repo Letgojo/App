@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../config/config.dart' as config;
+
 class Change extends StatefulWidget {
   const Change({super.key});
 
@@ -294,10 +295,18 @@ class ChangeState extends State<Change> {
                                   TextStyle(fontSize: 16, color: Colors.white)),
                         ),
                         onPressed: () {
-                          // update_password(
-                          //     currentpassword.text, newPassword.text);
-                          update_nickname(currentpassword.text, userName.text);
-                          // update_phone(currentpassword.text, phoneNum.text);
+                          currentpassword.text != "" && phoneNum.text != ""
+                              ? update_phone(
+                                  currentpassword.text, phoneNum.text)
+                              : " ";
+                          currentpassword.text != "" && newPassword.text != ""
+                              ? update_password(
+                                  currentpassword.text, newPassword.text)
+                              : " ";
+                          currentpassword.text != "" && userName.text != ""
+                              ? update_nickname(
+                                  currentpassword.text, userName.text)
+                              : " ";
                         },
                       ),
                     ),
@@ -382,7 +391,7 @@ class ChangeState extends State<Change> {
     dio.options.headers['content-Type'] = 'application/json';
     try {
       var response = await dio.patch(
-        'http://wslconnect.iptime.org:50020/settings',
+        '${config.serverIP}/settings',
         data: Logindata,
       );
       print(response.data);
@@ -420,7 +429,7 @@ class ChangeState extends State<Change> {
     dio.options.headers['content-Type'] = 'application/json';
     try {
       var response = await dio.patch(
-        'http://wslconnect.iptime.org:50020/settings',
+        '${config.serverIP}/settings',
         data: Logindata,
       );
       print(response.data);

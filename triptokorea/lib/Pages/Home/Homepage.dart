@@ -129,15 +129,16 @@ class HomePage extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(
-                height: 160,
+              Container(
+                height: 180,
+                padding: EdgeInsets.all(10),
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal, //횡스크롤
                   itemCount: 5,
                   itemBuilder: (context, index) {
                     return Container(
-                      margin: EdgeInsets.only(left: 20, top: 20),
-                      width: 200,
+                      margin: EdgeInsets.only(right: 10, top: 20, left: 10),
+                      width: 300,
                       decoration: BoxDecoration(
                           border: Border.all(width: 1),
                           borderRadius: BorderRadius.circular(10)),
