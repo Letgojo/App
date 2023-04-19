@@ -44,22 +44,6 @@ class _TripYes_resultState extends State<TripYes_result> {
         print("성공");
         for (int i = 0; i < response.data.length; i++) {
           list.add(response.data[i]);
-          // for (int i = 0; i < list.length; i++) {
-          //   double x = list[i]['위도'];
-          //   double y = list[i]['경도'];
-          //   print("$x ,$y");
-
-          //   markers.add(Marker(
-          //       markerId: MarkerId("q11"),
-          //       draggable: true,
-          //       onTap: () => print("aye man"),
-          //       position: LatLng(x, y)));
-          //   setState(() {});
-          // }
-
-          /// http와 다른점은 response 값을 data로 받는다.
-          // var name = response.data;
-          // "name", value: u)
         }
         return list;
       } else {
