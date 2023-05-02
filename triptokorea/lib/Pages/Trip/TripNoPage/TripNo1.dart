@@ -67,82 +67,82 @@ class _TripNo1State extends State<TripNo1> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                margin: const EdgeInsets.only(left: 40),
-                child: Row(
-                  children: [
-                    TextButton(
-                        onPressed: () {},
-                        child: Text('도시',
-                            style: GoogleFonts.getFont('Gowun Dodum',
-                                textStyle: TextStyle(
-                                    fontSize: 20, color: Colors.black)))),
-                    IconButton(onPressed: () {}, icon: Icon(Icons.location_on))
-                  ],
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 120, top: 5),
-                width: 300,
-                height: 45,
-                child: Text("출발지",
-                    style: GoogleFonts.getFont('Gowun Dodum',
-                        textStyle:
-                            TextStyle(fontSize: 20, color: Colors.black))),
-                decoration: BoxDecoration(
-                    border: Border.all(width: 1),
-                    borderRadius: BorderRadius.circular(10)),
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 20, left: 60, bottom: 20),
-                child: Row(
-                  children: [
-                    Text(
-                      "대중교통",
-                      style: GoogleFonts.getFont('Gowun Dodum',
-                          textStyle:
-                              TextStyle(fontSize: 20, color: Colors.black)),
-                    ),
-                    Icon(Icons.train)
-                  ],
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 60),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 100,
-                      child: Expanded(
-                          child: ElevatedButton(
-                        child: Text("버스",
-                            style: GoogleFonts.getFont('Gowun Dodum',
-                                textStyle: TextStyle(
-                                    fontSize: 14, color: Colors.black))),
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                        ),
-                        onPressed: () {},
-                      )),
-                    ),
-                    Container(
-                      width: 100,
-                      margin: EdgeInsets.only(left: 60),
-                      child: Expanded(
-                          child: ElevatedButton(
-                        child: Text("기차",
-                            style: GoogleFonts.getFont('Gowun Dodum',
-                                textStyle: TextStyle(
-                                    fontSize: 14, color: Colors.black))),
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                        ),
-                      )),
-                    ),
-                  ],
-                ),
-              ),
+              // Container(
+              //   margin: const EdgeInsets.only(left: 40),
+              //   child: Row(
+              //     children: [
+              //       TextButton(
+              //           onPressed: () {},
+              //           child: Text('도시',
+              //               style: GoogleFonts.getFont('Gowun Dodum',
+              //                   textStyle: TextStyle(
+              //                       fontSize: 20, color: Colors.black)))),
+              //       IconButton(onPressed: () {}, icon: Icon(Icons.location_on))
+              //     ],
+              //   ),
+              // ),
+              // Container(
+              //   padding: EdgeInsets.only(left: 120, top: 5),
+              //   width: 300,
+              //   height: 45,
+              //   child: Text("출발지",
+              //       style: GoogleFonts.getFont('Gowun Dodum',
+              //           textStyle:
+              //               TextStyle(fontSize: 20, color: Colors.black))),
+              //   decoration: BoxDecoration(
+              //       border: Border.all(width: 1),
+              //       borderRadius: BorderRadius.circular(10)),
+              // ),
+              // Container(
+              //   margin: const EdgeInsets.only(top: 20, left: 60, bottom: 20),
+              //   child: Row(
+              //     children: [
+              //       Text(
+              //         "대중교통",
+              //         style: GoogleFonts.getFont('Gowun Dodum',
+              //             textStyle:
+              //                 TextStyle(fontSize: 20, color: Colors.black)),
+              //       ),
+              //       Icon(Icons.train)
+              //     ],
+              //   ),
+              // ),
+              // Container(
+              //   margin: EdgeInsets.only(left: 60),
+              //   child: Row(
+              //     children: [
+              //       SizedBox(
+              //         width: 100,
+              //         child: Expanded(
+              //             child: ElevatedButton(
+              //           child: Text("버스",
+              //               style: GoogleFonts.getFont('Gowun Dodum',
+              //                   textStyle: TextStyle(
+              //                       fontSize: 14, color: Colors.black))),
+              //           style: ElevatedButton.styleFrom(
+              //             primary: Colors.white,
+              //           ),
+              //           onPressed: () {},
+              //         )),
+              //       ),
+              //       Container(
+              //         width: 100,
+              //         margin: EdgeInsets.only(left: 60),
+              //         child: Expanded(
+              //             child: ElevatedButton(
+              //           child: Text("기차",
+              //               style: GoogleFonts.getFont('Gowun Dodum',
+              //                   textStyle: TextStyle(
+              //                       fontSize: 14, color: Colors.black))),
+              //           onPressed: () {},
+              //           style: ElevatedButton.styleFrom(
+              //             primary: Colors.white,
+              //           ),
+              //         )),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               Container(
                 margin: const EdgeInsets.only(top: 20, left: 70, bottom: 20),
                 child: Row(

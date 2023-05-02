@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../config/config.dart' as config;
+import 'package:google_places_for_flutter/google_places_for_flutter.dart';
 
 const String kakaoMapKey = '5157004dd04f0e8b82c4ba27aac81564';
 
@@ -69,37 +70,63 @@ class _TripYes_resultState extends State<TripYes_result> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: GoogleMap(
-          mapType: MapType.normal,
-          markers: getmarkers(),
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: CameraPosition(
-            target: LatLng(35.8535156, 128.5431268),
-            zoom: 12.0,
-          ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Container(
+              height: 600,
+              child: GoogleMap(
+                mapType: MapType.normal,
+                // markers: loaddata(),
+                onMapCreated: _onMapCreated,
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(35.8535156, 128.5431268),
+                  zoom: 12.0,
+                ),
+              ),
+            ),
+            // Container(
+            //   child: SearchGooglePlacesWidget(
+            //     apiKey: 'AIzaSyASCW6NUBnr3NYGyISC7MaaSvqRjqb4LsQ',
+            //     // The language of the autocompletion
+            //     language: 'ko',
+            //     // The position used to give better recommendations. In this case we are using the user position
+            //     radius: 30000,
+            //     onSelected: (Place place) async {
+            //       final geolocation = await place.geolocation;
+
+            //       // Will animate the GoogleMap camera, taking us to the selected position with an appropriate zoom
+            //       mapController.animateCamera(
+            //           CameraUpdate.newLatLng(geolocation!.coordinates));
+            //       mapController.animateCamera(
+            //           CameraUpdate.newLatLngBounds(geolocation.bounds, 0));
+            //     },
+            //     onSearch: (Place place) {},
+            //   ),
+            // )
+          ],
         ),
       ),
     );
   }
 
-  Set<Marker> getmarkers() {
-    loaddata()
-        .then((data) => setState(() {
-              data.forEach((data) {
-                markers.add(Marker(
-                    markerId: MarkerId(data['순위']),
-                    position: LatLng(
-                      double.parse(data['위도']),
-                      double.parse(data['경도']),
-                    ),
-                    infoWindow: InfoWindow(title: data['관광지명'])));
-              });
-            }))
-        .catchError((error) => print('error:$error'));
+  // Set<Marker> getmarkers() {
+  //   loaddata()
+  //       .then((data) => setState(() {
+  //             data.forEach((data) {
+  //               markers.add(Marker(
+  //                   markerId: MarkerId(data['순위']),
+  //                   position: LatLng(
+  //                     double.parse(data['위도']),
+  //                     double.parse(data['경도']),
+  //                   ),
+  //                   infoWindow: InfoWindow(title: data['관광지명'])));
+  //             });
+  //           }))
+  //       .catchError((error) => print('error:$error'));
 
-    // markers.add(
+  //   // markers.add(
 
-    return markers;
-  }
+  //   return markers;
+  // }
 }

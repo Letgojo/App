@@ -53,6 +53,7 @@ dependencies:
   google_maps_flutter_web: ^0.4.0+7
   http: ^0.13.5
   json_serializable: ^6.6.1
+  google_places_for_flutter: ^1.0.1
 
 dev_dependencies:
   flutter_test:
