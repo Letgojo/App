@@ -13,7 +13,7 @@ void main() async {
   ], child: MyApp()));
 }
 
-class MyApp extends StatefulWidget { 
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override

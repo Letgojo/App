@@ -5,6 +5,7 @@ import 'package:triptokorea/Pages/Community/Community.dart';
 import 'package:triptokorea/Pages/Home/Homepage.dart';
 import 'package:triptokorea/Pages/Record/Record.dart';
 import 'package:triptokorea/Pages/Setting/Setting.dart';
+import 'package:triptokorea/Pages/Trip/TripNoPage/CategoryTable.dart';
 
 class menuBar extends StatefulWidget {
   const menuBar({super.key});
@@ -22,7 +23,7 @@ class menuBar_State extends State<menuBar> {
         index: currentIndex,
         children: [
           HomePage(),
-          Record(),
+          CategoryTable(),
           Community(),
           ChatPage(),
           Setting(),

@@ -1,12 +1,63 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:triptokorea/Pages/Community/Community.dart';
+import 'package:triptokorea/Pages/Community/acommpany.dart';
 import 'package:triptokorea/Pages/Trip/TripFirstPage/FirstPage.dart';
+import '../../config/config.dart' as config;
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  var list = [];
+  Future<dynamic> loaddata() async {
+    var Logindata = {
+      "docId": null,
+      "pages": "5",
+    };
+    Dio dio = new Dio();
+    print(Logindata);
+    dio.options.headers['content-Type'] = 'application/json';
+    try {
+      var response = await dio.get(
+        '${config.serverIP}/board/post/',
+        queryParameters: Logindata,
+      );
+      print(response.data);
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        // final jsonBody = json.decode(response.data);
+        print("성공");
+        for (int i = 0; i < response.data.length; i++) {
+          list.add(response.data[i]);
+        }
+
+        /// http와 다른점은 response 값을 data로 받는다.
+        var name = response.data;
+        // "name", value: u)
+        return name;
+      } else {
+        print(response.statusCode);
+        print("2실패 ${response.statusCode}");
+        return 'Fail';
+      }
+    } catch (e) {
+      print(e);
+      Exception(e);
+    } finally {
+      dio.close();
+    }
+    return "";
+  }
+
+  @override
   Widget build(BuildContext context) {
+    loaddata();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -73,15 +124,22 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 30, left: 30),
-                    child: Text(
-                      "더보기",
-                      style: GoogleFonts.getFont('Gowun Dodum',
-                          textStyle: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                          )),
+                    margin: EdgeInsets.only(
+                      top: 30,
                     ),
+                    child: TextButton(
+                        child: Text("더보기",
+                            style: GoogleFonts.getFont('Gowun Dodum',
+                                textStyle: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ))),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const acommpany()));
+                        }),
                   )
                 ],
               ),
@@ -117,15 +175,22 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 30, left: 30),
-                    child: Text(
-                      "더보기",
-                      style: GoogleFonts.getFont('Gowun Dodum',
-                          textStyle: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                          )),
+                    margin: EdgeInsets.only(
+                      top: 30,
                     ),
+                    child: TextButton(
+                        child: Text("더보기",
+                            style: GoogleFonts.getFont('Gowun Dodum',
+                                textStyle: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ))),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Community()));
+                        }),
                   )
                 ],
               ),
@@ -136,12 +201,56 @@ class HomePage extends StatelessWidget {
                   scrollDirection: Axis.horizontal, //횡스크롤
                   itemCount: 5,
                   itemBuilder: (context, index) {
+                    Map<String, dynamic> data = list[index];
+                    String time = data['date'];
+                    String userName = data['userName'];
+                    String title = data['title'];
+                    String imageUrl = data['imageUrl'];
+                    String content = data['content'];
                     return Container(
                       margin: EdgeInsets.only(right: 10, top: 20, left: 10),
                       width: 300,
                       decoration: BoxDecoration(
                           border: Border.all(width: 1),
                           borderRadius: BorderRadius.circular(10)),
+                      child: Stack(alignment: Alignment.center, children: [
+                        Row(children: [
+                          Container(
+                            width: 100,
+                            height: 140,
+                            decoration:
+                                BoxDecoration(border: Border.all(width: 1)),
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(right: 100, top: 10),
+                                child: Text(
+                                  title,
+                                  style: GoogleFonts.jua(
+                                      textStyle: TextStyle(fontSize: 16)),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(right: 40, top: 10),
+                                child: Text(
+                                  content,
+                                  style: GoogleFonts.jua(
+                                      textStyle: TextStyle(fontSize: 16)),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 50, left: 60),
+                                child: Text(
+                                  time,
+                                  style: GoogleFonts.jua(
+                                      textStyle: TextStyle(fontSize: 14)),
+                                ),
+                              )
+                            ],
+                          )
+                        ])
+                      ]),
                     );
                   },
                 ),
