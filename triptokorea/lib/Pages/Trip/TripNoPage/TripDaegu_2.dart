@@ -3,6 +3,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:triptokorea/Pages/Trip/TripYesPage/TripYes2.dart';
 
+import '../TripYesPage/TripYes_result.dart';
+
 class TripDaegu_2 extends StatefulWidget {
   const TripDaegu_2({super.key});
 
@@ -11,7 +13,7 @@ class TripDaegu_2 extends StatefulWidget {
 }
 
 class TripDaegu_2State extends State<TripDaegu_2> {
-   static final storage =
+  static final storage =
       new FlutterSecureStorage(); //flutter_secure_storage 사용을 위한 초기화 작업
 
   //비동기로 flutter secure storage 정보를 불러오는 작업.
@@ -58,7 +60,12 @@ class TripDaegu_2State extends State<TripDaegu_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,
@@ -79,7 +86,12 @@ class TripDaegu_2State extends State<TripDaegu_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,
@@ -100,7 +112,12 @@ class TripDaegu_2State extends State<TripDaegu_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,
@@ -121,7 +138,12 @@ class TripDaegu_2State extends State<TripDaegu_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,
@@ -142,7 +164,12 @@ class TripDaegu_2State extends State<TripDaegu_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,
@@ -163,7 +190,12 @@ class TripDaegu_2State extends State<TripDaegu_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,
@@ -184,7 +216,12 @@ class TripDaegu_2State extends State<TripDaegu_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,

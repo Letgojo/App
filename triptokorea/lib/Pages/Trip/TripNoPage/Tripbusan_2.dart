@@ -3,6 +3,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:triptokorea/Pages/Trip/TripYesPage/TripYes2.dart';
 
+import '../TripYesPage/TripYes_result.dart';
+
 class TripBusan_2 extends StatefulWidget {
   const TripBusan_2({super.key});
 
@@ -58,7 +60,12 @@ class TripBusan_2State extends State<TripBusan_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,
@@ -79,7 +86,12 @@ class TripBusan_2State extends State<TripBusan_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,
@@ -100,7 +112,12 @@ class TripBusan_2State extends State<TripBusan_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,
@@ -121,7 +138,12 @@ class TripBusan_2State extends State<TripBusan_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,
@@ -142,7 +164,12 @@ class TripBusan_2State extends State<TripBusan_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,
@@ -163,7 +190,12 @@ class TripBusan_2State extends State<TripBusan_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,
@@ -184,7 +216,12 @@ class TripBusan_2State extends State<TripBusan_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,
@@ -205,7 +242,12 @@ class TripBusan_2State extends State<TripBusan_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,
@@ -226,7 +268,12 @@ class TripBusan_2State extends State<TripBusan_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,
@@ -247,7 +294,12 @@ class TripBusan_2State extends State<TripBusan_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,
@@ -268,7 +320,12 @@ class TripBusan_2State extends State<TripBusan_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,
@@ -289,7 +346,12 @@ class TripBusan_2State extends State<TripBusan_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,
@@ -310,7 +372,12 @@ class TripBusan_2State extends State<TripBusan_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,
@@ -331,7 +398,12 @@ class TripBusan_2State extends State<TripBusan_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,
@@ -352,7 +424,12 @@ class TripBusan_2State extends State<TripBusan_2> {
                         textStyle:
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TripYes_result()));
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     elevation: 0,

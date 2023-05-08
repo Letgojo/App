@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:triptokorea/Pages/Trip/TripYesPage/Trip_result2.dart';
 import '../../../config/config.dart' as config;
 import 'package:google_places_for_flutter/google_places_for_flutter.dart';
 
@@ -67,6 +72,31 @@ class _TripYes_resultState extends State<TripYes_result> {
     super.initState();
   }
 
+  File? _image;
+  final picker = ImagePicker();
+  Future getImage(ImageSource source) async {
+    final image = await picker.pickImage(source: source);
+
+    print("실행중");
+    if (image == null) return;
+    File? img = File(image.path);
+    // Uint8List imagebytes = await image.readAsBytes();
+    // base64Image = base64.encode(imagebytes);
+    setState(() {
+      _image = img;
+      Navigator.of(context).pop();
+      print(_image);
+    });
+  }
+
+  Widget showImage() {
+    if (_image == null) {
+      print("없다");
+      return Container();
+    }
+    return Image.file(_image!);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,6 +143,80 @@ class _TripYes_resultState extends State<TripYes_result> {
   Set<Marker> getmarkers() {
     markers.add(Marker(
         markerId: MarkerId('1'),
+        onTap: () {
+          showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (context) {
+                return Container(
+                  width: 400,
+                  height: 500,
+                  child: AlertDialog(
+                    content: Text("선택하세요~",
+                        style: GoogleFonts.jua(
+                            textStyle:
+                                TextStyle(fontSize: 15, color: Colors.black))),
+                    actions: [
+                      Container(
+                        margin: EdgeInsets.only(right: 50),
+                        width: 200,
+                        child: ElevatedButton(
+                            child: Text(
+                              "카메라",
+                              style: GoogleFonts.jua(
+                                  textStyle: TextStyle(
+                                      fontSize: 18, color: Colors.black)),
+                            ),
+                            onPressed: () {
+                              getImage(ImageSource.camera);
+                            },
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                shadowColor: Colors.white)),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(right: 50),
+                        width: 200,
+                        child: ElevatedButton(
+                            child: Text(
+                              "앨범 가져오기",
+                              style: GoogleFonts.jua(
+                                  textStyle: TextStyle(
+                                      fontSize: 18, color: Colors.black)),
+                            ),
+                            onPressed: () {
+                              getImage(ImageSource.gallery);
+                            },
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                shadowColor: Colors.white)),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(right: 50),
+                        width: 200,
+                        child: ElevatedButton(
+                            child: Text(
+                              "사진없다이말이야",
+                              style: GoogleFonts.jua(
+                                  textStyle: TextStyle(
+                                      fontSize: 18, color: Colors.black)),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const TripYes_result2()));
+                            },
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                shadowColor: Colors.white)),
+                      )
+                    ],
+                  ),
+                );
+              });
+        },
         position: LatLng(35.1938469, 129.1536102),
         infoWindow: InfoWindow(title: '해운대구')));
 
