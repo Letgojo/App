@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:triptokorea/Pages/Community/acommpany.dart';
+import 'package:triptokorea/Pages/Community/answer.dart';
 import 'package:triptokorea/Pages/Community/write.dart';
 import '../../config/config.dart' as config;
 
@@ -143,42 +144,60 @@ class _CommunityState extends State<Community> {
                   return Card(
                     margin: EdgeInsets.all(8),
                     child: Stack(alignment: Alignment.center, children: [
-                      Row(children: [
-                        Container(
-                          width: 150,
-                          height: 120,
-                          decoration:
-                              BoxDecoration(border: Border.all(width: 1)),
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(right: 200),
-                              child: Text(
-                                title,
-                                style: GoogleFonts.jua(
-                                    textStyle: TextStyle(fontSize: 16)),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => answer(
+                                        title: title,
+                                        userName: userName,
+                                        time: time,
+                                        content: content,
+                                      )));
+                        },
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.white, elevation: 0),
+                        child: Row(children: [
+                          Container(
+                            width: 120,
+                            height: 120,
+                            decoration:
+                                BoxDecoration(border: Border.all(width: 1)),
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(right: 200),
+                                child: Text(
+                                  title,
+                                  style: GoogleFonts.jua(
+                                      textStyle: TextStyle(
+                                          fontSize: 16, color: Colors.black)),
+                                ),
                               ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(right: 130, top: 10),
-                              child: Text(
-                                content,
-                                style: GoogleFonts.jua(
-                                    textStyle: TextStyle(fontSize: 16)),
+                              Container(
+                                margin: EdgeInsets.only(right: 130, top: 10),
+                                child: Text(
+                                  content,
+                                  style: GoogleFonts.jua(
+                                      textStyle: TextStyle(
+                                          fontSize: 16, color: Colors.black)),
+                                ),
                               ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(top: 50, left: 115),
-                              child: Text(
-                                time,
-                                style: GoogleFonts.jua(
-                                    textStyle: TextStyle(fontSize: 14)),
-                              ),
-                            )
-                          ],
-                        )
-                      ])
+                              Container(
+                                margin: EdgeInsets.only(top: 50, left: 115),
+                                child: Text(
+                                  time,
+                                  style: GoogleFonts.jua(
+                                      textStyle: TextStyle(
+                                          fontSize: 14, color: Colors.black)),
+                                ),
+                              )
+                            ],
+                          )
+                        ]),
+                      )
                     ]),
                   );
                 },

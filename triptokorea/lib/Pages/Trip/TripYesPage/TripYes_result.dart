@@ -74,13 +74,13 @@ class _TripYes_resultState extends State<TripYes_result> {
         child: Column(
           children: [
             Container(
-              height: 600,
+              height: 659.4,
               child: GoogleMap(
                 mapType: MapType.normal,
-                // markers: loaddata(),
+                markers: getmarkers(),
                 onMapCreated: _onMapCreated,
                 initialCameraPosition: CameraPosition(
-                  target: LatLng(35.8535156, 128.5431268),
+                  target: LatLng(35.1938469, 129.1536102),
                   zoom: 12.0,
                 ),
               ),
@@ -110,23 +110,28 @@ class _TripYes_resultState extends State<TripYes_result> {
     );
   }
 
-  // Set<Marker> getmarkers() {
-  //   loaddata()
-  //       .then((data) => setState(() {
-  //             data.forEach((data) {
-  //               markers.add(Marker(
-  //                   markerId: MarkerId(data['순위']),
-  //                   position: LatLng(
-  //                     double.parse(data['위도']),
-  //                     double.parse(data['경도']),
-  //                   ),
-  //                   infoWindow: InfoWindow(title: data['관광지명'])));
-  //             });
-  //           }))
-  //       .catchError((error) => print('error:$error'));
+  Set<Marker> getmarkers() {
+    markers.add(Marker(
+        markerId: MarkerId('1'),
+        position: LatLng(35.1938469, 129.1536102),
+        infoWindow: InfoWindow(title: '해운대구')));
 
-  //   // markers.add(
+    // loaddata()
+    //     .then((data) => setState(() {
+    //           data.forEach((data) {
+    //             markers.add(Marker(
+    //                 markerId: MarkerId(data['순위']),
+    //                 position: LatLng(
+    //                   double.parse(data['위도']),
+    //                   double.parse(data['경도']),
+    //                 ),
+    //                 infoWindow: InfoWindow(title: data['관광지명'])));
+    //           });
+    //         }))
+    //     .catchError((error) => print('error:$error'));
 
-  //   return markers;
-  // }
+    // markers.add(
+
+    return markers;
+  }
 }
