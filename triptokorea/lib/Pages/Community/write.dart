@@ -10,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:triptokorea/Pages/Community/Community.dart';
 import 'package:triptokorea/models/api_service.dart';
+import '../../config/config.dart' as config;
 
 class write extends StatefulWidget {
   const write({super.key});
@@ -256,7 +257,7 @@ class _WriteState extends State<write> {
     dio.options.headers['content-Type'] = 'application/json';
     try {
       var response = await dio.post(
-        'http://wslconnect.iptime.org:50020/board/post',
+        '${config.serverIP}/board/post',
         data: uploadcase2,
       );
       print(uploadcase2);

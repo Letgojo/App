@@ -21,7 +21,6 @@ class _HomePageState extends State<HomePage> {
       "pages": "5",
     };
     Dio dio = new Dio();
-    print(Logindata);
     dio.options.headers['content-Type'] = 'application/json';
     try {
       var response = await dio.get(
@@ -39,7 +38,7 @@ class _HomePageState extends State<HomePage> {
 
         /// http와 다른점은 response 값을 data로 받는다.
         var name = response.data;
-        // "name", value: u)
+        // "name", value:
         return name;
       } else {
         print(response.statusCode);

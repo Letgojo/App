@@ -31,6 +31,7 @@ class _CommunityState extends State<Community> {
       );
       print(response.data);
       print(response.statusCode);
+
       if (response.statusCode == 200) {
         // final jsonBody = json.decode(response.data);
         print("성공");
@@ -40,6 +41,7 @@ class _CommunityState extends State<Community> {
 
         /// http와 다른점은 response 값을 data로 받는다.
         var name = response.data;
+
         // "name", value: u)
         return name;
       } else {
@@ -49,16 +51,19 @@ class _CommunityState extends State<Community> {
       }
     } catch (e) {
       print(e);
+
       Exception(e);
     } finally {
       dio.close();
     }
+
     return "";
   }
 
   @override
   Widget build(BuildContext context) {
     loaddata();
+
     print(list[0]);
     return Scaffold(
       // resizeToAvoidBottomInset: false,
@@ -140,7 +145,8 @@ class _CommunityState extends State<Community> {
                   String title = data['title'];
                   String imageUrl = data['imageUrl'];
                   String content = data['content'];
-//닌 찐짜 너무하다ㅏ4
+                  String uid = data['uid'];
+
                   return Card(
                     margin: EdgeInsets.all(8),
                     child: Stack(alignment: Alignment.center, children: [
@@ -150,11 +156,11 @@ class _CommunityState extends State<Community> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => answer(
-                                        title: title,
-                                        userName: userName,
-                                        time: time,
-                                        content: content,
-                                      )));
+                                      title: title,
+                                      userName: userName,
+                                      time: time,
+                                      content: content,
+                                      uid: uid)));
                         },
                         style: ElevatedButton.styleFrom(
                             primary: Colors.white, elevation: 0),

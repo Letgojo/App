@@ -110,7 +110,9 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
                           border: Border.all(width: 1),
                           borderRadius: BorderRadius.circular(10)),
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          print(name);
+                        },
                         child: Text(
                           name,
                           style: GoogleFonts.getFont('Gowun Dodum',

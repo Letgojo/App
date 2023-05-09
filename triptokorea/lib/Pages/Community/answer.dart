@@ -1,5 +1,10 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../config/config.dart' as config;
 
 class answer extends StatefulWidget {
   const answer(
@@ -7,19 +12,84 @@ class answer extends StatefulWidget {
       required this.title,
       required this.userName,
       required this.time,
-      required this.content})
+      required this.content,
+      required this.uid})
       : super(key: key);
   final String title;
   final String userName;
   final String content;
   final String time;
+  final String uid;
   @override
   State<answer> createState() => answerState();
 }
 
 class answerState extends State<answer> {
+  var list = [];
+  Future<dynamic> loaddata() async {
+    var Logindata = {
+      "docId": widget.uid,
+    };
+    Dio dio = new Dio();
+    print(Logindata);
+    dio.options.headers['content-Type'] = 'application/json';
+    try {
+      var response = await dio.get(
+        '${config.serverIP}/board/reply/',
+        queryParameters: Logindata,
+      );
+
+      print(response.data);
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        // final jsonBody = json.decode(response.data);
+        print("성공");
+        for (int i = 0; i < response.data.length; i++) {
+          list.add(response.data[i]);
+        }
+        print(list);
+
+        /// http와 다른점은 response 값을 data로 받는다.
+        var name = response.data;
+
+        // "name", value: u)
+        return name;
+      } else {
+        print(response.statusCode);
+        print("2실패 ${response.statusCode}");
+        return 'Fail';
+      }
+    } catch (e) {
+      print(e);
+      Exception(e);
+    } finally {
+      dio.close();
+    }
+    return "";
+  }
+
+  static final storage =
+      new FlutterSecureStorage(); //flutter_secure_storage 사용을 위한 초기화 작업
+  TextEditingController content = TextEditingController();
+  dynamic name = "";
+  dynamic email = "";
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _asyncMethod();
+    });
+  }
+
+  _asyncMethod() async {
+    //read 함수
+    name = await storage.read(key: 'nickname');
+    email = await storage.read(key: 'emailinfo');
+  }
+
   @override
   Widget build(BuildContext context) {
+    loaddata();
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -47,7 +117,7 @@ class answerState extends State<answer> {
                       left: 20,
                     ),
                     child: Row(children: [
-                      SizedBox(height: 30),
+                      SizedBox(height: 20),
                       CircleAvatar(
                         radius: 36,
                         backgroundColor: Colors.white,
@@ -65,33 +135,52 @@ class answerState extends State<answer> {
                         children: [
                           Container(
                               margin: EdgeInsets.only(
-                                right: 37,
+                                right: 70,
                               ),
-                              child: Text(widget.userName)),
+                              child: Text(
+                                widget.userName,
+                                style: GoogleFonts.getFont('Gowun Dodum',
+                                    textStyle: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold)),
+                              )),
                           SizedBox(height: 10),
                           Container(child: Text(widget.time))
                         ],
                       )),
                     ])),
                 Container(
-                  margin: EdgeInsets.only(
-                    right: 230,
-                  ),
-                  child: Column(
-                    children: [SizedBox(height: 30), Text(widget.title)],
-                  ),
-                ),
+                    margin: EdgeInsets.only(
+                      right: 280,
+                    ),
+                    child: Text(
+                      widget.title,
+                      style: GoogleFonts.getFont('Gowun Dodum',
+                          textStyle: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold)),
+                    )),
                 Container(
-                  margin: EdgeInsets.only(
-                    left: 10,
-                  ),
+                  margin: EdgeInsets.only(right: 260, top: 10),
                   child: Column(
-                    children: [SizedBox(height: 10), Text(widget.content)],
+                    children: [
+                      SizedBox(height: 10),
+                      Text(
+                        widget.content,
+                        style: GoogleFonts.getFont('Gowun Dodum',
+                            textStyle: TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                            )),
+                      )
+                    ],
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.only(
-                    top: 200,
+                    top: 100,
                   ),
                 ),
                 Container(
@@ -104,6 +193,7 @@ class answerState extends State<answer> {
                   child: Padding(
                     padding: const EdgeInsets.all(16),
                     child: TextField(
+                      controller: content,
                       decoration: InputDecoration(
                         hintText: "댓글을 입력해주세요.",
                         border: OutlineInputBorder(
@@ -111,7 +201,7 @@ class answerState extends State<answer> {
                             borderRadius: BorderRadius.circular(10)),
                         suffixIcon: IconButton(
                           onPressed: () {
-                            print("댓글 보내기 클릭");
+                            Upload(widget.uid, email, name, content.text);
                           },
                           icon: Icon(Icons.send),
                         ),
@@ -119,7 +209,119 @@ class answerState extends State<answer> {
                     ),
                   ),
                 ),
+                Container(
+                  height: double.maxFinite,
+                  child: ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: list.length,
+                    itemBuilder: (context, index) {
+                      Map<String, dynamic> data = list[index];
+                      String time = data['date'];
+                      String userName = data['userName'];
+                      // String title = data['title'];
+                      // String imageUrl = data['imageUrl'];
+                      String content = data['content'];
+//닌 찐짜 너무하다
+                      return Card(
+                        margin: EdgeInsets.all(8),
+                        child: Stack(alignment: Alignment.center, children: [
+                          Container(
+                            child: Row(
+                              children: [
+                                Container(
+                                  child: CircleAvatar(
+                                    radius: 36,
+                                    backgroundColor: Colors.white,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8),
+                                      child: Icon(
+                                        Icons.person,
+                                        size: 30,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        userName,
+                                        style: GoogleFonts.getFont(
+                                            'Gowun Dodum',
+                                            textStyle: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold)),
+                                      ),
+                                      Padding(padding: EdgeInsets.all(3)),
+                                      Container(
+                                        margin: EdgeInsets.only(left: 10),
+                                        child: Text(
+                                          content,
+                                          style:
+                                              GoogleFonts.getFont('Gowun Dodum',
+                                                  textStyle: TextStyle(
+                                                    fontSize: 14,
+                                                    color: Colors.black,
+                                                  )),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ]),
+                      );
+                    },
+                  ),
+                ),
               ]),
             )));
+  }
+
+  void Upload(
+    String uid,
+    String email,
+    String userName,
+    String content,
+  ) async {
+    var uploadcase2 = {
+      'docId': uid,
+      'email': email,
+      'userName': userName,
+      'content': content,
+    };
+
+    Dio dio = new Dio();
+    print("실행중");
+
+    print(uploadcase2);
+    dio.options.headers['content-Type'] = 'application/json';
+    try {
+      var response = await dio.post(
+        '${config.serverIP}/board/reply',
+        data: uploadcase2,
+      );
+      print(uploadcase2);
+      print(response.data);
+      print(response.statusCode);
+
+      if (response.statusCode == 200) {
+        final jsonBody =
+            json.decode(response.data); // http와 다른점은 response 값을 data로 받는다.
+        // jsonBody를 바탕으로 data 핸들링
+        print("성공");
+      } else {
+        // 200 안뜨면 에러
+        print("실패");
+      }
+    } catch (e) {
+      Exception(e);
+    } finally {
+      dio.close();
+    }
   }
 }
