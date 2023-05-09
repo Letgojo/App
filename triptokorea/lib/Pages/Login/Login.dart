@@ -75,7 +75,7 @@ class _LoginState extends State<Login> {
           height: double.infinity,
           color: Colors.white,
           child: SingleChildScrollView(
-            child: Column(children: [
+            child: Column(children: [ 
               Container(
                 width: 400,
                 margin: EdgeInsets.only(left: 10, top: 40),

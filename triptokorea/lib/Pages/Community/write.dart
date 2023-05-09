@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:triptokorea/Pages/Community/Community.dart';
 import 'package:triptokorea/models/api_service.dart';
 import '../../config/config.dart' as config;
+import 'package:firebase_storage/firebase_storage.dart';
 
 class write extends StatefulWidget {
   const write({super.key});
@@ -20,6 +21,8 @@ class write extends StatefulWidget {
 }
 
 class _WriteState extends State<write> {
+  final storageRef1 = FirebaseStorage.instance.ref();
+
   dynamic name = "";
   dynamic email = "";
   static final storage =
@@ -43,6 +46,7 @@ class _WriteState extends State<write> {
 
   TextEditingController title = TextEditingController();
   TextEditingController content = TextEditingController();
+
   File? _image;
   @override
   Widget build(BuildContext context) {
