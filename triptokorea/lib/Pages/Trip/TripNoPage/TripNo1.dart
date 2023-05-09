@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:triptokorea/Pages/Trip/TripNoPage/TripNo2.dart';
 
@@ -17,6 +18,8 @@ class TripNo1 extends StatefulWidget {
 }
 
 class _TripNo1State extends State<TripNo1> {
+  DateTimeRange dateRange =
+      DateTimeRange(start: DateTime.now(), end: DateTime.now());
   TextEditingController useremail = TextEditingController();
 
   int _counter = 0;
@@ -37,8 +40,23 @@ class _TripNo1State extends State<TripNo1> {
     });
   }
 
+  static final storage =
+      new FlutterSecureStorage(); //flutter_secure_storage 사용을 위한 초기화 작업
+
+  //비동기로 flutter secure storage 정보를 불러오는 작업.
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _asyncMethod();
+    });
+  }
+
+  _asyncMethod() async {}
   @override
   Widget build(BuildContext context) {
+    final start = dateRange.start;
+    final end = dateRange.end;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -67,77 +85,82 @@ class _TripNo1State extends State<TripNo1> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                margin: const EdgeInsets.only(left: 40),
-                child: Row(
-                  children: [
-                    TextButton(
-                        onPressed: () {},
-                        child: Text('도시',
-                            style: GoogleFonts.getFont('Gowun Dodum',
-                                textStyle: TextStyle(
-                                    fontSize: 20, color: Colors.black)))),
-                    IconButton(onPressed: () {}, icon: Icon(Icons.location_on))
-                  ],
-                ),
-              ),
-              Container(
-                width: 300,
-                height: 45,
-                decoration: BoxDecoration(
-                    border: Border.all(width: 1),
-                    borderRadius: BorderRadius.circular(10)),
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 20, left: 60, bottom: 20),
-                child: Row(
-                  children: [
-                    Text(
-                      "대중교통",
-                      style: GoogleFonts.getFont('Gowun Dodum',
-                          textStyle:
-                              TextStyle(fontSize: 20, color: Colors.black)),
-                    ),
-                    Icon(Icons.train)
-                  ],
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 60),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 100,
-                      child: Expanded(
-                          child: ElevatedButton(
-                        child: Text("버스",
-                            style: GoogleFonts.getFont('Gowun Dodum',
-                                textStyle: TextStyle(
-                                    fontSize: 14, color: Colors.black))),
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                        ),
-                        onPressed: () {},
-                      )),
-                    ),
-                    Container(
-                      width: 100,
-                      margin: EdgeInsets.only(left: 60),
-                      child: Expanded(
-                          child: ElevatedButton(
-                        child: Text("기차",
-                            style: GoogleFonts.getFont('Gowun Dodum',
-                                textStyle: TextStyle(
-                                    fontSize: 14, color: Colors.black))),
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                        ),
-                      )),
-                    ),
-                  ],
-                ),
-              ),
+              // Container(
+              //   margin: const EdgeInsets.only(left: 40),
+              //   child: Row(
+              //     children: [
+              //       TextButton(
+              //           onPressed: () {},
+              //           child: Text('도시',
+              //               style: GoogleFonts.getFont('Gowun Dodum',
+              //                   textStyle: TextStyle(
+              //                       fontSize: 20, color: Colors.black)))),
+              //       IconButton(onPressed: () {}, icon: Icon(Icons.location_on))
+              //     ],
+              //   ),
+              // ),
+              // Container(
+              //   padding: EdgeInsets.only(left: 120, top: 5),
+              //   width: 300,
+              //   height: 45,
+              //   child: Text("출발지",
+              //       style: GoogleFonts.getFont('Gowun Dodum',
+              //           textStyle:
+              //               TextStyle(fontSize: 20, color: Colors.black))),
+              //   decoration: BoxDecoration(
+              //       border: Border.all(width: 1),
+              //       borderRadius: BorderRadius.circular(10)),
+              // ),
+              // Container(
+              //   margin: const EdgeInsets.only(top: 20, left: 60, bottom: 20),
+              //   child: Row(
+              //     children: [
+              //       Text(
+              //         "대중교통",
+              //         style: GoogleFonts.getFont('Gowun Dodum',
+              //             textStyle:
+              //                 TextStyle(fontSize: 20, color: Colors.black)),
+              //       ),
+              //       Icon(Icons.train)
+              //     ],
+              //   ),
+              // ),
+              // Container(
+              //   margin: EdgeInsets.only(left: 60),
+              //   child: Row(
+              //     children: [
+              //       SizedBox(
+              //         width: 100,
+              //         child: Expanded(
+              //             child: ElevatedButton(
+              //           child: Text("버스",
+              //               style: GoogleFonts.getFont('Gowun Dodum',
+              //                   textStyle: TextStyle(
+              //                       fontSize: 14, color: Colors.black))),
+              //           style: ElevatedButton.styleFrom(
+              //             primary: Colors.white,
+              //           ),
+              //           onPressed: () {},
+              //         )),
+              //       ),
+              //       Container(
+              //         width: 100,
+              //         margin: EdgeInsets.only(left: 60),
+              //         child: Expanded(
+              //             child: ElevatedButton(
+              //           child: Text("기차",
+              //               style: GoogleFonts.getFont('Gowun Dodum',
+              //                   textStyle: TextStyle(
+              //                       fontSize: 14, color: Colors.black))),
+              //           onPressed: () {},
+              //           style: ElevatedButton.styleFrom(
+              //             primary: Colors.white,
+              //           ),
+              //         )),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               Container(
                 margin: const EdgeInsets.only(top: 20, left: 70, bottom: 20),
                 child: Row(
@@ -159,14 +182,29 @@ class _TripNo1State extends State<TripNo1> {
                     border: Border.all(width: 1),
                     borderRadius: BorderRadius.circular(10)),
                 child: Date == ""
-                    ? ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const calender()));
-                        },
-                        child: Text("날짜 정하러가기"))
+                    ? Container(
+                        child: Row(
+                        children: [
+                          Expanded(
+                              child: ElevatedButton(
+                            onPressed: pickDateRange,
+                            child: Text(
+                                "${start.year}.${start.month}.${start.day}",
+                                style: TextStyle(color: Colors.black)),
+                            style:
+                                ElevatedButton.styleFrom(primary: Colors.white),
+                          )),
+                          Padding(padding: EdgeInsets.all(10)),
+                          Expanded(
+                              child: ElevatedButton(
+                            onPressed: pickDateRange,
+                            child: Text("${end.year}.${end.month}.${end.day}",
+                                style: TextStyle(color: Colors.black)),
+                            style:
+                                ElevatedButton.styleFrom(primary: Colors.white),
+                          ))
+                        ],
+                      ))
                     : Text("$Date"),
               ),
               Container(
@@ -238,6 +276,13 @@ class _TripNo1State extends State<TripNo1> {
                 width: 300,
                 child: ElevatedButton(
                   onPressed: () {
+                    storage.write(
+                        key: "시작날짜",
+                        value: "${start.year}.${start.month}.${start.day}");
+                    storage.write(
+                        key: "도착날짜",
+                        value: "${end.year}.${end.month}.${end.day}");
+                    storage.write(key: "인원", value: "$_counter");
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -252,6 +297,18 @@ class _TripNo1State extends State<TripNo1> {
         ),
       ),
     );
+  }
+
+  Future pickDateRange() async {
+    DateTimeRange? newDateRange = await showDateRangePicker(
+        context: context,
+        initialDateRange: dateRange,
+        firstDate: DateTime(1900),
+        lastDate: DateTime(2100));
+    if (newDateRange == null) return;
+    setState(() {
+      dateRange = newDateRange;
+    });
   }
 
   Future<dynamic> username(String email) async {
@@ -286,66 +343,5 @@ class _TripNo1State extends State<TripNo1> {
       dio.close();
     }
     return "";
-  }
-}
-
-class calender extends StatefulWidget {
-  const calender({super.key});
-
-  @override
-  State<calender> createState() => _calenderState();
-}
-
-class _calenderState extends State<calender> {
-  DateTimeRange dateRange =
-      DateTimeRange(start: DateTime.now(), end: DateTime.now());
-  @override
-  Widget build(BuildContext context) {
-    final start = dateRange.start;
-    final end = dateRange.end;
-    return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.white,
-          centerTitle: true,
-          title: Text(
-            "여행날짜",
-            style: GoogleFonts.getFont('Gowun Dodum',
-                textStyle: TextStyle(fontSize: 20, color: Colors.black)),
-          ),
-        ),
-        body: Container(
-          color: Colors.white,
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                      child: ElevatedButton(
-                    onPressed: pickDateRange,
-                    child: Text("${start.year}.${start.month}.${start.day}"),
-                  )),
-                  Expanded(
-                      child: ElevatedButton(
-                    onPressed: pickDateRange,
-                    child: Text("${end.year}.${end.month}.${end.day}"),
-                  ))
-                ],
-              )
-            ],
-          ),
-        ));
-  }
-
-  Future pickDateRange() async {
-    DateTimeRange? newDateRange = await showDateRangePicker(
-        context: context,
-        initialDateRange: dateRange,
-        firstDate: DateTime(1900),
-        lastDate: DateTime(2100));
-    if (newDateRange == null) return;
-    setState(() {
-      dateRange = newDateRange;
-    });
   }
 }

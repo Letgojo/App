@@ -54,14 +54,12 @@ class _TripNo3_daeguState extends State<TripNo3_daegu> {
                   margin: EdgeInsets.only(left: 200),
                   child: ElevatedButton(
                     child: Text(
-                      "👏",
+                      "✔️",
                       style: GoogleFonts.getFont('Gowun Dodum',
                           textStyle:
-                              TextStyle(fontSize: 18, color: Colors.black)),
+                              TextStyle(fontSize: 18, color: Colors.white)),
                     ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                    ),
+                    style: ElevatedButton.styleFrom(primary: Color(0xff0F70BE)),
                     onPressed: () {
                       Navigator.push(
                           context,

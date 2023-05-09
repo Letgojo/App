@@ -1,12 +1,9 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:triptokorea/Pages/Login/register/%20register.dart';
 import 'package:triptokorea/Pages/Login/FW_Find/FW_Find.dart';
-import 'package:triptokorea/Pages/Login/ID_Find/ID_Find.dart';
 import 'package:triptokorea/Pages/Menu/menuBar.dart';
 import 'package:triptokorea/models/api_service.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -78,7 +75,7 @@ class _LoginState extends State<Login> {
           height: double.infinity,
           color: Colors.white,
           child: SingleChildScrollView(
-            child: Column(children: [
+            child: Column(children: [ 
               Container(
                 width: 400,
                 margin: EdgeInsets.only(left: 10, top: 40),
@@ -205,12 +202,14 @@ class _LoginState extends State<Login> {
     };
     Dio dio = new Dio();
     print(Logindata);
+    print("${config.serverIP}");
     dio.options.headers['content-Type'] = 'application/json';
     try {
       var response = await dio.post(
         '${config.serverIP}/login',
         data: Logindata,
       );
+
       print(response.data);
       print(response.statusCode);
       if (response.statusCode == 200) {
