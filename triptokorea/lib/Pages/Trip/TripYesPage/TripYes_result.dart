@@ -196,7 +196,7 @@ class _TripYes_resultState extends State<TripYes_result> {
                         width: 200,
                         child: ElevatedButton(
                             child: Text(
-                              "사진없다이말이야",
+                              "태그별로 지정하기",
                               style: GoogleFonts.jua(
                                   textStyle: TextStyle(
                                       fontSize: 18, color: Colors.black)),

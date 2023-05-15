@@ -12,7 +12,6 @@ void main() async {
     ChangeNotifierProvider(create: (context) => Api())
   ], child: MyApp()));
 }
-
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 

@@ -289,7 +289,8 @@ class _TripNo1State extends State<TripNo1> {
                             builder: (context) => const TripNo2()));
                   },
                   child: Text("다음"),
-                  style: ElevatedButton.styleFrom(primary: Color(0xff0F70BE)),
+                  style: ElevatedButton.styleFrom(
+                      primary: Color(0xff0F70BE), elevation: 0),
                 ),
               ))
             ],
