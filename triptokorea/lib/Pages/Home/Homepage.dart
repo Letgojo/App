@@ -54,9 +54,15 @@ class _HomePageState extends State<HomePage> {
     return "";
   }
 
+  void initState() {
+    super.initState();
+    loaddata();
+    print('1 ${list}');
+  }
+
   @override
   Widget build(BuildContext context) {
-    loaddata();
+    print("2");
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -142,23 +148,100 @@ class _HomePageState extends State<HomePage> {
                   )
                 ],
               ),
-              Container(
-                height: 180,
-                padding: EdgeInsets.all(10),
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal, //횡스크롤
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: EdgeInsets.only(right: 10, top: 20, left: 10),
-                      width: 300,
-                      decoration: BoxDecoration(
-                          border: Border.all(width: 1),
-                          borderRadius: BorderRadius.circular(10)),
-                    );
-                  },
-                ),
-              ),
+
+              FutureBuilder(
+                  future: loaddata(),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    //해당 부분은 data를 아직 받아 오지 못했을때 실행되는 부분을 의미한다.
+                    if (snapshot.hasData == false) {
+                      return CircularProgressIndicator();
+                    }
+                    //error가 발생하게 될 경우 반환하게 되는 부분
+                    else if (snapshot.hasError) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Error: ${snapshot.error}',
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      );
+                    }
+                    // 데이터를 정상적으로 받아오게 되면 다음 부분을 실행하게 되는 것이다.
+                    else {
+                      return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 180,
+                            padding: EdgeInsets.all(10),
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal, //횡스크롤
+                              itemCount: 5,
+                              itemBuilder: (context, index) {
+                                Map<String, dynamic> data = list[index];
+                                String time = data['date'];
+                                String userName = data['userName'];
+                                String title = data['title'];
+                                String imageUrl = data['imageUrl'];
+                                String content = data['content'];
+                                return Container(
+                                  margin: EdgeInsets.only(
+                                      right: 10, top: 20, left: 10),
+                                  width: 300,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(width: 1),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        Row(children: [
+                                          Container(
+                                            width: 100,
+                                            height: 140,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(width: 1)),
+                                          ),
+                                          Column(
+                                            children: [
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    right: 100, top: 10),
+                                                child: Text(
+                                                  title,
+                                                  style: GoogleFonts.jua(
+                                                      textStyle: TextStyle(
+                                                          fontSize: 16)),
+                                                ),
+                                              ),
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    right: 40, top: 10),
+                                                child: Text(
+                                                  content,
+                                                  style: GoogleFonts.jua(
+                                                      textStyle: TextStyle(
+                                                          fontSize: 16)),
+                                                ),
+                                              ),
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    top: 50, left: 60),
+                                                child: Text(
+                                                  time,
+                                                  style: GoogleFonts.jua(
+                                                      textStyle: TextStyle(
+                                                          fontSize: 14)),
+                                                ),
+                                              )
+                                            ],
+                                          )
+                                        ])
+                                      ]),
+                                );
+                              },
+                            ),
+                          ));
+                    }
+                  }),
               Row(
                 children: [
                   Container(
@@ -193,67 +276,100 @@ class _HomePageState extends State<HomePage> {
                   )
                 ],
               ),
-              Container(
-                height: 180,
-                padding: EdgeInsets.all(10),
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal, //횡스크롤
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    Map<String, dynamic> data = list[index];
-                    String time = data['date'];
-                    String userName = data['userName'];
-                    String title = data['title'];
-                    String imageUrl = data['imageUrl'];
-                    String content = data['content'];
-                    return Container(
-                      margin: EdgeInsets.only(right: 10, top: 20, left: 10),
-                      width: 300,
-                      decoration: BoxDecoration(
-                          border: Border.all(width: 1),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Stack(alignment: Alignment.center, children: [
-                        Row(children: [
-                          Container(
-                            width: 100,
-                            height: 140,
-                            decoration:
-                                BoxDecoration(border: Border.all(width: 1)),
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(right: 100, top: 10),
-                                child: Text(
-                                  title,
-                                  style: GoogleFonts.jua(
-                                      textStyle: TextStyle(fontSize: 16)),
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(right: 40, top: 10),
-                                child: Text(
-                                  content,
-                                  style: GoogleFonts.jua(
-                                      textStyle: TextStyle(fontSize: 16)),
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(top: 50, left: 60),
-                                child: Text(
-                                  time,
-                                  style: GoogleFonts.jua(
-                                      textStyle: TextStyle(fontSize: 14)),
-                                ),
-                              )
-                            ],
-                          )
-                        ])
-                      ]),
-                    );
-                  },
-                ),
-              )
+
+              FutureBuilder(
+                  future: loaddata(),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    //해당 부분은 data를 아직 받아 오지 못했을때 실행되는 부분을 의미한다.
+                    if (snapshot.hasData == false) {
+                      return CircularProgressIndicator();
+                    }
+                    //error가 발생하게 될 경우 반환하게 되는 부분
+                    else if (snapshot.hasError) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Error: ${snapshot.error}',
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      );
+                    }
+                    // 데이터를 정상적으로 받아오게 되면 다음 부분을 실행하게 되는 것이다.
+                    else {
+                      return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 180,
+                            padding: EdgeInsets.all(10),
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal, //횡스크롤
+                              itemCount: 5,
+                              itemBuilder: (context, index) {
+                                Map<String, dynamic> data = list[index];
+                                String time = data['date'];
+                                String userName = data['userName'];
+                                String title = data['title'];
+                                String imageUrl = data['imageUrl'];
+                                String content = data['content'];
+                                return Container(
+                                  margin: EdgeInsets.only(
+                                      right: 10, top: 20, left: 10),
+                                  width: 300,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(width: 1),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        Row(children: [
+                                          Container(
+                                            width: 100,
+                                            height: 140,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(width: 1)),
+                                          ),
+                                          Column(
+                                            children: [
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    right: 100, top: 10),
+                                                child: Text(
+                                                  title,
+                                                  style: GoogleFonts.jua(
+                                                      textStyle: TextStyle(
+                                                          fontSize: 16)),
+                                                ),
+                                              ),
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    right: 40, top: 10),
+                                                child: Text(
+                                                  content,
+                                                  style: GoogleFonts.jua(
+                                                      textStyle: TextStyle(
+                                                          fontSize: 16)),
+                                                ),
+                                              ),
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    top: 50, left: 60),
+                                                child: Text(
+                                                  time,
+                                                  style: GoogleFonts.jua(
+                                                      textStyle: TextStyle(
+                                                          fontSize: 14)),
+                                                ),
+                                              )
+                                            ],
+                                          )
+                                        ])
+                                      ]),
+                                );
+                              },
+                            ),
+                          ));
+                    }
+                  }),
 
               // Container(
               //   margin: EdgeInsets.only(top: 30),
@@ -357,5 +473,10 @@ class _HomePageState extends State<HomePage> {
       //   ]),
       // ),
     );
+  }
+
+  Future<String> _fetch1() async {
+    await Future.delayed(Duration(seconds: 2));
+    return 'Call Data';
   }
 }

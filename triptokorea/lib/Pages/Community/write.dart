@@ -21,8 +21,6 @@ class write extends StatefulWidget {
 }
 
 class _WriteState extends State<write> {
-  final storageRef1 = FirebaseStorage.instance.ref();
-
   dynamic name = "";
   dynamic email = "";
   static final storage =

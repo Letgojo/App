@@ -132,137 +132,115 @@ class _CommunityState extends State<Community> {
             SizedBox(
               height: 10,
             ),
-            Container(
-              height: 750,
-              child: ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  Map<String, dynamic> data = list[index];
-                  String time = data['date'];
-                  String userName = data['userName'];
-                  String title = data['title'];
-                  String imageUrl = data['imageUrl'];
-                  String content = data['content'];
-                  String uid = data['uid'];
+            FutureBuilder(
+                future: loaddata(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  //해당 부분은 data를 아직 받아 오지 못했을때 실행되는 부분을 의미한다.
+                  if (snapshot.hasData == false) {
+                    return CircularProgressIndicator();
+                  }
+                  //error가 발생하게 될 경우 반환하게 되는 부분
+                  else if (snapshot.hasError) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Error: ${snapshot.error}',
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    );
+                  }
+                  // 데이터를 정상적으로 받아오게 되면 다음 부분을 실행하게 되는 것이다.
+                  else {
+                    return Padding(
+                        padding: const EdgeInsets.all(0.0),
+                        child: Container(
+                          height: 750,
+                          child: ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: 5,
+                            itemBuilder: (context, index) {
+                              Map<String, dynamic> data = list[index];
+                              String time = data['date'];
+                              String userName = data['userName'];
+                              String title = data['title'];
+                              String imageUrl = data['imageUrl'];
+                              String content = data['content'];
+                              String uid = data['uid'];
 
-                  return Card(
-                    margin: EdgeInsets.all(8),
-                    child: Stack(alignment: Alignment.center, children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => answer(
-                                      title: title,
-                                      userName: userName,
-                                      time: time,
-                                      content: content,
-                                      uid: uid)));
-                        },
-                        style: ElevatedButton.styleFrom(
-                            primary: Colors.white, elevation: 0),
-                        child: Row(children: [
-                          Container(
-                            width: 120,
-                            height: 120,
-                            decoration:
-                                BoxDecoration(border: Border.all(width: 1)),
+                              return Card(
+                                margin: EdgeInsets.all(8),
+                                child: Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => answer(
+                                                      title: title,
+                                                      userName: userName,
+                                                      time: time,
+                                                      content: content,
+                                                      uid: uid)));
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.white,
+                                            elevation: 0),
+                                        child: Row(children: [
+                                          Container(
+                                            width: 120,
+                                            height: 120,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(width: 1)),
+                                          ),
+                                          Column(
+                                            children: [
+                                              Container(
+                                                margin:
+                                                    EdgeInsets.only(right: 200),
+                                                child: Text(
+                                                  title,
+                                                  style: GoogleFonts.jua(
+                                                      textStyle: TextStyle(
+                                                          fontSize: 16,
+                                                          color: Colors.black)),
+                                                ),
+                                              ),
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    right: 130, top: 10),
+                                                child: Text(
+                                                  content,
+                                                  style: GoogleFonts.jua(
+                                                      textStyle: TextStyle(
+                                                          fontSize: 16,
+                                                          color: Colors.black)),
+                                                ),
+                                              ),
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    top: 50, left: 115),
+                                                child: Text(
+                                                  time,
+                                                  style: GoogleFonts.jua(
+                                                      textStyle: TextStyle(
+                                                          fontSize: 14,
+                                                          color: Colors.black)),
+                                                ),
+                                              )
+                                            ],
+                                          )
+                                        ]),
+                                      )
+                                    ]),
+                              );
+                            },
                           ),
-                          Column(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(right: 200),
-                                child: Text(
-                                  title,
-                                  style: GoogleFonts.jua(
-                                      textStyle: TextStyle(
-                                          fontSize: 16, color: Colors.black)),
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(right: 130, top: 10),
-                                child: Text(
-                                  content,
-                                  style: GoogleFonts.jua(
-                                      textStyle: TextStyle(
-                                          fontSize: 16, color: Colors.black)),
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(top: 50, left: 115),
-                                child: Text(
-                                  time,
-                                  style: GoogleFonts.jua(
-                                      textStyle: TextStyle(
-                                          fontSize: 14, color: Colors.black)),
-                                ),
-                              )
-                            ],
-                          )
-                        ]),
-                      )
-                    ]),
-                  );
-                },
-              ),
-            ),
-
-            // Container(
-            //   margin: EdgeInsets.only(top: 0),
-            //   child: Column(children: [
-            //     Text("!11"),
-            //     ListView.builder(
-            //         itemCount: list.length,
-            //         itemBuilder: (context, index) {
-            //           Map<String, dynamic> data = list[index];
-            //           String time = data['date'];
-            //           String userName = data['userName'];
-            //           String title = data['title'];
-            //           String imgUrl = data['imageBinary'];
-            //           String content = data['content'];
-            //         }),
-            //   ]
-            // ),ListView.builder(
-            //         itemCount: list.length,
-            //         itemBuilder: (context, index) {
-            //           Map<String, dynamic> data = list[index];
-            //           String time = data['date'];
-            //           String userName = data['userName'];
-            //           String title = data['title'];
-            //           String imgUrl = data['imageBinary'];
-            //           String content = data['content'];
-
-            //           return Card(
-            //             margin: const EdgeInsets.all(8),
-            //             child: Container(
-            //               child: Stack(
-            //                 alignment: Alignment.center,
-            //                 children: [
-            //                   Text("하이")
-            //                   // Row(
-            //                   //   children: [
-            //                   //     Container(
-            //                   //       decoration: BoxDecoration(
-            //                   //           border: Border.all(width: 1)),
-            //                   //     ),
-            //                   //     Container(
-            //                   //       child: Column(
-            //                   //         children: [
-            //                   //           Text(title),
-            //                   //           Text(content),
-            //                   //         ],
-            //                   //       ),
-            //                   //     )
-            //                   //   ],
-            //                   // )
-            //                 ],
-            //               ),
-            //             ),
-            //           );
-            //         })
+                        ));
+                  }
+                })
           ],
         ))),
       ),
