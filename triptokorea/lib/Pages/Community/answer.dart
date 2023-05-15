@@ -26,6 +26,10 @@ class answer extends StatefulWidget {
 
 class answerState extends State<answer> {
   var list = [];
+
+  var onPressed;
+
+  get suffixIcon => null;
   Future<dynamic> loaddata() async {
     var Logindata = {
       "docId": widget.uid,
@@ -99,6 +103,46 @@ class answerState extends State<answer> {
           actions: [
             IconButton(
                 onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return Container(
+                            width: 300,
+                            height: 400,
+                            child: AlertDialog(
+                              content: Text("삭제하시겠습니까?",
+                                  style: GoogleFonts.jua(
+                                      textStyle: TextStyle(
+                                          fontSize: 15, color: Colors.black))),
+                              actions: [
+                                Container(
+                                  child: Row(
+                                    children: [
+                                      TextButton(
+                                          onPressed: () {
+                                            postdelete();
+                                          },
+                                          child: Text("네",
+                                              style: GoogleFonts.jua(
+                                                  textStyle: TextStyle(
+                                                      fontSize: 15,
+                                                      color: Colors.black)))),
+                                      Padding(padding: EdgeInsets.all(4)),
+                                      TextButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text("아니요",
+                                              style: GoogleFonts.jua(
+                                                  textStyle: TextStyle(
+                                                      fontSize: 15,
+                                                      color: Colors.black))))
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ));
+                      });
                   //Navigator.pop(context);
                 },
                 icon: Icon(
@@ -222,11 +266,13 @@ class answerState extends State<answer> {
                       // String title = data['title'];
                       // String imageUrl = data['imageUrl'];
                       String content = data['content'];
-//닌 찐짜 너무하다
+
                       return Card(
+                        //댓글
                         margin: EdgeInsets.all(8),
                         child: Stack(alignment: Alignment.center, children: [
                           Container(
+                            color: Colors.white,
                             child: Row(
                               children: [
                                 Container(
@@ -272,7 +318,15 @@ class answerState extends State<answer> {
                                 )
                               ],
                             ),
-                          )
+                          ),
+                          Container(
+                              margin: EdgeInsets.only(top: 30, left: 350),
+                              child: IconButton(
+                                icon: Icon(Icons.delete, size: 20),
+                                onPressed: () {
+                                  //replydelete();
+                                },
+                              ))
                         ]),
                       );
                     },
@@ -323,5 +377,82 @@ class answerState extends State<answer> {
     } finally {
       dio.close();
     }
+  }
+
+//댓글 삭제
+//   Future<dynamic> replydelete() async {
+//     var Logindata = {
+//       "replyId": widget.uid,
+//     };
+//     Dio dio = new Dio();
+//     print(Logindata);
+//     dio.options.headers['content-Type'] = 'application/json';
+//     try {
+//       var response = await dio.delete(
+//         '${config.serverIP}/board/reply/reply-id',
+//         queryParameters: Logindata,
+//       );
+
+//       print(response.data);
+//       print(response.statusCode);
+//       if (response.statusCode == 200) {
+//         // final jsonBody = json.decode(response.data);
+//         print("성공");
+//         /// http와 다른점은 response 값을 data로 받는다.
+//         var name = response.data;
+
+//         // "name", value: u)
+//         return name;
+//       } else {
+//         print(response.statusCode);
+//         print("2실패 ${response.statusCode}");
+//         return 'Fail';
+//       }
+//     } catch (e) {
+//       print(e);
+//       Exception(e);
+//     } finally {
+//       dio.close();
+//     }
+//     return "";
+//   }
+
+//게시글 삭제
+  Future<dynamic> postdelete() async {
+    var Logindata = {
+      "Id": widget.uid,
+    };
+    Dio dio = new Dio();
+    print(Logindata);
+    dio.options.headers['content-Type'] = 'application/json';
+    try {
+      var response = await dio.delete(
+        '${config.serverIP}/board/post/document-id',
+        queryParameters: Logindata,
+      );
+
+      print(response.data);
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        // final jsonBody = json.decode(response.data);
+        print("성공");
+
+        /// http와 다른점은 response 값을 data로 받는다.
+        var name = response.data;
+
+        // "name", value: u)
+        return name;
+      } else {
+        print(response.statusCode);
+        print("2실패 ${response.statusCode}");
+        return 'Fail';
+      }
+    } catch (e) {
+      print(e);
+      Exception(e);
+    } finally {
+      dio.close();
+    }
+    return "";
   }
 }
