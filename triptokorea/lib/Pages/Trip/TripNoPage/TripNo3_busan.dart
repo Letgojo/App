@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:triptokorea/Pages/Trip/TripNoPage/Tripbusan_2.dart';
@@ -18,6 +19,8 @@ class TripNo3_busan extends StatefulWidget {
 }
 
 class _TripNo3_busanState extends State<TripNo3_busan> {
+    static final storage =
+      new FlutterSecureStorage(); //flutter_secure_storage 사용을 위한 초기화 작업
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,6 +63,7 @@ class _TripNo3_busanState extends State<TripNo3_busan> {
                     ),
                     style: ElevatedButton.styleFrom(primary: Color(0xff0F70BE)),
                     onPressed: () {
+                      storage.write(key: "city", value: "부산광역시");
                       Navigator.push(
                           context,
                           MaterialPageRoute(

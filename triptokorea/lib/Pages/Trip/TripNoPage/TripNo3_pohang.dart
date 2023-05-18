@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:triptokorea/Pages/Trip/TripNoPage/Trippohang_2.dart';
@@ -19,6 +20,8 @@ class TripNo3_Pohang extends StatefulWidget {
 }
 
 class _TripNo3_PohangState extends State<TripNo3_Pohang> {
+    static final storage =
+      new FlutterSecureStorage(); //flutter_secure_storage 사용을 위한 초기화 작업
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +64,7 @@ class _TripNo3_PohangState extends State<TripNo3_Pohang> {
                     ),
                     style: ElevatedButton.styleFrom(primary: Color(0xff0F70BE)),
                     onPressed: () {
+                      storage.write(key: "city", value: "포항시");
                       Navigator.push(
                           context,
                           MaterialPageRoute(

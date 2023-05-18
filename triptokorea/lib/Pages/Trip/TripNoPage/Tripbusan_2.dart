@@ -61,6 +61,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
                   onPressed: () {
+                    storage.write(key: "district", value: "강서구");
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -87,6 +88,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
                   onPressed: () {
+                    storage.write(key: "district", value: "금정구");
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -113,6 +115,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
                   onPressed: () {
+                    storage.write(key: "district", value: "남구");
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -139,6 +142,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
                   onPressed: () {
+                    storage.write(key: "district", value: "남구");
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -165,6 +169,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
                   onPressed: () {
+                    storage.write(key: "district", value: "동래구");
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -191,6 +196,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
                   onPressed: () {
+                    storage.write(key: "district", value: "부산진구");
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -217,6 +223,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
                   onPressed: () {
+                    storage.write(key: "district", value: "북구");
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -243,6 +250,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
                   onPressed: () {
+                    storage.write(key: "district", value: "사상구");
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -269,6 +277,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
                   onPressed: () {
+                    storage.write(key: "district", value: "사하구");
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -295,6 +304,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
                   onPressed: () {
+                    storage.write(key: "district", value: "서구");
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -321,6 +331,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
                   onPressed: () {
+                    storage.write(key: "district", value: "수영구");
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -347,6 +358,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
                   onPressed: () {
+                    storage.write(key: "district", value: "연제구");
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -373,6 +385,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
                   onPressed: () {
+                    storage.write(key: "district", value: "영도구");
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -399,6 +412,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
                   onPressed: () {
+                    storage.write(key: "district", value: "중구");
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -425,6 +439,7 @@ class TripBusan_2State extends State<TripBusan_2> {
                             TextStyle(fontSize: 20, color: Colors.black)),
                   ),
                   onPressed: () {
+                                        storage.write(key: "district", value: "해운대구");
                     Navigator.push(
                         context,
                         MaterialPageRoute(

@@ -29,44 +29,6 @@ class _TripYes_resultState extends State<TripYes_result> {
 
   List<dynamic> list = [];
 
-  Future<dynamic> loaddata() async {
-    var Logindata = {
-      "tourType": "자연관광",
-      "city": "대구광역시",
-      "district": "달서구",
-    };
-    Dio dio = new Dio();
-    print(Logindata);
-    dio.options.headers['content-Type'] = 'application/json';
-    try {
-      var response = await dio.get(
-        '${config.serverIP}/location/tour',
-        queryParameters: Logindata,
-      );
-      // print(response.data);
-      // print(response.statusCode);
-      if (response.statusCode == 200) {
-        // final jsonBody = json.decode(response.data);
-        print("성공");
-        for (int i = 0; i < response.data.length; i++) {
-          list.add(response.data[i]);
-        }
-        return list;
-      } else {
-        print(response.statusCode);
-        print("2실패 ${response.statusCode}");
-        return 'Fail';
-      }
-    } catch (e) {
-      print(e);
-      Exception(e);
-    } finally {
-      dio.close();
-    }
-
-    return "";
-  }
-
   @override
   void initState() {
     super.initState();
@@ -223,12 +185,7 @@ class _TripYes_resultState extends State<TripYes_result> {
     // loaddata()
     //     .then((data) => setState(() {
     //           data.forEach((data) {
-    //             markers.add(Marker(
-    //                 markerId: MarkerId(data['순위']),
-    //                 position: LatLng(
-    //                   double.parse(data['위도']),
-    //                   double.parse(data['경도']),
-    //                 ),
+
     //                 infoWindow: InfoWindow(title: data['관광지명'])));
     //           });
     //         }))
