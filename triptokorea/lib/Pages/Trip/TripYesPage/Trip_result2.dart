@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -19,6 +20,24 @@ class TripYes_result2 extends StatefulWidget {
 
 class _TripYes_resultState2 extends State<TripYes_result2> {
   late GoogleMapController mapController;
+  static final storage =
+      new FlutterSecureStorage(); //flutter_secure_storage 사용을 위한 초기화 작업
+  dynamic city = "";
+  dynamic district = "";
+  List<Marker> _markers = [];
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _asyncMethod();
+    });
+  }
+
+  _asyncMethod() async {
+    //read 함수
+    city = await storage.read(key: 'city');
+    district = await storage.read(key: 'district');
+  }
 
   final Set<Marker> markers = new Set();
 
@@ -44,29 +63,41 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
       "name": "#🤿체험",
     },
   ];
-  Future<dynamic> loaddata() async {
+  Future<dynamic> loaddata(String city, String district) async {
     var Logindata = {
-      "tourType": "자연관광",
-      "city": "대구광역시",
-      "district": "달서구",
+      "city": city,
+      "district": district,
     };
     Dio dio = new Dio();
     print(Logindata);
     dio.options.headers['content-Type'] = 'application/json';
     try {
       var response = await dio.get(
-        '${config.serverIP}/location/tour',
+        '${config.serverIP}/location/restaurant',
         queryParameters: Logindata,
       );
       // print(response.data);
-      // print(response.statusCode);
+      print(response.statusCode);
       if (response.statusCode == 200) {
         // final jsonBody = json.decode(response.data);
         print("성공");
-        for (int i = 0; i < response.data.length; i++) {
-          list.add(response.data[i]);
+        // response.data.map((e) => {
+        //       list.add(e),
+        //       markers.add(Marker(
+        //           markerId: MarkerId(e['이름']),
+        //           position:
+        //               LatLng(double.parse(e['위도']), double.parse(e['경도'])),
+        //           infoWindow: InfoWindow(title: e['이름']))),
+        //     });
+        for (var e in response.data) {
+          list.add(e);
+          markers.add(Marker(
+              markerId: MarkerId(e['이름']),
+              position: LatLng(double.parse(e['위도']), double.parse(e['경도'])),
+              infoWindow: InfoWindow(title: e['이름'])));
         }
-        return list;
+
+        return markers;
       } else {
         print(response.statusCode);
         print("2실패 ${response.statusCode}");
@@ -83,11 +114,6 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
   }
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -101,7 +127,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
                 scrollDirection: Axis.horizontal, //횡스크롤
                 itemCount: 5,
                 itemBuilder: (context, index) {
-                  Map<String, dynamic> data = recommendMenu[index];
+                  Map<dynamic, dynamic> data = recommendMenu[index];
                   String name = data['name'];
                   return Container(
                       margin: EdgeInsets.only(right: 10, top: 10, left: 10),
@@ -111,7 +137,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
                           borderRadius: BorderRadius.circular(10)),
                       child: TextButton(
                         onPressed: () {
-                          print(name);
+                          loaddata("${city}", "${district}");
                         },
                         child: Text(
                           name,
@@ -129,31 +155,13 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
               child: GoogleMap(
                 mapType: MapType.normal,
                 onMapCreated: _onMapCreated,
+                markers: Set.from(markers),
                 initialCameraPosition: CameraPosition(
                   target: LatLng(35.1938469, 129.1536102),
                   zoom: 12.0,
                 ),
               ),
             ),
-            // Container(
-            //   child: SearchGooglePlacesWidget(
-            //     apiKey: 'AIzaSyASCW6NUBnr3NYGyISC7MaaSvqRjqb4LsQ',
-            //     // The language of the autocompletion
-            //     language: 'ko',
-            //     // The position used to give better recommendations. In this case we are using the user position
-            //     radius: 30000,
-            //     onSelected: (Place place) async {
-            //       final geolocation = await place.geolocation;
-
-            //       // Will animate the GoogleMap camera, taking us to the selected position with an appropriate zoom
-            //       mapController.animateCamera(
-            //           CameraUpdate.newLatLng(geolocation!.coordinates));
-            //       mapController.animateCamera(
-            //           CameraUpdate.newLatLngBounds(geolocation.bounds, 0));
-            //     },
-            //     onSearch: (Place place) {},
-            //   ),
-            // )
           ],
         ),
       ),
