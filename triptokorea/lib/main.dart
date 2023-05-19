@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:triptokorea/Pages/Login/Login.dart';
-import 'package:triptokorea/Pages/Menu/menuBar.dart';
 import 'package:triptokorea/models/api_service.dart';
 
 void main() async {
@@ -12,6 +11,7 @@ void main() async {
     ChangeNotifierProvider(create: (context) => Api())
   ], child: MyApp()));
 }
+
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 

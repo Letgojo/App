@@ -89,8 +89,9 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
         //               LatLng(double.parse(e['위도']), double.parse(e['경도'])),
         //           infoWindow: InfoWindow(title: e['이름']))),
         //     });
+        print(response.data);
         for (var e in response.data) {
-          list.add(e);
+          print(e);
           markers.add(Marker(
               markerId: MarkerId(e['이름']),
               position: LatLng(double.parse(e['위도']), double.parse(e['경도'])),

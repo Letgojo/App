@@ -475,8 +475,5 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Future<String> _fetch1() async {
-    await Future.delayed(Duration(seconds: 2));
-    return 'Call Data';
-  }
+
 }
