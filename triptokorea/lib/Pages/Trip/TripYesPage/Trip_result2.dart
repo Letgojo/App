@@ -92,10 +92,12 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
         print(response.data);
         for (var e in response.data) {
           print(e);
-          markers.add(Marker(
-              markerId: MarkerId(e['이름']),
-              position: LatLng(double.parse(e['위도']), double.parse(e['경도'])),
-              infoWindow: InfoWindow(title: e['이름'])));
+          if ((e['위도'] != "" && e['경도'] != "")) {
+            markers.add(Marker(
+                markerId: MarkerId(e['이름']),
+                position: LatLng(double.parse(e['위도']), double.parse(e['경도'])),
+                infoWindow: InfoWindow(title: e['이름'])));
+          }
         }
 
         return markers;
