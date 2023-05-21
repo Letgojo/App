@@ -277,11 +277,9 @@ class _TripNo1State extends State<TripNo1> {
                 child: ElevatedButton(
                   onPressed: () {
                     storage.write(
-                        key: "시작날짜",
-                        value: "${start.year}.${start.month}.${start.day}");
-                    storage.write(
-                        key: "도착날짜",
-                        value: "${end.year}.${end.month}.${end.day}");
+                        key: "day",
+                        value:
+                            "${(end.year + end.month + end.day) - (start.year + start.month + start.day) + 1}");
                     storage.write(key: "인원", value: "$_counter");
                     Navigator.push(
                         context,
