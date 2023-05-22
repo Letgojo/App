@@ -89,18 +89,56 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
       print(response.statusCode);
 
       if (response.statusCode == 200) {
-        print("성공");
-        print(response.data);
+        // for (int i = 0; i < response.data.length; i++) {
+        //   if ((response.data[i]['위도'] != "" && response.data[i]['경도'] != "")) {
+        //     list.add(response.data[i]);
+        //     markers.add(Marker(
+        //         markerId: MarkerId(!response.data[i]['이름']
+        //             ? response.data[i]['순위']
+        //             : response.data[i]['이름']),
+        //         position: LatLng(double.parse(response.data[i]['위도']),
+        //             double.parse(response.data[i]['경도'])),
+        //         infoWindow: InfoWindow(title: response.data[i]['이름']),
+        //         onTap: () {
+        //           showDialog(
+        //               context: context,
+        //               barrierDismissible: false,
+        //               builder: (context) {
+        //                 return Container(
+        //                   child: AlertDialog(
+        //                     title: Text(
+        //                       "${response.data[i]['이름']}",
+        //                       style: GoogleFonts.getFont('Gowun Dodum',
+        //                           textStyle: TextStyle(
+        //                               fontSize: 20,
+        //                               color: Colors.black,
+        //                               fontWeight: FontWeight.bold)),
+        //                     ),
+        //                     content: Text("라따뚜이.",
+        //                         style: GoogleFonts.getFont('Gowun Dodum',
+        //                             textStyle: TextStyle(
+        //                                 fontSize: 15, color: Colors.black))),
+        //                     // actions: [
+        //                     //   Container(
+        //                     //       margin: EdgeInsets.only(right: 5),
+        //                     //       child: ElevatedButton(
+        //                     //           child: Text(
+        //                     //             "확인",
+        //                     //             style: GoogleFonts.getFont(
+        //                     //                 'Gowun Dodum',
+        //                     //                 textStyle: TextStyle(
+        //                     //                     fontSize: 18,
+        //                     //                     color: Colors.white)),
+        //                     //           ),
+        //                     //           onPressed: () {}))
+        //                     // ],
+        //                   ),
+        //                 );
+        //               });
+        //         }));
+        // }
 
-        for (int i = 0; i < response.data.length; i++) {
-          if ((response.data[i]['위도'] != "" &&
-              response.data[i]['경도'] != "" &&
-              response.data[i] != Null)) {
-            list.add(response.data[i]);
-            print(list);
-          }
-        }
-        return list;
+        return markers;
       } else {
         print(response.statusCode);
         print("2실패 ${response.statusCode}");
@@ -108,7 +146,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
       }
     } catch (e) {
       print(e);
-      
+
       Exception(e);
     } finally {
       dio.close();
@@ -133,12 +171,8 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
       print(response.statusCode);
       markers.clear();
       if (response.statusCode == 200) {
-        print("성공");
-        print(response.data);
         for (var e in response.data) {
-          print(e);
           if ((e['위도'] != "" && e['경도'] != "")) {
-            print("${e['메뉴'[0]]}");
             markers.add(Marker(
                 markerId: MarkerId(e['이름']),
                 position: LatLng(double.parse(e['위도']), double.parse(e['경도'])),
@@ -221,7 +255,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
         for (var e in response.data) {
           if ((e['위도'] != "" && e['경도'] != "" && e != Null)) {
             markers.add(Marker(
-                markerId: MarkerId(e['순위']),
+                markerId: MarkerId(e['순위']!),
                 position: LatLng(double.parse(e['위도']), double.parse(e['경도'])),
                 infoWindow:
                     InfoWindow(title: e['관광지명'], snippet: e['소분류 카테고리']),
@@ -369,13 +403,13 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
                 itemCount: list.length,
                 itemBuilder: (context, index) {
                   Map<String, dynamic> data = list[index];
-                  String citytitle = '';
-                  if (data['이름']) {
+                  String citytitle = '11111';
+                  if (data['이름'] != null) {
                     citytitle = data['이름'];
-                  } else if (data['관광지명'])
-                    String citytitle = data['관광지명'];
+                  } else if (data['관광지명'] != null)
+                    citytitle = data['관광지명'];
                   else if (data['관광지명'] == null && data['이름'] == null) {
-                    print('말해줘');
+                    citytitle = '안돼';
                   }
                   return Container(
                     margin: EdgeInsets.all(8),
