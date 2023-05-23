@@ -1,9 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:triptokorea/Pages/Login/Login.dart';
 
-class Setting extends StatelessWidget {
+class Setting extends StatefulWidget {
   const Setting({super.key});
+
+  @override
+  State<Setting> createState() => _SettingState();
+}
+
+class _SettingState extends State<Setting> {
+  dynamic name = "";
+  static final storage =
+      new FlutterSecureStorage(); //flutter_secure_storage 사용을 위한 초기화 작업
+
+  //비동기로 flutter secure storage 정보를 불러오는 작업.
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _asyncMethod();
+    });
+  }
+
+  _asyncMethod() async {
+    //read 함수
+    name = await storage.read(key: 'nickname');
+    print(name);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +64,7 @@ class Setting extends StatelessWidget {
               SizedBox(height: 16), //상단여백
 
               Text(
-                "닉네임",
+                "${name}",
                 style: GoogleFonts.jua(
                     textStyle: TextStyle(fontSize: 20, color: Colors.black)),
               ),
@@ -108,6 +133,8 @@ class Setting extends StatelessWidget {
                                             fontSize: 18, color: Colors.black)),
                                   ),
                                   onPressed: () {
+                                    storage.delete(key: "emailinfo");
+                                    storage.delete(key: "nickname");
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
