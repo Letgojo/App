@@ -231,7 +231,7 @@ class _WriteState extends State<write> {
     print(uploadcase);
     try {
       var response = await dio.post(
-        'http://wslconnect.iptime.org:50020/board/post',
+        '${config.serverIP}/board/post',
         data: uploadcase,
       );
 
@@ -250,6 +250,7 @@ class _WriteState extends State<write> {
       'userName': name,
       'title': title,
       'content': content,
+      'imageBinary': "null"
     };
 
     Dio dio = new Dio();

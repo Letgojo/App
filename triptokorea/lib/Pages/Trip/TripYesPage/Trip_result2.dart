@@ -48,6 +48,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
 
   List<dynamic> list = [];
   final List<Map<String, String>> recommendMenu = const [
+    {"index": "1", "name": ""},
     {
       "index": "1",
       "name": "#🥘맛집",
@@ -79,66 +80,111 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
     };
     Dio dio = new Dio();
     print(Logindata);
+    list = [];
     dio.options.headers['content-Type'] = 'application/json';
     try {
       var response = await dio.get(
         '${config.serverIP}/location/recommand-route',
         queryParameters: Logindata,
       );
-      print(response.data);
-      print(response.statusCode);
-
+      markers.clear();
       if (response.statusCode == 200) {
-        // for (int i = 0; i < response.data.length; i++) {
-        //   if ((response.data[i]['위도'] != "" && response.data[i]['경도'] != "")) {
-        //     list.add(response.data[i]);
-        //     markers.add(Marker(
-        //         markerId: MarkerId(!response.data[i]['이름']
-        //             ? response.data[i]['순위']
-        //             : response.data[i]['이름']),
-        //         position: LatLng(double.parse(response.data[i]['위도']),
-        //             double.parse(response.data[i]['경도'])),
-        //         infoWindow: InfoWindow(title: response.data[i]['이름']),
-        //         onTap: () {
-        //           showDialog(
-        //               context: context,
-        //               barrierDismissible: false,
-        //               builder: (context) {
-        //                 return Container(
-        //                   child: AlertDialog(
-        //                     title: Text(
-        //                       "${response.data[i]['이름']}",
-        //                       style: GoogleFonts.getFont('Gowun Dodum',
-        //                           textStyle: TextStyle(
-        //                               fontSize: 20,
-        //                               color: Colors.black,
-        //                               fontWeight: FontWeight.bold)),
-        //                     ),
-        //                     content: Text("라따뚜이.",
-        //                         style: GoogleFonts.getFont('Gowun Dodum',
-        //                             textStyle: TextStyle(
-        //                                 fontSize: 15, color: Colors.black))),
-        //                     // actions: [
-        //                     //   Container(
-        //                     //       margin: EdgeInsets.only(right: 5),
-        //                     //       child: ElevatedButton(
-        //                     //           child: Text(
-        //                     //             "확인",
-        //                     //             style: GoogleFonts.getFont(
-        //                     //                 'Gowun Dodum',
-        //                     //                 textStyle: TextStyle(
-        //                     //                     fontSize: 18,
-        //                     //                     color: Colors.white)),
-        //                     //           ),
-        //                     //           onPressed: () {}))
-        //                     // ],
-        //                   ),
-        //                 );
-        //               });
-        //         }));
-        // }
+        for (int i = 0; i < response.data.length; i++) {
+          print(response.data[i]);
+          if ((response.data[i]['위도'] != "" &&
+              response.data[i]['경도'] != "" &&
+              response.data[i]['메뉴'] != {})) {
+            // print("test${response.data[i]}");
+            list.add(response.data[i]);
+            // print("list$list");
 
-        return markers;
+            markers.add(Marker(
+                markerId: MarkerId(response.data[i]['경도']),
+                position: LatLng(double.parse(response.data[i]['위도']),
+                    double.parse(response.data[i]['경도'])),
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (context) {
+                        return Container(
+                          width: 800,
+                          child: AlertDialog(
+                            title: Row(
+                              children: [
+                                SizedBox(
+                                  child: Text(
+                                    "${response.data[i]['이름']}",
+                                    style: GoogleFonts.getFont('Gowun Dodum',
+                                        textStyle: TextStyle(
+                                            fontSize: 13,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold)),
+                                  ),
+                                ),
+                                Padding(padding: EdgeInsets.only(right: 100)),
+                                Expanded(
+                                  child: IconButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    icon: Icon(Icons.clear),
+                                  ),
+                                )
+                              ],
+                            ),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  child: Text(
+                                    "카테고리 : ${response.data[i]['카테고리']}",
+                                    style: GoogleFonts.getFont('Gowun Dodum',
+                                        textStyle: TextStyle(
+                                            fontSize: 16, color: Colors.black)),
+                                  ),
+                                ),
+                                Padding(padding: EdgeInsets.all(8)),
+                                Container(
+                                  child: Text(
+                                    "대표리뷰 : ${response.data[i]['대표리뷰']}",
+                                    style: GoogleFonts.getFont('Gowun Dodum',
+                                        textStyle: TextStyle(
+                                            fontSize: 16, color: Colors.black)),
+                                  ),
+                                ),
+                                Padding(padding: EdgeInsets.all(8)),
+                                Container(
+                                  child: Text(
+                                    "주소 : ${response.data[i]['주소']}",
+                                    style: GoogleFonts.getFont('Gowun Dodum',
+                                        textStyle: TextStyle(
+                                            fontSize: 16, color: Colors.black)),
+                                  ),
+                                ),
+                                Padding(padding: EdgeInsets.all(30)),
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    "내 일정 담기",
+                                    style: GoogleFonts.getFont('Gowun Dodum',
+                                        textStyle: TextStyle(
+                                            fontSize: 16, color: Colors.white)),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                      primary: Color(0xff0F70BE), elevation: 8),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      });
+                }));
+          }
+        }
+
+        return list;
       } else {
         print(response.statusCode);
         print("2실패 ${response.statusCode}");
@@ -183,33 +229,75 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
                       barrierDismissible: false,
                       builder: (context) {
                         return Container(
+                          width: 800,
                           child: AlertDialog(
-                            title: Text(
-                              "${e['이름']}",
-                              style: GoogleFonts.getFont('Gowun Dodum',
-                                  textStyle: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold)),
+                            title: Row(
+                              children: [
+                                SizedBox(
+                                  child: Text(
+                                    "${e['이름']}",
+                                    style: GoogleFonts.getFont('Gowun Dodum',
+                                        textStyle: TextStyle(
+                                            fontSize: 13,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold)),
+                                  ),
+                                ),
+                                Padding(padding: EdgeInsets.only(right: 100)),
+                                Expanded(
+                                  child: IconButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    icon: Icon(Icons.clear),
+                                  ),
+                                )
+                              ],
                             ),
-                            content: Text("라따뚜이.",
-                                style: GoogleFonts.getFont('Gowun Dodum',
-                                    textStyle: TextStyle(
-                                        fontSize: 15, color: Colors.black))),
-                            // actions: [
-                            //   Container(
-                            //       margin: EdgeInsets.only(right: 5),
-                            //       child: ElevatedButton(
-                            //           child: Text(
-                            //             "확인",
-                            //             style: GoogleFonts.getFont(
-                            //                 'Gowun Dodum',
-                            //                 textStyle: TextStyle(
-                            //                     fontSize: 18,
-                            //                     color: Colors.white)),
-                            //           ),
-                            //           onPressed: () {}))
-                            // ],
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  child: Text(
+                                    "카테고리 : ${e['카테고리']}",
+                                    style: GoogleFonts.getFont('Gowun Dodum',
+                                        textStyle: TextStyle(
+                                            fontSize: 16, color: Colors.black)),
+                                  ),
+                                ),
+                                Padding(padding: EdgeInsets.all(8)),
+                                Container(
+                                  child: Text(
+                                    "대표리뷰 : ${e['대표리뷰']}",
+                                    style: GoogleFonts.getFont('Gowun Dodum',
+                                        textStyle: TextStyle(
+                                            fontSize: 16, color: Colors.black)),
+                                  ),
+                                ),
+                                Padding(padding: EdgeInsets.all(8)),
+                                Container(
+                                  child: Text(
+                                    "주소 : ${e['주소']}",
+                                    style: GoogleFonts.getFont('Gowun Dodum',
+                                        textStyle: TextStyle(
+                                            fontSize: 16, color: Colors.black)),
+                                  ),
+                                ),
+                                Padding(padding: EdgeInsets.all(30)),
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    "내 일정 담기",
+                                    style: GoogleFonts.getFont('Gowun Dodum',
+                                        textStyle: TextStyle(
+                                            fontSize: 16, color: Colors.white)),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                      primary: Color(0xff0F70BE), elevation: 8),
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       });
