@@ -48,25 +48,25 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
 
   List<dynamic> list = [];
   final List<Map<String, String>> recommendMenu = const [
-    {"index": "1", "name": ""},
+    {"index": "1", "name": "📝 일정"},
     {
-      "index": "1",
+      "index": "2",
       "name": "#🥘맛집",
     },
     {
-      "index": "2",
+      "index": "3",
       "name": "#☕카페",
     },
     {
-      "index": "3",
+      "index": "4",
       "name": "#🌳자연",
     },
     {
-      "index": "4",
+      "index": "5",
       "name": "#📜역사",
     },
     {
-      "index": "5",
+      "index": "6",
       "name": "#🤿체험",
     },
   ];
@@ -88,6 +88,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
         queryParameters: Logindata,
       );
       markers.clear();
+      list.clear();
       if (response.statusCode == 200) {
         for (int i = 0; i < response.data.length; i++) {
           print(response.data[i]);
@@ -183,6 +184,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
                 }));
           }
         }
+        setState(() {});
 
         return list;
       } else {
@@ -428,18 +430,22 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
                 child: TextButton(
                   onPressed: () {
                     number == '1'
-                        ? loaddata("${city}", "${district}")
+                        ? defalutlist(
+                            "자연관광", "${day}", "${city}", "${district}")
                         : number == '2'
                             ? loaddata("${city}", "${district}")
                             : number == '3'
-                                ? placedata('자연관광', "${city}", "${district}")
+                                ? loaddata("${city}", "${district}")
                                 : number == '4'
                                     ? placedata(
-                                        '역사관광', "${city}", "${district}")
+                                        '자연관광', "${city}", "${district}")
                                     : number == '5'
                                         ? placedata(
-                                            '체험관광', "${city}", "${district}")
-                                        : '';
+                                            '역사관광', "${city}", "${district}")
+                                        : number == '6'
+                                            ? placedata('체험관광', "${city}",
+                                                "${district}")
+                                            : '';
                   },
                   child: Text(
                     name,
@@ -464,51 +470,49 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
           ),
         ),
       ),
-      FutureBuilder(
-        future: defalutlist("자연관광", '${day}', "${city}", "${district}"),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          //해당 부분은 data를 아직 받아 오지 못했을때 실행되는 부분을 의미한다.
-          if (snapshot.hasData == false) {
-            return CircularProgressIndicator();
-          }
-          //error가 발생하게 될 경우 반환하게 되는 부분
-          else if (snapshot.hasError) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Error: ${snapshot.error}',
-                style: TextStyle(fontSize: 15),
-              ),
-            );
-          }
-          // 데이터를 정상적으로 받아오게 되면 다음 부분을 실행하게 되는 것이다.
-          else {
-            return Padding(
-              padding: const EdgeInsets.all(0.0),
-              child: ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: list.length,
-                itemBuilder: (context, index) {
-                  Map<String, dynamic> data = list[index];
-                  String citytitle = '11111';
-                  if (data['이름'] != null) {
-                    citytitle = data['이름'];
-                  } else if (data['관광지명'] != null)
-                    citytitle = data['관광지명'];
-                  else if (data['관광지명'] == null && data['이름'] == null) {
-                    citytitle = '안돼';
-                  }
-                  return Container(
-                    margin: EdgeInsets.all(8),
-                    child: Column(children: [Text(citytitle)]),
-                  );
-                },
-              ),
-            );
-          }
-        },
-      )
+      Container(
+        margin: EdgeInsets.only(right: 340),
+        child: Text(
+          "여행일정",
+          textAlign: TextAlign.end,
+          style: GoogleFonts.getFont('Gowun Dodum',
+              textStyle: TextStyle(fontSize: 18, color: Colors.black)),
+        ),
+      ),
+      Padding(
+          padding: const EdgeInsets.all(0.0),
+          child: ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: list.length,
+              itemBuilder: (context, index) {
+                Map<String, dynamic> data = list[index];
+                String citytitle = '11111';
+                if (data['이름'] != null) {
+                  // data['대표리뷰'] != null
+                  //     ? citytitle = '🌳' + data['관광지명']
+                  //     : citytitle = '🥘' + data['이름'];
+                  citytitle = data['이름'];
+                } else if (data['관광지명'] != null)
+                  citytitle = '🌳' + data['관광지명'];
+                else if (data['관광지명'] == null && data['이름'] == null) {
+                  citytitle = '안돼';
+                }
+                return Container(
+                  margin: EdgeInsets.all(8),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          ("🌼 ${citytitle}"),
+                          textAlign: TextAlign.left,
+                          style: GoogleFonts.getFont('Gowun Dodum',
+                              textStyle:
+                                  TextStyle(fontSize: 18, color: Colors.black)),
+                        )
+                      ]),
+                );
+              }))
     ]))));
   }
 }
