@@ -90,6 +90,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
       markers.clear();
       list.clear();
       if (response.statusCode == 200) {
+        print(response.data[3]);
         for (int i = 0; i < response.data.length; i++) {
           print(response.data[i]);
           if ((response.data[i]['위도'] != "" &&
@@ -416,7 +417,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
         padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
         child: ListView.builder(
           scrollDirection: Axis.horizontal, //횡스크롤
-          itemCount: 5,
+          itemCount: 6,
           itemBuilder: (context, index) {
             Map<dynamic, dynamic> data = recommendMenu[index];
             String name = data['name'];
@@ -488,23 +489,30 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
               itemBuilder: (context, index) {
                 Map<String, dynamic> data = list[index];
                 String citytitle = '11111';
-                if (data['이름'] != null) {
-                  // data['대표리뷰'] != null
-                  //     ? citytitle = '🌳' + data['관광지명']
-                  //     : citytitle = '🥘' + data['이름'];
-                  citytitle = data['이름'];
-                } else if (data['관광지명'] != null)
-                  citytitle = '🌳' + data['관광지명'];
-                else if (data['관광지명'] == null && data['이름'] == null) {
-                  citytitle = '안돼';
-                }
+                // if (data['이름'] != null) {
+                data['타입'] == '음식점'
+                    ? citytitle = '🥘' + data['이름']
+                    : data['타입'] == '역사관광'
+                        ? citytitle = '📜' + data['이름']
+                        : data['타입'] == '자연관광'
+                            ? citytitle = '🌳' + data['이름']
+                            : data['타입'] == '체험관광'
+                                ? citytitle = '🤿' + data['이름']
+                                : '11';
+
+                // citytitle = data['이름'];
+                // } else if (data['관광지명'] != null)
+                //   citytitle = '🌳' + data['관광지명'];
+                // else if (data['관광지명'] == null && data['이름'] == null) {
+                //   citytitle = '안돼';
+                // }
                 return Container(
                   margin: EdgeInsets.all(8),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          ("🌼 ${citytitle}"),
+                          ("${citytitle}"),
                           textAlign: TextAlign.left,
                           style: GoogleFonts.getFont('Gowun Dodum',
                               textStyle:
