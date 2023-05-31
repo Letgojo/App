@@ -280,6 +280,12 @@ class _TripNo1State extends State<TripNo1> {
                         key: "day",
                         value:
                             "${(end.year + end.month + end.day) - (start.year + start.month + start.day) + 1}");
+                    storage.write(
+                        key: 'start',
+                        value: "${start.year}.${start.month}.${start.day}");
+                    storage.write(
+                        key: 'finish',
+                        value: "${end.year}.${end.month}.${end.day}");
                     storage.write(key: "인원", value: "$_counter");
                     Navigator.push(
                         context,

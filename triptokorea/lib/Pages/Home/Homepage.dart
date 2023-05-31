@@ -27,11 +27,8 @@ class _HomePageState extends State<HomePage> {
         '${config.serverIP}/board/post/',
         queryParameters: Logindata,
       );
-      print(response.data);
-      print(response.statusCode);
       if (response.statusCode == 200) {
         // final jsonBody = json.decode(response.data);
-        print("성공");
         for (int i = 0; i < response.data.length; i++) {
           list.add(response.data[i]);
         }
@@ -41,12 +38,9 @@ class _HomePageState extends State<HomePage> {
         // "name", value:
         return name;
       } else {
-        print(response.statusCode);
-        print("2실패 ${response.statusCode}");
         return 'Fail';
       }
     } catch (e) {
-      print(e);
       Exception(e);
     } finally {
       dio.close();
@@ -56,8 +50,6 @@ class _HomePageState extends State<HomePage> {
 
   void initState() {
     super.initState();
-    loaddata();
-    print('1 ${list}');
   }
 
   @override
@@ -474,6 +466,4 @@ class _HomePageState extends State<HomePage> {
       // ),
     );
   }
-
-
 }

@@ -6,6 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../config/config.dart' as config;
+import '../../Menu/menuBar.dart';
 
 const String kakaoMapKey = '5157004dd04f0e8b82c4ba27aac81564';
 
@@ -20,24 +21,36 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
   late GoogleMapController mapController;
   static final storage =
       new FlutterSecureStorage(); //flutter_secure_storage 사용을 위한 초기화 작업
+  dynamic uuid = '';
   dynamic city = "";
   dynamic district = "";
+  dynamic startDay = '';
+  dynamic finish = '';
   dynamic day = '';
+  dynamic x = '';
+  dynamic y = '';
   var list1 = [];
   List<Marker> _markers = [];
   void initState() {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _asyncMethod();
+      setState(() {
+        _asyncMethod();
+      });
     });
   }
 
   _asyncMethod() async {
     //read 함수
+    uuid = await storage.read(key: "uid");
+    startDay = await storage.read(key: "start");
+    finish = await storage.read(key: "finish");
     city = await storage.read(key: 'city');
     district = await storage.read(key: 'district');
     day = await storage.read(key: 'day');
+    x = await storage.read(key: 'x');
+    y = await storage.read(key: 'y');
   }
 
   final Set<Marker> markers = new Set();
@@ -90,9 +103,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
       markers.clear();
       list.clear();
       if (response.statusCode == 200) {
-        print(response.data[3]);
         for (int i = 0; i < response.data.length; i++) {
-          print(response.data[i]);
           if ((response.data[i]['위도'] != "" &&
               response.data[i]['경도'] != "" &&
               response.data[i]['메뉴'] != {})) {
@@ -167,7 +178,12 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
                                 ),
                                 Padding(padding: EdgeInsets.all(30)),
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    setState(() {
+                                      list.add(response.data[i]);
+                                      print(list);
+                                    });
+                                  },
                                   child: Text(
                                     "내 일정 담기",
                                     style: GoogleFonts.getFont('Gowun Dodum',
@@ -185,6 +201,14 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
                 }));
           }
         }
+        var temp = {};
+        temp = list[0];
+        list[0] = list[2];
+        list[2] = temp;
+        var temp2 = {};
+        temp2 = list[2];
+        list[2] = list[3];
+        list[3] = temp2;
         setState(() {});
 
         return list;
@@ -289,7 +313,12 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
                                 ),
                                 Padding(padding: EdgeInsets.all(30)),
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    setState(() {
+                                      list.add(e);
+                                    });
+                                    Navigator.pop(context);
+                                  },
                                   child: Text(
                                     "내 일정 담기",
                                     style: GoogleFonts.getFont('Gowun Dodum',
@@ -342,7 +371,6 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
       );
       markers.clear();
       if (response.statusCode == 200) {
-        print("성공");
         for (var e in response.data) {
           if ((e['위도'] != "" && e['경도'] != "" && e != Null)) {
             markers.add(Marker(
@@ -466,7 +494,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
           onMapCreated: _onMapCreated,
           markers: Set.from(markers),
           initialCameraPosition: CameraPosition(
-            target: LatLng(35.1938469, 129.1536102),
+            target: LatLng(double.parse(x), double.parse(y)),
             zoom: 12.0,
           ),
         ),
@@ -488,7 +516,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
               itemCount: list.length,
               itemBuilder: (context, index) {
                 Map<String, dynamic> data = list[index];
-                String citytitle = '11111';
+                String citytitle = data['이름'];
                 // if (data['이름'] != null) {
                 data['타입'] == '음식점'
                     ? citytitle = '🥘' + data['이름']
@@ -498,7 +526,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
                             ? citytitle = '🌳' + data['이름']
                             : data['타입'] == '체험관광'
                                 ? citytitle = '🤿' + data['이름']
-                                : '11';
+                                : data['이름'];
 
                 // citytitle = data['이름'];
                 // } else if (data['관광지명'] != null)
@@ -520,7 +548,73 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
                         )
                       ]),
                 );
-              }))
+              })),
+      Container(
+          child: SizedBox(
+        width: 300,
+        child: ElevatedButton(
+          onPressed: () {
+            result(list);
+            // Navigator.push(context,
+            //     MaterialPageRoute(builder: (context) => const menuBar()));
+          },
+          child: Text("완료"),
+          style: ElevatedButton.styleFrom(
+              primary: Color(0xff0F70BE), elevation: 0),
+        ),
+      ))
     ]))));
+  }
+
+  Future<String> result(dynamic list) async {
+    var route = [];
+    list.forEach((e) => {
+          route.add({
+            "type": e["타입"],
+            "이름": e['이름'],
+            "위도": e['위도'],
+            "경도": e['경도'],
+          })
+        });
+    print(route);
+    var Logindata = {
+      "uuid": "${uuid}",
+      "startDay": "${startDay}",
+      "endDay": "${finish}",
+      'route': route,
+    };
+    Dio dio = new Dio();
+    print(Logindata);
+    print("${config.serverIP}");
+    dio.options.headers['content-Type'] = 'application/json';
+    try {
+      var response = await dio.post(
+        '${config.serverIP}/location/send-route',
+        data: Logindata,
+      );
+
+      print(response.data);
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        // final jsonBody = json.decode(response.data);
+        print("성공");
+
+        /// http와 다른점은 response 값을 data로 받는다.
+        var name = response.data;
+
+        // "name", value: u)
+        return "OK";
+      } else {
+        print(response.statusCode);
+        print("2실패 ${response.statusCode}");
+        return 'Fail';
+      }
+    } catch (e) {
+      print(e);
+      Exception(e);
+    } finally {
+      dio.close();
+    }
+    return "";
   }
 }

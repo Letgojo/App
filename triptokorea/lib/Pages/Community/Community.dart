@@ -22,15 +22,12 @@ class _CommunityState extends State<Community> {
       "pages": "5",
     };
     Dio dio = new Dio();
-    print(Logindata);
     dio.options.headers['content-Type'] = 'application/json';
     try {
       var response = await dio.get(
         '${config.serverIP}/board/post/',
         queryParameters: Logindata,
       );
-      print(response.data);
-      print(response.statusCode);
 
       if (response.statusCode == 200) {
         // final jsonBody = json.decode(response.data);

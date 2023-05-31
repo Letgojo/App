@@ -1,7 +1,9 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -28,10 +30,29 @@ class _TripYes_resultState extends State<TripYes_result> {
   }
 
   List<dynamic> list = [];
-
-  @override
+  dynamic city = '';
+  dynamic district = '';
+  dynamic x = '';
+  dynamic y = '';
+  dynamic cityname = '';
+  static final storage =
+      new FlutterSecureStorage(); //flutter_secure_storage 사용을 위한 초기화 작업
   void initState() {
     super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        _asyncMethod();
+      });
+    });
+  }
+
+  _asyncMethod() async {
+    //read 함수ß
+    district = await storage.read(key: 'district');
+    city = await storage.read(key: 'city');
+    x = await storage.read(key: 'x');
+    y = await storage.read(key: 'y');
   }
 
   File? _image;
@@ -39,7 +60,6 @@ class _TripYes_resultState extends State<TripYes_result> {
   Future getImage(ImageSource source) async {
     final image = await picker.pickImage(source: source);
 
-    print("실행중");
     if (image == null) return;
     File? img = File(image.path);
     // Uint8List imagebytes = await image.readAsBytes();
@@ -47,18 +67,93 @@ class _TripYes_resultState extends State<TripYes_result> {
     setState(() {
       _image = img;
       Navigator.of(context).pop();
-      print(_image);
     });
   }
 
   Widget showImage() {
     if (_image == null) {
-      print("없다");
       return Container();
     }
     return Image.file(_image!);
   }
 
+  final List<Map<dynamic, dynamic>> recommendMenu = const [
+    {
+      'name': '강서구',
+      '위도': "35.1547542",
+      '경도': '128.9027555',
+    },
+    {
+      'name': '금정구',
+      '위도': "35.2588922",
+      '경도': '129.0915364',
+    },
+    {
+      'name': '남구',
+      '위도': "35.1254328",
+      '경도': '129.0942767',
+    },
+    {
+      'name': '동구',
+      '위도': "35.1290483",
+      '경도': '129.0446982',
+    },
+    {
+      'name': '동래구',
+      '위도': "35.206214",
+      '경도': '129.0792207',
+    },
+    {
+      'name': '부산진구',
+      '위도': "35.1652494",
+      '경도': '129.0430314',
+    },
+    {
+      'name': '북구',
+      '위도': "35.2292556",
+      '경도': '129.0234631',
+    },
+    {
+      'name': '사상구',
+      '위도': "35.1580273",
+      '경도': '128.9865896',
+    },
+    {
+      'name': '사하구',
+      '위도': "35.0899401",
+      '경도': '128.9744881',
+    },
+    {
+      'name': '서구',
+      '위도': "35.1030941",
+      '경도': '129.0148985',
+    },
+    {
+      'name': '수영구',
+      '위도': "35.1613118",
+      '경도': '129.1112042',
+    },
+    {
+      'name': '연제구',
+      '위도': "35.1824046",
+      '경도': '129.0829635',
+    },
+    {
+      'name': '영도구',
+      '위도': "35.0787475",
+      '경도': '129.064765',
+    },
+    {
+      'name': '중구',
+      '위도': "35.1054698",
+      '경도': '129.031545',
+    },
+    {
+      'name': '해운대구',
+      '위도': "35.1938469",
+      '경도': '129.1536102',
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,8 +167,8 @@ class _TripYes_resultState extends State<TripYes_result> {
                 markers: getmarkers(),
                 onMapCreated: _onMapCreated,
                 initialCameraPosition: CameraPosition(
-                  target: LatLng(35.1938469, 129.1536102),
-                  zoom: 12.0,
+                  target: LatLng(double.parse(x), double.parse(y)),
+                  zoom: 14.0,
                 ),
               ),
             ),
@@ -179,8 +274,8 @@ class _TripYes_resultState extends State<TripYes_result> {
                 );
               });
         },
-        position: LatLng(35.1938469, 129.1536102),
-        infoWindow: InfoWindow(title: '해운대구')));
+        position: LatLng(double.parse(x), double.parse(y)),
+        infoWindow: InfoWindow(title: district)));
 
     // loaddata()
     //     .then((data) => setState(() {

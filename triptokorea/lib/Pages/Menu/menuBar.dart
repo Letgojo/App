@@ -23,7 +23,7 @@ class menuBar_State extends State<menuBar> {
         index: currentIndex,
         children: [
           HomePage(),
-          CategoryTable(),
+          Record(),
           Community(),
           ChatPage(),
           Setting(),
