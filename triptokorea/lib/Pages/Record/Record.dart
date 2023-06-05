@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:triptokorea/Pages/Record/result.dart';
 import '../../config/config.dart' as config;
 
 class Record extends StatefulWidget {
@@ -28,7 +29,7 @@ class RecordState extends State<Record> {
   }
 
   _asyncMethod() async {
-    //read 함수ß
+    //read 함수
     uid = await storage.read(key: 'uid');
   }
 
@@ -46,14 +47,12 @@ class RecordState extends State<Record> {
         queryParameters: Logindata,
       );
 
-      // print(response.data);
       print(response.statusCode);
       if (response.statusCode == 200) {
         // final jsonBody = json.decode(response.data);
         print("성공");
 
         /// http와 다른점은 response 값을 data로 받는다.
-        var name = response.data;
         for (int i = 0; i < response.data.length; i++) {
           list.add(response.data[0]["route"][i]);
           info.add(response.data[i]);
@@ -153,6 +152,7 @@ class RecordState extends State<Record> {
                               Map<dynamic, dynamic> data = list[index];
                               Map<dynamic, dynamic> info_Data = info[index];
                               // String name = data['이름'];
+                              print(list[0]);
                               return Container(
                                 width: 320,
                                 height: 130,
@@ -160,49 +160,71 @@ class RecordState extends State<Record> {
                                 decoration: BoxDecoration(
                                     border: Border.all(width: 0.5),
                                     borderRadius: BorderRadius.circular(10)),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: 130,
-                                      height: 130,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(width: 0.5),
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: Image(
-                                          image: AssetImage(
-                                              'assets/images/newjin.png'),
-                                          fit: BoxFit.cover),
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.only(left: 20),
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            margin: EdgeInsets.only(
-                                                top: 5, left: 120),
-                                            child: Icon(Icons.delete_outline),
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.only(
-                                                top: 5, right: 100),
-                                            child: Text(data['이름']),
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.only(
-                                                top: 5, right: 50),
-                                            child: Text(
-                                                "${info_Data["startDay"]}~ ${info_Data["endDay"]} "),
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.only(
-                                                top: 30, left: 30),
-                                            child: Text(""),
-                                          )
-                                        ],
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                result(title: info[index])));
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      primary: Colors.white),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        width: 130,
+                                        height: 130,
+                                        decoration: BoxDecoration(
+                                            border: Border.all(width: 0.5),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Image(
+                                            image: AssetImage(
+                                                'assets/images/newjin.png'),
+                                            fit: BoxFit.cover),
                                       ),
-                                    ),
-                                  ],
+                                      Container(
+                                        padding: EdgeInsets.only(left: 20),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              margin: EdgeInsets.only(
+                                                  top: 5, left: 120),
+                                              child: Icon(Icons.delete_outline),
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.only(
+                                                  top: 5, right: 100),
+                                              child: Text(
+                                                data['이름'],
+                                                style: TextStyle(
+                                                    color: Colors.black),
+                                              ),
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.only(
+                                                  top: 5, right: 50),
+                                              child: Text(
+                                                "${info_Data["startDay"]}~ ${info_Data["endDay"]} ",
+                                                style: TextStyle(
+                                                    color: Colors.black),
+                                              ),
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.only(
+                                                  top: 30, left: 30),
+                                              child: Text(
+                                                "",
+                                                style: TextStyle(
+                                                    color: Colors.black),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               );
                             },
@@ -214,4 +236,3 @@ class RecordState extends State<Record> {
         ));
   }
 }
-//앱바로 만들던가 알아서

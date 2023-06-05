@@ -25,4 +25,4 @@ class MyApp_State extends State<MyApp> {
     return MaterialApp(debugShowCheckedModeBanner: false, home: Login());
   }
 }
-//여행계획, 결과 ,
+//여행계획, 결과
