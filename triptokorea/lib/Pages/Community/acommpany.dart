@@ -186,6 +186,10 @@ class acommpany_State extends State<acommpany> {
                                             height: 120,
                                             decoration: BoxDecoration(
                                                 border: Border.all(width: 1)),
+                                            child: Image(
+                                                image: AssetImage(
+                                                    'assets/images/newjin2.png'),
+                                                fit: BoxFit.cover),
                                           ),
                                           Column(
                                             children: [

@@ -386,7 +386,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
                         return Container(
                           child: AlertDialog(
                             title: Text(
-                              "${e['관광지명']}",
+                              "${e['이름']}",
                               style: GoogleFonts.getFont('Gowun Dodum',
                                   textStyle: TextStyle(
                                       fontSize: 20,
@@ -555,8 +555,8 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
         child: ElevatedButton(
           onPressed: () {
             result(list);
-            // Navigator.push(context,
-            //     MaterialPageRoute(builder: (context) => const menuBar()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const menuBar()));
           },
           child: Text("완료"),
           style: ElevatedButton.styleFrom(

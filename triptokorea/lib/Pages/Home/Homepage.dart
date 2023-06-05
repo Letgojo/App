@@ -191,6 +191,10 @@ class _HomePageState extends State<HomePage> {
                                             height: 140,
                                             decoration: BoxDecoration(
                                                 border: Border.all(width: 1)),
+                                            child: Image(
+                                                image: AssetImage(
+                                                    'assets/images/test.png'),
+                                                fit: BoxFit.cover),
                                           ),
                                           Column(
                                             children: [
@@ -319,6 +323,10 @@ class _HomePageState extends State<HomePage> {
                                             height: 140,
                                             decoration: BoxDecoration(
                                                 border: Border.all(width: 1)),
+                                            child: Image(
+                                                image: AssetImage(
+                                                    'assets/images/newjin.png'),
+                                                fit: BoxFit.cover),
                                           ),
                                           Column(
                                             children: [

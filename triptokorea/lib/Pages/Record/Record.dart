@@ -12,6 +12,7 @@ class Record extends StatefulWidget {
 }
 
 class RecordState extends State<Record> {
+  dynamic info = [];
   dynamic list = [];
   dynamic uid = '';
   static final storage =
@@ -55,6 +56,7 @@ class RecordState extends State<Record> {
         var name = response.data;
         for (int i = 0; i < response.data.length; i++) {
           list.add(response.data[0]["route"][i]);
+          info.add(response.data[i]);
         }
         // "name", value: u)
         return "OK";
@@ -141,20 +143,18 @@ class RecordState extends State<Record> {
                     return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
-                          height: 970,
+                          height: 800,
                           padding: EdgeInsets.all(10),
                           child: ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
                             itemCount: 5,
                             itemBuilder: (context, index) {
-                              List<dynamic> data = list[index];
-                              print(data);
-
-                              // Map<dynamic, dynamic> data = list[index];
-                              // print(data);
+                              // List<dynamic> data = list[index];
+                              Map<dynamic, dynamic> data = list[index];
+                              Map<dynamic, dynamic> info_Data = info[index];
                               // String name = data['이름'];
                               return Container(
-                                width: 360,
+                                width: 320,
                                 height: 130,
                                 margin: EdgeInsets.only(bottom: 30),
                                 decoration: BoxDecoration(
@@ -169,6 +169,10 @@ class RecordState extends State<Record> {
                                           border: Border.all(width: 0.5),
                                           borderRadius:
                                               BorderRadius.circular(10)),
+                                      child: Image(
+                                          image: AssetImage(
+                                              'assets/images/newjin.png'),
+                                          fit: BoxFit.cover),
                                     ),
                                     Container(
                                       padding: EdgeInsets.only(left: 20),
@@ -176,23 +180,24 @@ class RecordState extends State<Record> {
                                         children: [
                                           Container(
                                             margin: EdgeInsets.only(
-                                                top: 5, left: 180),
+                                                top: 5, left: 120),
                                             child: Icon(Icons.delete_outline),
                                           ),
                                           Container(
                                             margin: EdgeInsets.only(
-                                                top: 5, right: 180),
-                                            child: Text("name"),
+                                                top: 5, right: 100),
+                                            child: Text(data['이름']),
                                           ),
                                           Container(
                                             margin: EdgeInsets.only(
-                                                top: 5, right: 150),
-                                            child: Text("4.1 ~ 4.3"),
+                                                top: 5, right: 50),
+                                            child: Text(
+                                                "${info_Data["startDay"]}~ ${info_Data["endDay"]} "),
                                           ),
                                           Container(
                                             margin: EdgeInsets.only(
-                                                top: 30, left: 80),
-                                            child: Text("04.20  18:15저장"),
+                                                top: 30, left: 30),
+                                            child: Text(""),
                                           )
                                         ],
                                       ),
