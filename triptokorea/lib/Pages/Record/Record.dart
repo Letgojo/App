@@ -46,7 +46,7 @@ class RecordState extends State<Record> {
         queryParameters: Logindata,
       );
 
-      // print(response.data);
+      print(response.data);
       print(response.statusCode);
       if (response.statusCode == 200) {
         // final jsonBody = json.decode(response.data);

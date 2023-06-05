@@ -7,6 +7,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:triptokorea/Pages/Trip/TripNoPage/CategoryTable.dart';
 import 'package:triptokorea/Pages/Trip/TripYesPage/Trip_result2.dart';
 import '../../../config/config.dart' as config;
 import 'package:google_places_for_flutter/google_places_for_flutter.dart';
@@ -172,28 +173,17 @@ class _TripYes_resultState extends State<TripYes_result> {
                 ),
               ),
             ),
-            // Container(
-            //   child: SearchGooglePlacesWidget(
-            //     apiKey: 'AIzaSyASCW6NUBnr3NYGyISC7MaaSvqRjqb4LsQ',
-            //     // The language of the autocompletion
-            //     language: 'ko',
-            //     // The position used to give better recommendations. In this case we are using the user position
-            //     radius: 30000,
-            //     onSelected: (Place place) async {
-            //       final geolocation = await place.geolocation;
-
-            //       // Will animate the GoogleMap camera, taking us to the selected position with an appropriate zoom
-            //       mapController.animateCamera(
-            //           CameraUpdate.newLatLng(geolocation!.coordinates));
-            //       mapController.animateCamera(
-            //           CameraUpdate.newLatLngBounds(geolocation.bounds, 0));
-            //     },
-            //     onSearch: (Place place) {},
-            //   ),
-            // )
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          getImage(ImageSource.camera);
+        },
+        label: Text('카메라'),
+        icon: Icon(Icons.photo_camera),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
@@ -219,41 +209,7 @@ class _TripYes_resultState extends State<TripYes_result> {
                         width: 200,
                         child: ElevatedButton(
                             child: Text(
-                              "카메라",
-                              style: GoogleFonts.jua(
-                                  textStyle: TextStyle(
-                                      fontSize: 18, color: Colors.black)),
-                            ),
-                            onPressed: () {
-                              getImage(ImageSource.camera);
-                            },
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                shadowColor: Colors.white)),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(right: 50),
-                        width: 200,
-                        child: ElevatedButton(
-                            child: Text(
-                              "앨범 가져오기",
-                              style: GoogleFonts.jua(
-                                  textStyle: TextStyle(
-                                      fontSize: 18, color: Colors.black)),
-                            ),
-                            onPressed: () {
-                              getImage(ImageSource.gallery);
-                            },
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                shadowColor: Colors.white)),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(right: 50),
-                        width: 200,
-                        child: ElevatedButton(
-                            child: Text(
-                              "태그별로 지정하기",
+                              "자동",
                               style: GoogleFonts.jua(
                                   textStyle: TextStyle(
                                       fontSize: 18, color: Colors.black)),
@@ -263,7 +219,28 @@ class _TripYes_resultState extends State<TripYes_result> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const TripYes_result2()));
+                                          const TripYes_result2())); //CategoryTable
+                            },
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                shadowColor: Colors.white)),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(right: 50),
+                        width: 200,
+                        child: ElevatedButton(
+                            child: Text(
+                              "수동",
+                              style: GoogleFonts.jua(
+                                  textStyle: TextStyle(
+                                      fontSize: 18, color: Colors.black)),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const CategoryTable()));
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.white,
