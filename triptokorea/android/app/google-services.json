@@ -29,6 +29,13 @@
             {
               "client_id": "595704736608-9rotdfs4d8qqeeiq1r0vq12plpbgqfur.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "595704736608-l061tq1buep1upkll0jvf5vm6hejfi2l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.triptokorea"
+              }
             }
           ]
         }

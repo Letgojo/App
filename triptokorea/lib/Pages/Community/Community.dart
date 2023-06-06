@@ -5,7 +5,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:triptokorea/Pages/Community/acommpany.dart';
 import 'package:triptokorea/Pages/Community/answer.dart';
 import 'package:triptokorea/Pages/Community/write.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import '../../config/config.dart' as config;
+
+final storageRef = FirebaseStorage.instance.ref();
+final spaceRef = storageRef.child("images/b1.png");
 
 class Community extends StatefulWidget {
   const Community({super.key});
@@ -16,7 +20,13 @@ class Community extends StatefulWidget {
 
 class _CommunityState extends State<Community> {
   var list = [];
+  late String temp;
+
   Future<dynamic> loaddata() async {
+    final imageUrl = await spaceRef.getDownloadURL();
+
+    temp = imageUrl;
+    print("URL: $imageUrl");
     var Logindata = {
       "docId": null,
       "pages": "5",
@@ -188,10 +198,7 @@ class _CommunityState extends State<Community> {
                                       height: 120,
                                       decoration: BoxDecoration(
                                           border: Border.all(width: 1)),
-                                      child: Image(
-                                          image: AssetImage(
-                                              'assets/images/newjin2.png'),
-                                          fit: BoxFit.cover),
+                                      child: Image.network(temp),
                                     ),
                                     Column(
                                       children: [
