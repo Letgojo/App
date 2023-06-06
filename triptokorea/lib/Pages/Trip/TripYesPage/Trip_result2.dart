@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,6 +10,8 @@ import '../../../config/config.dart' as config;
 import '../../Menu/menuBar.dart';
 
 const String kakaoMapKey = '5157004dd04f0e8b82c4ba27aac81564';
+
+final storageRef = FirebaseStorage.instance.ref();
 
 class TripYes_result2 extends StatefulWidget {
   const TripYes_result2({super.key});
@@ -19,6 +22,7 @@ class TripYes_result2 extends StatefulWidget {
 
 class _TripYes_resultState2 extends State<TripYes_result2> {
   late GoogleMapController mapController;
+  late String temp;
   static final storage =
       new FlutterSecureStorage(); //flutter_secure_storage 사용을 위한 초기화 작업
   dynamic uuid = '';
@@ -31,6 +35,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
   dynamic y = '';
   var list1 = [];
   List<Marker> _markers = [];
+  var imagelist = [];
   void initState() {
     super.initState();
 
@@ -83,6 +88,49 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
       "name": "#🤿체험",
     },
   ];
+
+  Future<dynamic> imageList(String name) async {
+    var Logindata = {
+      'name': name,
+    };
+    Dio dio = new Dio();
+    print(Logindata);
+    list = [];
+    dio.options.headers['content-Type'] = 'application/json';
+    try {
+      var response = await dio.get(
+        '${config.serverIP}/location/restaurant-img',
+        queryParameters: Logindata,
+      );
+      imagelist.clear();
+      print(response.statusCode);
+      if (response.statusCode == 200){
+        // final jsonBody = json.decode(response.data);
+        print("성공");
+
+        // final spaceRef = storageRef.child("food_img/${response.data[0]}");
+        // final imageUrl = spaceRef.getDownloadURL();
+        print("HI  ${response.data[0]}");
+
+        /// http와 다른점은 response 값을 data로 받는다.
+        var name = response.data;
+
+        // "name", value: u)
+        return 11;
+      } else {
+        print(response.statusCode);
+        print("2실패 ${response.statusCode}");
+        return 'Fail';
+      }
+    } catch (e) {
+      print(e);
+      Exception(e);
+    } finally {
+      dio.close();
+    }
+    return "";
+  }
+
   Future<dynamic> defalutlist(
       String tour, String day, String city, String district) async {
     var Logindata = {
@@ -92,7 +140,6 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
       "district": district,
     };
     Dio dio = new Dio();
-    print(Logindata);
     list = [];
     dio.options.headers['content-Type'] = 'application/json';
     try {
@@ -246,11 +293,16 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
       if (response.statusCode == 200) {
         for (var e in response.data) {
           if ((e['위도'] != "" && e['경도'] != "")) {
+            // return Image.network(
+            //   data,
+            //   fit: BoxFit.cover,
+
             markers.add(Marker(
                 markerId: MarkerId(e['이름']),
                 position: LatLng(double.parse(e['위도']), double.parse(e['경도'])),
                 infoWindow: InfoWindow(title: e['이름']),
                 onTap: () {
+                  imageList(e['이름']);
                   showDialog(
                       context: context,
                       barrierDismissible: false,
@@ -285,6 +337,19 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
+                                SizedBox(
+                                  child: Row(
+                                    children: [
+                                      Padding(padding: EdgeInsets.all(2))
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                    width: 200,
+                                    height: 200,
+                                    child: Image.network(
+                                        "https://firebasestorage.googleapis.com/v0/b/test-bd2d5.appspot.com/o/food_img%2Ff1-1.png?alt=media&token=4de08f7a-a38c-4c8b-ac0b-463729347c51",
+                                        fit: BoxFit.cover)),
                                 Container(
                                   child: Text(
                                     "카테고리 : ${e['카테고리']}",

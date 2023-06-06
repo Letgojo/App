@@ -166,7 +166,7 @@ class RecordState extends State<Record> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                result(title: list[index])));
+                                                result(title: info[index])));
                                   },
                                   style: ElevatedButton.styleFrom(
                                       primary: Colors.white),

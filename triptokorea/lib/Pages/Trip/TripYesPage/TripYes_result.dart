@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:dio/dio.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,6 +14,8 @@ import '../../../config/config.dart' as config;
 import 'package:google_places_for_flutter/google_places_for_flutter.dart';
 
 const String kakaoMapKey = '5157004dd04f0e8b82c4ba27aac81564';
+final storageRef = FirebaseStorage.instance.ref();
+final spaceRef = storageRef.child("images/b1.png");
 
 class TripYes_result extends StatefulWidget {
   const TripYes_result({super.key});

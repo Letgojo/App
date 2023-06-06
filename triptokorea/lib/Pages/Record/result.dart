@@ -16,7 +16,12 @@ class result extends StatefulWidget {
 }
 
 class _resultState extends State<result> {
+  late GoogleMapController mapController;
   List<Marker> _markers = [];
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
 
   void initState() {
     super.initState();
@@ -35,6 +40,7 @@ class _resultState extends State<result> {
               height: 300,
               child: GoogleMap(
                 mapType: MapType.normal,
+                onMapCreated: _onMapCreated,
                 markers: Set.from(_markers),
                 initialCameraPosition: CameraPosition(
                   target: LatLng(35.1614066, 129.1646875),
@@ -51,17 +57,18 @@ class _resultState extends State<result> {
               ),
             ),
             Container(
-              height: 600,
+              height: 200,
               child: ListView.builder(
                   itemCount: 5,
                   itemBuilder: ((context, index) {
                     Map<dynamic, dynamic> data = widget.title;
-                    print("${data['route'][index]}");
+                    print("${data['route'][0]['이름']}");
                     return Container(
                       child: Column(
                         children: [
                           Text(
-                            data['route'][index]['이름'],
+                            // data['route'][index]['이름'],
+                            '${data['route'][index]['이름']}',
                             style: GoogleFonts.getFont('Gowun Dodum',
                                 textStyle: TextStyle(fontSize: 20)),
                           )

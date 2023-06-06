@@ -198,7 +198,10 @@ class _CommunityState extends State<Community> {
                                       height: 120,
                                       decoration: BoxDecoration(
                                           border: Border.all(width: 1)),
-                                      child: Image.network(temp),
+                                      child: Image.network(
+                                        temp,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                     Column(
                                       children: [
