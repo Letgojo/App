@@ -1,5 +1,11 @@
+import 'package:dio/dio.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:triptokorea/Pages/Record/result.dart';
+import '../../../config/config.dart' as config;
+
+final storageRef = FirebaseStorage.instance.ref();
 
 class CategoryTable extends StatefulWidget {
   const CategoryTable({super.key});
@@ -9,257 +15,110 @@ class CategoryTable extends StatefulWidget {
 }
 
 class CategoryTable_State extends State<CategoryTable> {
+  var list = [];
+  Future<dynamic> imageList() async {
+    var Logindata = {};
+    Dio dio = new Dio();
+    print(Logindata);
+    dio.options.headers['content-Type'] = 'application/json';
+    try {
+      var response = await dio.get(
+        '${config.serverIP}/vae/cluster-result',
+      );
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        // final jsonBody = json.decode(response.data);
+        print("성공");
+
+        // print(imageUrl);
+        for (var i = 0; i < response.data.length; i++) {
+          for (var j = 0; j < response.data[i].length; j++) {
+            final spaceRef = await storageRef
+                .child("original_new_img/${response.data[i][j]}");
+            final imageUrl = await spaceRef.getDownloadURL();
+            list.add(imageUrl);
+          }
+        }
+        print(list);
+
+        /// http와 다른점은 response 값을 data로 받는다.
+        var name = response.data;
+
+        // "name", value: u)
+        return list;
+      } else {
+        print(response.statusCode);
+        print("2실패 ${response.statusCode}");
+        return 'Fail';
+      }
+    } catch (e) {
+      print(e);
+      Exception(e);
+    } finally {
+      dio.close();
+    }
+    return "";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: 45,
-              padding: EdgeInsets.only(right: 350, top: 5),
-              child: Text('분류1',
-                  style: GoogleFonts.getFont('Gowun Dodum',
-                      textStyle: TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold))),
-            ),
-            Container(
-              height: 100,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Image(
-                        image: AssetImage('assets/images/산/산1.jpg'),
-                        fit: BoxFit.cover),
-                  ),
-                  Padding(padding: EdgeInsets.all(1)),
-                  Expanded(
-                    child: Image(
-                        image: AssetImage('assets/images/산/산2.jpg'),
-                        fit: BoxFit.cover),
-                  ),
-                  Padding(padding: EdgeInsets.all(1)),
-                  Expanded(
-                    child: Image(
-                        image: AssetImage('assets/images/산/산3.jpg'),
-                        fit: BoxFit.cover),
-                  ),
-                  Padding(padding: EdgeInsets.all(1)),
-                  Expanded(
-                    child: Image(
-                        image: AssetImage('assets/images/산/산4.jpg'),
-                        fit: BoxFit.cover),
-                  ),
-                ],
-              ),
-            ),
-            Padding(padding: EdgeInsets.all(1)),
-            Row(
-              children: [
-                Expanded(
-                  child: Image(
-                      image: AssetImage('assets/images/산/산5.jpeg'),
-                      fit: BoxFit.cover),
-                ),
-                Padding(padding: EdgeInsets.all(1)),
-                Expanded(
-                  child: Image(
-                      image: AssetImage('assets/images/산/산6.jpeg'),
-                      fit: BoxFit.cover),
-                ),
-                Padding(padding: EdgeInsets.all(1)),
-                Expanded(
-                  child: Image(
-                      image: AssetImage('assets/images/산/산7.jpeg'),
-                      fit: BoxFit.cover),
-                ),
-                Padding(padding: EdgeInsets.all(1)),
-                Expanded(
-                  child: Image(
-                      image: AssetImage('assets/images/산/산8.jpeg'),
-                      fit: BoxFit.cover),
-                ),
-              ],
-            ),
-            Container(
-              height: 45,
-              padding: EdgeInsets.only(right: 350, top: 5),
-              child: Text('분류2',
-                  style: GoogleFonts.getFont('Gowun Dodum',
-                      textStyle: TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold))),
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: Image(
-                      image: AssetImage('assets/images/바다/바다01.jpg'),
-                      fit: BoxFit.cover),
-                ),
-                Padding(padding: EdgeInsets.all(1)),
-                Expanded(
-                  child: Image(image: AssetImage('assets/images/바다/바다02.jpg')),
-                ),
-                Padding(padding: EdgeInsets.all(1)),
-                Expanded(
-                  child: Image(image: AssetImage('assets/images/바다/바다03.jpg')),
-                ),
-                Padding(padding: EdgeInsets.all(1)),
-                Expanded(
-                  child: Image(image: AssetImage('assets/images/바다/바다04.jpg')),
-                ),
-              ],
-            ),
-            Padding(padding: EdgeInsets.all(1)),
-            Container(
-              height: 100,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Image(
-                        image: AssetImage('assets/images/바다/바다05.jpg'),
-                        fit: BoxFit.cover),
-                  ),
-                  Padding(padding: EdgeInsets.all(1)),
-                  Expanded(
-                    child: Image(
-                        image: AssetImage('assets/images/바다/바다06.jpg'),
-                        fit: BoxFit.cover),
-                  ),
-                  Padding(padding: EdgeInsets.all(1)),
-                  Expanded(
-                    child: Image(
-                        image: AssetImage('assets/images/바다/바다07.jpg'),
-                        fit: BoxFit.cover),
-                  ),
-                  Padding(padding: EdgeInsets.all(1)),
-                  Expanded(
-                    child: Image(
-                        image: AssetImage('assets/images/바다/바다08.jpg'),
-                        fit: BoxFit.cover),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              height: 45,
-              padding: EdgeInsets.only(right: 350, top: 5),
-              child: Text('분류3',
-                  style: GoogleFonts.getFont('Gowun Dodum',
-                      textStyle: TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold))),
-            ),
-            Container(
-              height: 100,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Image(
-                        image: AssetImage('assets/images/도시/도시01.jpg'),
-                        fit: BoxFit.cover),
-                  ),
-                  Padding(padding: EdgeInsets.all(1)),
-                  Expanded(
-                    child: Image(
-                        image: AssetImage('assets/images/도시/도시02.jpg'),
-                        fit: BoxFit.cover),
-                  ),
-                  Padding(padding: EdgeInsets.all(1)),
-                  Expanded(
-                    child: Image(
-                        image: AssetImage('assets/images/도시/도시03.jpg'),
-                        fit: BoxFit.cover),
-                  ),
-                  Padding(padding: EdgeInsets.all(1)),
-                  Expanded(
-                    child: Image(
-                        image: AssetImage('assets/images/도시/도시04.jpg'),
-                        fit: BoxFit.cover),
-                  ),
-                ],
-              ),
-            ),
-            Padding(padding: EdgeInsets.all(1)),
-            Row(
-              children: [
-                Expanded(
-                  child: Image(
-                      image: AssetImage('assets/images/도시/도시05.jpg'),
-                      fit: BoxFit.cover),
-                ),
-                Padding(padding: EdgeInsets.all(1)),
-                Expanded(
-                  child: Image(
-                      image: AssetImage('assets/images/도시/도시06.jpg'),
-                      fit: BoxFit.cover),
-                ),
-                Padding(padding: EdgeInsets.all(1)),
-                Expanded(
-                  child: Image(
-                      image: AssetImage('assets/images/도시/도시07.jpg'),
-                      fit: BoxFit.cover),
-                ),
-                Padding(padding: EdgeInsets.all(1)),
-                Expanded(
-                  child: Image(
-                      image: AssetImage('assets/images/도시/도시08.jpg'),
-                      fit: BoxFit.cover),
-                ),
-              ],
-            ),
-            Container(
-              height: 45,
-              padding: EdgeInsets.only(right: 350, top: 5),
-              child: Text('분류4',
-                  style: GoogleFonts.getFont('Gowun Dodum',
-                      textStyle: TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold))),
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: Image(
-                      image: AssetImage('assets/images/산/산1.jpg'),
-                      fit: BoxFit.cover),
-                ),
-                Padding(padding: EdgeInsets.all(1)),
-                Expanded(
-                  child: Image(image: AssetImage('assets/images/산/산2.jpg')),
-                ),
-                Padding(padding: EdgeInsets.all(1)),
-                Expanded(
-                  child: Image(image: AssetImage('assets/images/산/산3.jpg')),
-                ),
-                Padding(padding: EdgeInsets.all(1)),
-                Expanded(
-                  child: Image(image: AssetImage('assets/images/산/산4.jpg')),
-                ),
-              ],
-            ),
-            Padding(padding: EdgeInsets.all(1)),
-            Row(
-              children: [
-                Expanded(
-                  child: Image(image: AssetImage('assets/images/산/산5.jpeg')),
-                ),
-                Padding(padding: EdgeInsets.all(1)),
-                Expanded(
-                  child: Image(image: AssetImage('assets/images/산/산6.jpeg')),
-                ),
-                Padding(padding: EdgeInsets.all(1)),
-                Expanded(
-                  child: Image(image: AssetImage('assets/images/산/산7.jpeg')),
-                ),
-                Padding(padding: EdgeInsets.all(1)),
-                Expanded(
-                  child: Image(
-                      image: AssetImage('assets/images/산/산8.jpeg'),
-                      fit: BoxFit.cover),
-                ),
-              ],
-            )
-          ],
+        child: Container(
+          height: 670,
+          child: Column(
+            children: [
+              FutureBuilder(
+                  future: imageList(),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    //해당 부분은 data를 아직 받아 오지 못했을때 실행되는 부분을 의미한다.
+                    if (snapshot.hasData == false) {
+                      return CircularProgressIndicator();
+                    }
+                    //error가 발생하게 될 경우 반환하게 되는 부분
+                    else if (snapshot.hasError) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Error: ${snapshot.error}',
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      );
+                    }
+                    // 데이터를 정상적으로 받아오게 되면 다음 부분을 실행하게 되는 것이다.
+                    else {
+                      return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                              height: 650,
+                              padding: EdgeInsets.all(10),
+                              child: GridView.builder(
+                                  itemCount: list.length,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 5,
+                                          childAspectRatio: 5 / 5),
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    String link = list[index];
+                                    return Container(
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            child: Image.network(
+                                              link,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    );
+                                  })));
+                    }
+                  }),
+            ],
+          ),
         ),
       )),
     );

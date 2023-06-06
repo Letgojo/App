@@ -30,9 +30,9 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
   dynamic district = "";
   dynamic startDay = '';
   dynamic finish = '';
-  dynamic day = '';
-  dynamic x = '';
-  dynamic y = '';
+  dynamic day = "0";
+  String? x = "35.1938469";
+  String? y = "129.1536102";
   var list1 = [];
   List<Marker> _markers = [];
   var imagelist = [];
@@ -73,7 +73,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
     },
     {
       "index": "3",
-      "name": "#☕카페",
+      "name": "#☕best",
     },
     {
       "index": "4",
@@ -95,20 +95,59 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
     };
     Dio dio = new Dio();
     print(Logindata);
-    list = [];
     dio.options.headers['content-Type'] = 'application/json';
     try {
       var response = await dio.get(
         '${config.serverIP}/location/restaurant-img',
         queryParameters: Logindata,
       );
-      imagelist.clear();
       print(response.statusCode);
       if (response.statusCode == 200) {
         // final jsonBody = json.decode(response.data);
         print("성공");
 
         final spaceRef = await storageRef.child("food_img/${response.data[0]}");
+        final imageUrl = await spaceRef.getDownloadURL();
+        print(imageUrl);
+
+        /// http와 다른점은 response 값을 data로 받는다.
+        var name = response.data;
+
+        // "name", value: u)
+        return imageUrl;
+      } else {
+        print(response.statusCode);
+        print("2실패 ${response.statusCode}");
+        return 'Fail';
+      }
+    } catch (e) {
+      print(e);
+      Exception(e);
+    } finally {
+      dio.close();
+    }
+    return "";
+  }
+
+  Future<dynamic> imageList2(String name) async {
+    var Logindata = {
+      'name': name,
+    };
+    Dio dio = new Dio();
+    print(Logindata);
+
+    dio.options.headers['content-Type'] = 'application/json';
+    try {
+      var response = await dio.get(
+        '${config.serverIP}/location/tour-data',
+        queryParameters: Logindata,
+      );
+      if (response.statusCode == 200) {
+        // final jsonBody = json.decode(response.data);
+        print("성공");
+        print(response.data);
+        final spaceRef =
+            await storageRef.child("original_new_img/${response.data[0]}");
         final imageUrl = await spaceRef.getDownloadURL();
         print(imageUrl);
 
@@ -148,7 +187,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
         queryParameters: Logindata,
       );
       markers.clear();
-      list.clear();
+
       if (response.statusCode == 200) {
         for (int i = 0; i < response.data.length; i++) {
           if ((response.data[i]['위도'] != "" &&
@@ -228,7 +267,6 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
                                   onPressed: () {
                                     setState(() {
                                       list.add(response.data[i]);
-                                      print(list);
                                     });
                                   },
                                   child: Text(
@@ -248,6 +286,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
                 }));
           }
         }
+
         var temp = {};
         temp = list[0];
         list[0] = list[2];
@@ -434,6 +473,8 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
         '${config.serverIP}/location/tour',
         queryParameters: Logindata,
       );
+      String link2 = '';
+
       markers.clear();
       if (response.statusCode == 200) {
         for (var e in response.data) {
@@ -443,41 +484,85 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
                 position: LatLng(double.parse(e['위도']), double.parse(e['경도'])),
                 infoWindow:
                     InfoWindow(title: e['관광지명'], snippet: e['소분류 카테고리']),
-                onTap: () {
+                onTap: () async {
+                  await imageList2(e['이름']).then((value) => link2 = value);
                   showDialog(
                       context: context,
                       barrierDismissible: false,
                       builder: (context) {
                         return Container(
-                          child: AlertDialog(
-                            title: Text(
-                              "${e['이름']}",
-                              style: GoogleFonts.getFont('Gowun Dodum',
-                                  textStyle: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                            content: Text("라따뚜이.",
-                                style: GoogleFonts.getFont('Gowun Dodum',
-                                    textStyle: TextStyle(
-                                        fontSize: 15, color: Colors.black))),
-                            actions: [
-                              Container(
-                                  margin: EdgeInsets.only(right: 5),
-                                  child: ElevatedButton(
-                                      child: Text(
-                                        "확인",
-                                        style: GoogleFonts.getFont(
-                                            'Gowun Dodum',
-                                            textStyle: TextStyle(
-                                                fontSize: 18,
-                                                color: Colors.white)),
-                                      ),
-                                      onPressed: () {}))
+                            child: AlertDialog(
+                          title: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                child: Text(
+                                  "${e['이름']}",
+                                  style: GoogleFonts.getFont('Gowun Dodum',
+                                      textStyle: TextStyle(
+                                          fontSize: 13,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold)),
+                                ),
+                              ),
+                              Expanded(
+                                child: IconButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  icon: Icon(Icons.clear),
+                                ),
+                              )
                             ],
                           ),
-                        );
+                          content: Column(
+                            children: [
+                              SizedBox(
+                                child: Row(
+                                  children: [
+                                    Padding(padding: EdgeInsets.all(2))
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                child: Text("카테고리 : ${e['소분류 카테고리']}",
+                                    style: GoogleFonts.getFont('Gowun Dodum',
+                                        textStyle: TextStyle(
+                                            fontSize: 15,
+                                            color: Colors.black))),
+                              ),
+                              Container(
+                                child: Text("주소 : ${e['주소']}",
+                                    style: GoogleFonts.getFont('Gowun Dodum',
+                                        textStyle: TextStyle(
+                                            fontSize: 15,
+                                            color: Colors.black))),
+                              ),
+                              Container(
+                                  width: 200,
+                                  height: 200,
+                                  child:
+                                      Image.network(link2, fit: BoxFit.cover)),
+                              ElevatedButton(
+                                onPressed: () {
+                                  setState(() {
+                                    list.add(e);
+                                  });
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  "내 일정 담기",
+                                  style: GoogleFonts.getFont('Gowun Dodum',
+                                      textStyle: TextStyle(
+                                          fontSize: 16, color: Colors.white)),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                    primary: Color(0xff0F70BE), elevation: 8),
+                              ),
+                            ],
+                          ),
+                        ));
                       });
                 }));
           }
@@ -504,131 +589,161 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
     return Scaffold(
         body: SafeArea(
             child: SingleChildScrollView(
-                child: Column(children: [
-      Container(
-        height: 75,
-        padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal, //횡스크롤
-          itemCount: 6,
-          itemBuilder: (context, index) {
-            Map<dynamic, dynamic> data = recommendMenu[index];
-            String name = data['name'];
-            String number = data['index'];
-            return Container(
-                margin: EdgeInsets.only(right: 10, top: 10, left: 10),
-                width: 80,
-                decoration: BoxDecoration(
-                    border: Border.all(width: 1),
-                    borderRadius: BorderRadius.circular(10)),
-                child: TextButton(
-                  onPressed: () {
-                    number == '1'
-                        ? defalutlist(
-                            "자연관광", "${day}", "${city}", "${district}")
-                        : number == '2'
-                            ? loaddata("${city}", "${district}")
-                            : number == '3'
-                                ? loaddata("${city}", "${district}")
-                                : number == '4'
-                                    ? placedata(
-                                        '자연관광', "${city}", "${district}")
-                                    : number == '5'
-                                        ? placedata(
-                                            '역사관광', "${city}", "${district}")
-                                        : number == '6'
-                                            ? placedata('체험관광', "${city}",
-                                                "${district}")
-                                            : '';
-                  },
-                  child: Text(
-                    name,
-                    style: GoogleFonts.getFont('Gowun Dodum',
-                        textStyle:
-                            TextStyle(fontSize: 15, color: Colors.black)),
-                  ),
-                  style: TextButton.styleFrom(primary: Colors.white),
-                ));
-          },
-        ),
-      ),
-      Container(
-        height: 300,
-        child: GoogleMap(
-          mapType: MapType.normal,
-          onMapCreated: _onMapCreated,
-          markers: Set.from(markers),
-          initialCameraPosition: CameraPosition(
-            target: LatLng(double.parse(x), double.parse(y)),
-            zoom: 12.0,
+                child: Container(
+      height: 1000,
+      child: Column(children: [
+        Container(
+          height: 75,
+          padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal, //횡스크롤
+            itemCount: 6,
+            itemBuilder: (context, index) {
+              Map<dynamic, dynamic> data = recommendMenu[index];
+              String name = data['name'];
+              String number = data['index'];
+              return Container(
+                  margin: EdgeInsets.only(right: 10, top: 10, left: 10),
+                  width: 80,
+                  decoration: BoxDecoration(
+                      border: Border.all(width: 1),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: TextButton(
+                    onPressed: () {
+                      number == '1'
+                          ? defalutlist(
+                              "자연관광", "${day}", "${city}", "${district}")
+                          : number == '2'
+                              ? loaddata("${city}", "${district}")
+                              : number == '3'
+                                  ? placedata('문화관광', "${city}", "${district}")
+                                  : number == '4'
+                                      ? placedata(
+                                          '자연관광', "${city}", "${district}")
+                                      : number == '5'
+                                          ? placedata(
+                                              '역사관광', "${city}", "${district}")
+                                          : number == '6'
+                                              ? placedata('체험관광', "${city}",
+                                                  "${district}")
+                                              : '';
+                    },
+                    child: Text(
+                      name,
+                      style: GoogleFonts.getFont('Gowun Dodum',
+                          textStyle:
+                              TextStyle(fontSize: 15, color: Colors.black)),
+                    ),
+                    style: TextButton.styleFrom(primary: Colors.white),
+                  ));
+            },
           ),
         ),
-      ),
-      Container(
-        margin: EdgeInsets.only(right: 340),
-        child: Text(
-          "여행일정",
-          textAlign: TextAlign.end,
-          style: GoogleFonts.getFont('Gowun Dodum',
-              textStyle: TextStyle(fontSize: 18, color: Colors.black)),
+        Container(
+          height: 400,
+          child: GoogleMap(
+            mapType: MapType.normal,
+            onMapCreated: _onMapCreated,
+            markers: Set.from(markers),
+            initialCameraPosition: CameraPosition(
+              target: LatLng(double.parse(x!), double.parse(y!)),
+              zoom: 12.0,
+            ),
+          ),
         ),
-      ),
-      Padding(
-          padding: const EdgeInsets.all(0.0),
-          child: ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: list.length,
-              itemBuilder: (context, index) {
-                Map<String, dynamic> data = list[index];
-                String citytitle = data['이름'];
-                // if (data['이름'] != null) {
-                data['타입'] == '음식점'
-                    ? citytitle = '🥘' + data['이름']
-                    : data['타입'] == '역사관광'
-                        ? citytitle = '📜' + data['이름']
-                        : data['타입'] == '자연관광'
-                            ? citytitle = '🌳' + data['이름']
-                            : data['타입'] == '체험관광'
-                                ? citytitle = '🤿' + data['이름']
-                                : data['이름'];
+        Padding(
+            padding: const EdgeInsets.all(0.0),
+            child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: int.parse(day ?? 1),
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: EdgeInsets.all(8),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: Text(
+                              ("$day"),
+                              textAlign: TextAlign.left,
+                              style: GoogleFonts.getFont('Gowun Dodum',
+                                  textStyle: TextStyle(
+                                      fontSize: 18, color: Colors.black)),
+                            ),
+                          )
+                        ]),
+                  );
+                })),
+        Container(
+          margin: EdgeInsets.only(right: 340),
+          child: Text(
+            "여행일정",
+            textAlign: TextAlign.end,
+            style: GoogleFonts.getFont('Gowun Dodum',
+                textStyle: TextStyle(fontSize: 18, color: Colors.black)),
+          ),
+        ),
+        Padding(
+            padding: const EdgeInsets.all(0.0),
+            child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: list.length,
+                itemBuilder: (context, index) {
+                  Map<String, dynamic> data = list[index];
+                  String citytitle = data['이름'];
+                  // if (data['이름'] != null) {
+                  data['타입'] == '음식점'
+                      ? citytitle = '🥘' + data['이름']
+                      : data['타입'] == '역사관광'
+                          ? citytitle = '📜' + data['이름']
+                          : data['타입'] == '자연관광'
+                              ? citytitle = '🌳' + data['이름']
+                              : data['타입'] == '체험관광'
+                                  ? citytitle = '🤿' + data['이름']
+                                  : data['타입'] == '문화관광'
+                                      ? citytitle = '☕' + data['이름']
+                                      : "";
 
-                // citytitle = data['이름'];
-                // } else if (data['관광지명'] != null)
-                //   citytitle = '🌳' + data['관광지명'];
-                // else if (data['관광지명'] == null && data['이름'] == null) {
-                //   citytitle = '안돼';
-                // }
-                return Container(
-                  margin: EdgeInsets.all(8),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          ("${citytitle}"),
-                          textAlign: TextAlign.left,
-                          style: GoogleFonts.getFont('Gowun Dodum',
-                              textStyle:
-                                  TextStyle(fontSize: 18, color: Colors.black)),
-                        )
-                      ]),
-                );
-              })),
-      Container(
-          child: SizedBox(
-        width: 300,
-        child: ElevatedButton(
-          onPressed: () {
-            result(list);
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const menuBar()));
-          },
-          child: Text("완료"),
-          style: ElevatedButton.styleFrom(
-              primary: Color(0xff0F70BE), elevation: 0),
-        ),
-      ))
-    ]))));
+                  // citytitle = data['이름'];
+                  // } else if (data['관광지명'] != null)
+                  //   citytitle = '🌳' + data['관광지명'];
+                  // else if (data['관광지명'] == null && data['이름'] == null) {
+                  //   citytitle = '안돼';
+                  // }
+                  return Container(
+                    margin: EdgeInsets.all(8),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            ("${citytitle}"),
+                            textAlign: TextAlign.left,
+                            style: GoogleFonts.getFont('Gowun Dodum',
+                                textStyle: TextStyle(
+                                    fontSize: 18, color: Colors.black)),
+                          )
+                        ]),
+                  );
+                })),
+        Container(
+            child: SizedBox(
+          width: 300,
+          child: ElevatedButton(
+            onPressed: () {
+              result(list);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const menuBar()));
+            },
+            child: Text("완료"),
+            style: ElevatedButton.styleFrom(
+                primary: Color(0xff0F70BE), elevation: 0),
+          ),
+        ))
+      ]),
+    ))));
   }
 
   Future<String> result(dynamic list) async {
