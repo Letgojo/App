@@ -104,19 +104,19 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
       );
       imagelist.clear();
       print(response.statusCode);
-      if (response.statusCode == 200){
+      if (response.statusCode == 200) {
         // final jsonBody = json.decode(response.data);
         print("성공");
 
-        // final spaceRef = storageRef.child("food_img/${response.data[0]}");
-        // final imageUrl = spaceRef.getDownloadURL();
-        print("HI  ${response.data[0]}");
+        final spaceRef = await storageRef.child("food_img/${response.data[0]}");
+        final imageUrl = await spaceRef.getDownloadURL();
+        print(imageUrl);
 
         /// http와 다른점은 response 값을 data로 받는다.
         var name = response.data;
 
         // "name", value: u)
-        return 11;
+        return imageUrl;
       } else {
         print(response.statusCode);
         print("2실패 ${response.statusCode}");
@@ -288,6 +288,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
         '${config.serverIP}/location/restaurant',
         queryParameters: Logindata,
       );
+      String link = '';
       print(response.statusCode);
       markers.clear();
       if (response.statusCode == 200) {
@@ -301,8 +302,8 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
                 markerId: MarkerId(e['이름']),
                 position: LatLng(double.parse(e['위도']), double.parse(e['경도'])),
                 infoWindow: InfoWindow(title: e['이름']),
-                onTap: () {
-                  imageList(e['이름']);
+                onTap: () async {
+                  await imageList(e['이름']).then((value) => link = value);
                   showDialog(
                       context: context,
                       barrierDismissible: false,
@@ -347,9 +348,8 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
                                 Container(
                                     width: 200,
                                     height: 200,
-                                    child: Image.network(
-                                        "https://firebasestorage.googleapis.com/v0/b/test-bd2d5.appspot.com/o/food_img%2Ff1-1.png?alt=media&token=4de08f7a-a38c-4c8b-ac0b-463729347c51",
-                                        fit: BoxFit.cover)),
+                                    child:
+                                        Image.network(link, fit: BoxFit.cover)),
                                 Container(
                                   child: Text(
                                     "카테고리 : ${e['카테고리']}",
