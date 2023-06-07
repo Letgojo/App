@@ -135,7 +135,7 @@ class _TripYes_resultState extends State<TripYes_result> {
                         width: 200,
                         child: ElevatedButton(
                             child: Text(
-                              "자동",
+                              "자동일정 생ㅓ",
                               style: GoogleFonts.jua(
                                   textStyle: TextStyle(
                                       fontSize: 18, color: Colors.black)),
@@ -156,7 +156,7 @@ class _TripYes_resultState extends State<TripYes_result> {
                         width: 200,
                         child: ElevatedButton(
                             child: Text(
-                              "수동",
+                              "여행자 사진 모음",
                               style: GoogleFonts.jua(
                                   textStyle: TextStyle(
                                       fontSize: 18, color: Colors.black)),
