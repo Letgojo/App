@@ -16,6 +16,7 @@ class CategoryTable extends StatefulWidget {
 
 class CategoryTable_State extends State<CategoryTable> {
   var list = [];
+  var title = [];
   Future<dynamic> imageList() async {
     var Logindata = {};
     Dio dio = new Dio();
@@ -33,6 +34,7 @@ class CategoryTable_State extends State<CategoryTable> {
         // print(imageUrl);
         for (var i = 0; i < response.data.length; i++) {
           for (var j = 0; j < response.data[i].length; j++) {
+            title.add(response.data[i][j]);
             final spaceRef =
                 await storageRef.child("new_img_512/${response.data[i][j]}");
             final imageUrl = await spaceRef.getDownloadURL();
@@ -40,6 +42,41 @@ class CategoryTable_State extends State<CategoryTable> {
           }
         }
         print(list);
+
+        /// http와 다른점은 response 값을 data로 받는다.
+        var name = response.data;
+
+        // "name", value: u)
+        return list;
+      } else {
+        print(response.statusCode);
+        print("2실패 ${response.statusCode}");
+        return 'Fail';
+      }
+    } catch (e) {
+      print(e);
+      Exception(e);
+    } finally {
+      dio.close();
+    }
+    return "";
+  }
+
+  Future<dynamic> resultPage(String name) async {
+    var Logindata = {'name': name};
+    Dio dio = new Dio();
+    print(Logindata);
+    dio.options.headers['content-Type'] = 'application/json';
+    try {
+      var response = await dio.get('${config.serverIP}/location/tour-data',
+          queryParameters: Logindata);
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        // final jsonBody = json.decode(response.data);
+        print("성공");
+        list.clear();
+        // print(imageUrl);
+        print(response.data);
 
         /// http와 다른점은 response 값을 data로 받는다.
         var name = response.data;
@@ -77,7 +114,7 @@ class CategoryTable_State extends State<CategoryTable> {
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     //해당 부분은 data를 아직 받아 오지 못했을때 실행되는 부분을 의미한다.
                     if (snapshot.hasData == false) {
-                      return CircularProgressIndicator();
+                      return Center(child: CircularProgressIndicator());
                     }
                     //error가 발생하게 될 경우 반환하게 되는 부분
                     else if (snapshot.hasError) {
@@ -110,14 +147,22 @@ class CategoryTable_State extends State<CategoryTable> {
                                     return Container(
                                       child: Column(
                                         children: [
-                                          Container(
-                                            decoration: BoxDecoration(
-                                                border: Border.all(width: 1)),
-                                            child: Image.network(
-                                              link,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          )
+                                          ElevatedButton(
+                                              onPressed: () {
+                                                resultPage(title[index]);
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                  primary: Colors.transparent,
+                                                  elevation: 0),
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    border:
+                                                        Border.all(width: 1)),
+                                                child: Image.network(
+                                                  link,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ))
                                         ],
                                       ),
                                     );
