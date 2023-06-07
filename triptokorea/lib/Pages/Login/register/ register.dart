@@ -122,6 +122,7 @@ class _registerState extends State<register> {
                       margin: const EdgeInsets.only(top: 30),
                       child: TextField(
                           controller: pwdController,
+                          obscureText: true,
                           decoration: InputDecoration(
                             labelText: "비밀번호",
                             hintText: "비밀번호를 입력해주세요",
@@ -143,6 +144,7 @@ class _registerState extends State<register> {
                       margin: const EdgeInsets.only(top: 30),
                       child: TextField(
                           controller: pwdckeck,
+                          obscureText: true,
                           decoration: InputDecoration(
                             hintText: "비밀번호확인",
                             border: (OutlineInputBorder(

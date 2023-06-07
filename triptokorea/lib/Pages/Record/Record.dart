@@ -46,8 +46,10 @@ class RecordState extends State<Record> {
         '${config.serverIP}/location/route-result',
         queryParameters: Logindata,
       );
-
+      print(response.data);
       print(response.statusCode);
+      list.clear();
+      info.clear();
       if (response.statusCode == 200) {
         // final jsonBody = json.decode(response.data);
         print("성공");
@@ -142,94 +144,94 @@ class RecordState extends State<Record> {
                     return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
-                          height: 800,
-                          padding: EdgeInsets.all(10),
-                          child: ListView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: 5,
-                            itemBuilder: (context, index) {
-                              // List<dynamic> data = list[index];
-                              Map<dynamic, dynamic> data = list[index];
-                              Map<dynamic, dynamic> info_Data = info[index];
-                              // String name = data['이름'];
-                              print(list[0]);
-                              return Container(
-                                width: 320,
-                                height: 130,
-                                margin: EdgeInsets.only(bottom: 30),
-                                decoration: BoxDecoration(
-                                    border: Border.all(width: 0.5),
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                result(title: info[index])));
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                      primary: Colors.white),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        width: 130,
-                                        height: 130,
-                                        decoration: BoxDecoration(
-                                            border: Border.all(width: 0.5),
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                        child: Image(
-                                            image: AssetImage(
-                                                'assets/images/newjin.png'),
-                                            fit: BoxFit.cover),
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.only(left: 20),
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              margin: EdgeInsets.only(
-                                                  top: 5, left: 120),
-                                              child: Icon(Icons.delete_outline),
-                                            ),
-                                            Container(
-                                              margin: EdgeInsets.only(
-                                                  top: 5, right: 100),
-                                              child: Text(
-                                                data['이름'],
-                                                style: TextStyle(
-                                                    color: Colors.black),
-                                              ),
-                                            ),
-                                            Container(
-                                              margin: EdgeInsets.only(
-                                                  top: 5, right: 50),
-                                              child: Text(
-                                                "${info_Data["startDay"]}~ ${info_Data["endDay"]} ",
-                                                style: TextStyle(
-                                                    color: Colors.black),
-                                              ),
-                                            ),
-                                            Container(
-                                              margin: EdgeInsets.only(
-                                                  top: 30, left: 30),
-                                              child: Text(
-                                                "",
-                                                style: TextStyle(
-                                                    color: Colors.black),
-                                              ),
-                                            )
-                                          ],
+                            height: 800,
+                            padding: EdgeInsets.all(10),
+                            child: ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: list.length,
+                              itemBuilder: (context, index) {
+                                // List<dynamic> data = list[index];
+                                Map<dynamic, dynamic> data = list[index];
+                                Map<dynamic, dynamic> info_Data = info[index];
+                                // String name = data['이름'];
+
+                                return Container(
+                                  width: 320,
+                                  height: 130,
+                                  margin: EdgeInsets.only(bottom: 30),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(width: 0.5),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  result(title: info[index])));
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        primary: Colors.white),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          width: 130,
+                                          height: 130,
+                                          decoration: BoxDecoration(
+                                              border: Border.all(width: 0.5),
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          child: Image(
+                                              image: AssetImage(
+                                                  'assets/images/newjin.png'),
+                                              fit: BoxFit.cover),
                                         ),
-                                      ),
-                                    ],
+                                        Container(
+                                          padding: EdgeInsets.only(left: 20),
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    top: 5, left: 120),
+                                                child:
+                                                    Icon(Icons.delete_outline),
+                                              ),
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    top: 5, right: 100),
+                                                child: Text(
+                                                  data['이름'],
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
+                                              ),
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    top: 5, right: 50),
+                                                child: Text(
+                                                  "${info_Data["startDay"]}~ ${info_Data["endDay"]} ",
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
+                                              ),
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    top: 30, left: 30),
+                                                child: Text(
+                                                  "",
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                          ),
-                        ));
+                                );
+                              },
+                            )));
                   }
                 }),
           ]))),

@@ -651,31 +651,6 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
             ),
           ),
         ),
-        Padding(
-            padding: const EdgeInsets.all(0.0),
-            child: ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: int.parse(day ?? 1),
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: EdgeInsets.all(8),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: Text(
-                              ("$day"),
-                              textAlign: TextAlign.left,
-                              style: GoogleFonts.getFont('Gowun Dodum',
-                                  textStyle: TextStyle(
-                                      fontSize: 18, color: Colors.black)),
-                            ),
-                          )
-                        ]),
-                  );
-                })),
         Container(
           margin: EdgeInsets.only(right: 340),
           child: Text(

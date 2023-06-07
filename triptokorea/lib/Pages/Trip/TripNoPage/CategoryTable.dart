@@ -29,7 +29,7 @@ class CategoryTable_State extends State<CategoryTable> {
       if (response.statusCode == 200) {
         // final jsonBody = json.decode(response.data);
         print("성공");
-
+        list.clear();
         // print(imageUrl);
         for (var i = 0; i < response.data.length; i++) {
           for (var j = 0; j < response.data[i].length; j++) {
@@ -91,6 +91,8 @@ class CategoryTable_State extends State<CategoryTable> {
                       return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
+                              decoration:
+                                  BoxDecoration(border: Border.all(width: 1)),
                               height: 650,
                               padding: EdgeInsets.all(10),
                               child: GridView.builder(
@@ -98,7 +100,7 @@ class CategoryTable_State extends State<CategoryTable> {
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 5,
-                                          childAspectRatio: 5 / 5),
+                                          childAspectRatio: 10 / 13),
                                   itemBuilder:
                                       (BuildContext context, int index) {
                                     String link = list[index];
@@ -106,6 +108,8 @@ class CategoryTable_State extends State<CategoryTable> {
                                       child: Column(
                                         children: [
                                           Container(
+                                            decoration: BoxDecoration(
+                                                border: Border.all(width: 1)),
                                             child: Image.network(
                                               link,
                                               fit: BoxFit.cover,
