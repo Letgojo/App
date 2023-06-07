@@ -33,8 +33,8 @@ class CategoryTable_State extends State<CategoryTable> {
         // print(imageUrl);
         for (var i = 0; i < response.data.length; i++) {
           for (var j = 0; j < response.data[i].length; j++) {
-            final spaceRef = await storageRef
-                .child("original_new_img/${response.data[i][j]}");
+            final spaceRef =
+                await storageRef.child("new_img_512/${response.data[i][j]}");
             final imageUrl = await spaceRef.getDownloadURL();
             list.add(imageUrl);
           }
@@ -66,9 +66,12 @@ class CategoryTable_State extends State<CategoryTable> {
       body: SafeArea(
           child: SingleChildScrollView(
         child: Container(
-          height: 670,
+          height: 700,
           child: Column(
             children: [
+              Container(
+                child: Text("분류"),
+              ),
               FutureBuilder(
                   future: imageList(),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {

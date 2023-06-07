@@ -62,40 +62,40 @@ class IntroduceState extends State<Introduce> {
                   ),
                 ]),
               ),
-              Container(
-                padding: EdgeInsets.only(top: 30),
-                width: double.infinity,
-                height: 270,
-                decoration: BoxDecoration(
-                  color: Color(0xffFFFFF1),
-                ),
-                child: Column(children: [
-                  Container(
-                    margin: EdgeInsets.only(right: 250),
-                    child: Text(
-                      "예산관리",
-                      style: GoogleFonts.getFont('Gowun Dodum',
-                          textStyle: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(right: 50, top: 10),
-                    width: 240,
-                    child: Text(
-                      "여행 중 과소비 지출 방지를 위해 전체 예상 경비를 알려드려요. ",
-                      style: GoogleFonts.getFont('Gowun Dodum',
-                          textStyle: TextStyle(fontSize: 17)),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 170, top: 20),
-                    width: 79,
-                    height: 79,
-                    child: Image.asset('assets/images/introduce_money.png'),
-                  ),
-                ]),
-              ),
+              // Container(
+              //   padding: EdgeInsets.only(top: 30),
+              //   width: double.infinity,
+              //   height: 270,
+              //   decoration: BoxDecoration(
+              //     color: Color(0xffFFFFF1),
+              //   ),
+              //   child: Column(children: [
+              //     Container(
+              //       margin: EdgeInsets.only(right: 250),
+              //       child: Text(
+              //         "예산관리",
+              //         style: GoogleFonts.getFont('Gowun Dodum',
+              //             textStyle: TextStyle(
+              //                 fontSize: 20, fontWeight: FontWeight.bold)),
+              //       ),
+              //     ),
+              //     Container(
+              //       margin: EdgeInsets.only(right: 50, top: 10),
+              //       width: 240,
+              //       child: Text(
+              //         "여행 중 과소비 지출 방지를 위해 전체 예상 경비를 알려드려요. ",
+              //         style: GoogleFonts.getFont('Gowun Dodum',
+              //             textStyle: TextStyle(fontSize: 17)),
+              //       ),
+              //     ),
+              //     Container(
+              //       margin: EdgeInsets.only(left: 170, top: 20),
+              //       width: 79,
+              //       height: 79,
+              //       child: Image.asset('assets/images/introduce_money.png'),
+              //     ),
+              //   ]),
+              // ),
               Container(
                 padding: EdgeInsets.only(top: 30),
                 width: double.infinity,

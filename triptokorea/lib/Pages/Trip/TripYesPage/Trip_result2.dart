@@ -187,7 +187,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
         queryParameters: Logindata,
       );
       markers.clear();
-
+      print(response.data);
       if (response.statusCode == 200) {
         for (int i = 0; i < response.data.length; i++) {
           if ((response.data[i]['위도'] != "" &&
@@ -328,6 +328,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
         queryParameters: Logindata,
       );
       String link = '';
+      print(response.data);
       print(response.statusCode);
       markers.clear();
       if (response.statusCode == 200) {
