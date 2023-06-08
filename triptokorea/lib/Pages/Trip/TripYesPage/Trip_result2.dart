@@ -694,7 +694,7 @@ class _TripYes_resultState2 extends State<TripYes_result2> {
             child: ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: 5,
+                itemCount: list.length,
                 itemBuilder: (context, index) {
                   Map<dynamic, dynamic> data = list2[choice][index];
                   print(list2);

@@ -135,7 +135,7 @@ class _TripYes_resultState extends State<TripYes_result> {
                         width: 200,
                         child: ElevatedButton(
                             child: Text(
-                              "자동일정 생ㅓ",
+                              "자동일정 생성",
                               style: GoogleFonts.jua(
                                   textStyle: TextStyle(
                                       fontSize: 18, color: Colors.black)),
