@@ -145,25 +145,13 @@ class CategoryTable_State extends State<CategoryTable> {
                                       (BuildContext context, int index) {
                                     String link = list[index];
                                     return Container(
-                                      child: Column(
-                                        children: [
-                                          ElevatedButton(
-                                              onPressed: () {
-                                                resultPage(title[index]);
-                                              },
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: Colors.transparent,
-                                                  elevation: 0),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    border:
-                                                        Border.all(width: 1)),
-                                                child: Image.network(
-                                                  link,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ))
-                                        ],
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(width: 1)),
+                                        child: Image.network(
+                                          link,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     );
                                   })));
